@@ -1,0 +1,24 @@
+{
+  "name": "academiapokemon",
+  "version": "1.0.0",
+  "description": "projeto de banco de dados sobre uma academia para pokemons",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js"
+  },
+  "author": "Carlos, Giovanna, Leandro, Lucas",
+  "license": "ISC",
+  "dependencies": {
+    "cpf": "^2.0.1",
+    "validator": "^13.0.0"
+  },
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3",
+    "pg": "^8.0.3"
+  }
+}

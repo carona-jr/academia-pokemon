@@ -1,0 +1,89 @@
+CREATE TABLE Usuario (
+    cpf varchar(24),
+    nome varchar(64) not null,
+    rg varchar(24) not null unique,
+    data_nascimento date,
+    rua varchar(64),
+    num_casa integer,
+    bairro varchar(64),
+    cidade varchar(64),
+    estado varchar(2) check(estado in ('SP', 'RJ', 'MG')),
+    cep integer,
+    e_mail varchar(64) NOT NULL UNIQUE,
+    password varchar(64) NOT NULL,
+    PRIMARY KEY (cpf)
+);
+
+CREATE TABLE Telefone (
+     cpf varchar(24) REFERENCES Usuario (cpf),
+     numero_de_telefone varchar(12),
+     PRIMARY KEY (cpf, numero_de_telefone)
+);
+
+CREATE TABLE Pokemon (
+     codigo_pokemon SERIAL,
+     cpf varchar(24) REFERENCES Usuario (cpf), 
+     nome varchar(64),
+     classificacao varchar(64),
+     nivel varchar(24) NOT NULL,
+     nivel_objetivo varchar(24) NOT NULL,
+     data_de_entrada TIMESTAMP,
+     data_de_saida TIMESTAMP, 
+     PRIMARY KEY (codigo_pokemon)
+);
+
+CREATE TABLE Treinador (
+    cpf varchar(24) REFERENCES Usuario (cpf),
+    cpts varchar(24) NOT NULL UNIQUE,
+    salario_base varchar(24),
+    instituto varchar(64),
+    PRIMARY KEY (cpf)
+);
+
+CREATE TABLE Especialidade (
+    cpf varchar(24) REFERENCES Treinador(cpf),
+    especialidade varchar(64),
+    PRIMARY KEY (cpf)     
+);
+
+CREATE TABLE Mestre (
+    cpf varchar(24) REFERENCES Treinador (cpf),
+    PRIMARY KEY (cpf)     
+);
+
+CREATE TABLE Proficiencia (
+    cpf varchar(24) REFERENCES Mestre (cpf),
+    proficiencia varchar(64),
+    PRIMARY KEY (cpf, proficiencia)     
+);
+
+CREATE TABLE Departamento (
+    codigo_dept SERIAL,
+    nome varchar(64),
+    classificacao varchar(64),
+    gerente varchar(24) REFERENCES Mestre (cpf),
+    PRIMARY KEY (codigo_dept)
+);
+
+CREATE TABLE Plano (
+     codigo_plano SERIAL,
+     nome varchar(64),
+     valor varchar(24),
+     data_de_inicio TIMESTAMP,
+     data_de_termino TIMESTAMP,
+     PRIMARY KEY  (codigo_plano)
+);
+
+CREATE TABLE Aprimora (
+    codigo_pokemon integer REFERENCES Pokemon (codigo_pokemon),
+    cpf varchar(24) REFERENCES Treinador (cpf),
+    hora_de_entrada TIMESTAMP,
+    hora_de_saida TIMESTAMP,
+    PRIMARY KEY (codigo_pokemon, cpf, hora_de_entrada, hora_de_saida)
+);
+
+CREATE TABLE Trabalha (
+    codigo_dept integer REFERENCES Departamento (codigo_dept),
+    cpf varchar(24) REFERENCES Treinador (cpf),  
+    PRIMARY KEY (cpf, codigo_dept)
+);
