@@ -5,7 +5,8 @@
 
     searchByKeyAndUpdate(
         CORPO DA REQUISIÇÃO COM OS DADOS PARA ALTERAR (req.body), 
-        CAMPO A SER PROCURADO (CHAVE, ex. cpf), 
+        CAMPO A SER PROCURADO (CHAVE, ex. 'cpf'),
+        VALOR DA CHAVE A SER PROCURADO (ex '123456') 
         OBJETO COM O TEXT (MODELS, ex queryFindByCpf), 
         VETOR DOS VALORES DO TIPO INTEGER (['num_cara', 'cep']), 
         VETOR DAS ALTERAÕES PERMITIDAS (['nome', 'rua', 'cep'])
@@ -27,7 +28,7 @@ const verifyAllowed = (arr, allowedUpdates) => {
     return arr.every(update => allowedUpdates.includes(update))
 }
 
-const searchByKeyAndUpdate = (data, keyword, objValues, arrInt = [], allowedUpdates = []) => {
+const searchByKeyAndUpdate = (data, key, keyword, objValues, arrInt = [], allowedUpdates = []) => {
     return new Promise(async (resolve, reject) => {
 
         // Verifica se o update é permitido
@@ -60,12 +61,12 @@ const searchByKeyAndUpdate = (data, keyword, objValues, arrInt = [], allowedUpda
 
             // Concatena o WHERE a fim de alterar somente pela chave fornecida especificado
             let updateStr = str.split('').slice(0, str.length - 2).join('')
-            updateStr += ` WHERE cpf = '${keyword}'`
+            updateStr += ` WHERE ${key} = '${keyword}'`
 
             await pool.query(updateStr)
             resolve({ sucesso: true })
         } catch (e) {
-            reject({ erro: `impossível atualizar o valor ${keyword} da chave na tabela`})
+            reject({ erro: `impossível atualizar o valor ${keyword} do/a ${key} na tabela`})
         }
     })
 }

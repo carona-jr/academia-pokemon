@@ -47,7 +47,7 @@ router.post('/user', async (req, res) => {
 router.patch('/user/:cpf', async(req, res) => {
     const cpf = req.params.cpf
     try {
-        const query = await searchByKeyAndUpdate(req.body, cpf, queryFindByCpf, ['cep', 'num_casa'], ['nome', 'rua', 'cep'])
+        const query = await searchByKeyAndUpdate(req.body, 'cpf', cpf, queryFindByCpf, ['cep', 'num_casa'], ['nome', 'rua', 'cep'])
         res.send()
     } catch (e) {
         res.status(400).send(e)
