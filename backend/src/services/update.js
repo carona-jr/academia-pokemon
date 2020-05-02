@@ -37,30 +37,36 @@ const searchByKeyAndUpdate = (data, keyword, objValues, arrInt = [], allowedUpda
 
         // Realiza a busca no banco de dados, pela key fornecida, do usuário passado por parametro
         objValues.values = [keyword]
-        const user = await pool.query(objValues)
+        try {
+            const user = await pool.query(objValues)
 
-        // Cria um objeto com os valores diferentes daqueles armazenados no banco, verificando, assim, se o dado foi alterado ou não
-        let update = {}
-        const userKeys = Object.keys(user.rows[0])
-        userKeys.map(value => data[value] !== user[value] ? update[value] = data[value] : false)
+            // Cria um objeto com os valores diferentes daqueles armazenados no banco, verificando, assim, se o dado foi alterado ou não
+            let update = {}
+            const userKeys = Object.keys(user.rows[0])
+            userKeys.map(value => data[value] !== user[value] ? update[value] = data[value] : false)
 
-        // Concatena o comando UPDATE com os valores alterados na requisição, o restante é ignorado
-        const updateKeys = Object.keys(update)
-        let str = 'UPDATE Usuario SET '
-        updateKeys.map(value => {
-            let newStr
-            if (verifyInteger(arrInt, value))
-                newStr = `${value} = '${update[value]}', `
-            else {
-                newStr = `${value} = ${update[value]}, `
-            }
-            str += newStr
-        })
+            // Concatena o comando UPDATE com os valores alterados na requisição, o restante é ignorado
+            const updateKeys = Object.keys(update)
+            let str = 'UPDATE Usuario SET '
+            updateKeys.map(value => {
+                let newStr
+                if (verifyInteger(arrInt, value))
+                    newStr = `${value} = '${update[value]}', `
+                else {
+                    newStr = `${value} = ${update[value]}, `
+                }
+                str += newStr
+            })
 
-        // Concatena o WHERE a fim de alterar somente pela chave fornecida especificado
-        let updateStr = str.split('').slice(0, str.length - 2).join('')
-        updateStr += ` WHERE cpf = '${keyword}'`
-        resolve(updateStr)
+            // Concatena o WHERE a fim de alterar somente pela chave fornecida especificado
+            let updateStr = str.split('').slice(0, str.length - 2).join('')
+            updateStr += ` WHERE cpf = '${keyword}'`
+
+            await pool.query(updateStr)
+            resolve({ sucesso: true })
+        } catch (e) {
+            reject({ erro: `impossível atualizar o valor ${keyword} da chave na tabela`})
+        }
     })
 }
 
