@@ -4,11 +4,11 @@
     *** USO ***
 
     searchByKeyAndUpdate(
-        CORPO DA REQUISIÇÃO COM OS DADOS PARA ALTERAR, 
-        CAMPO A SER PROCURADO (CHAVE), 
-        OBJETO COM O TEXT (MODELS), 
-        VETOR DOS VALORES DO TIPO INTEGER, 
-        VETOR DAS ALTERAÕES PERMITIDAS
+        CORPO DA REQUISIÇÃO COM OS DADOS PARA ALTERAR (req.body), 
+        CAMPO A SER PROCURADO (CHAVE, ex. cpf), 
+        OBJETO COM O TEXT (MODELS, ex queryFindByCpf), 
+        VETOR DOS VALORES DO TIPO INTEGER (['num_cara', 'cep']), 
+        VETOR DAS ALTERAÕES PERMITIDAS (['nome', 'rua', 'cep'])
     )
 
     A função retorna uma string no padrão correto para ser inserida na consulta
@@ -35,7 +35,7 @@ const searchByKeyAndUpdate = (data, keyword, objValues, arrInt = [], allowedUpda
         if (!verifyAllowed(dataKeys, allowedUpdates))
             reject({ erro: 'Não foi possível realizar o update, uma das alterações não é permitida' })
 
-        // Realiza a busca no banco de dados, por cpf, do usuário passado por parametro
+        // Realiza a busca no banco de dados, pela key fornecida, do usuário passado por parametro
         objValues.values = [keyword]
         const user = await pool.query(objValues)
 
@@ -57,7 +57,7 @@ const searchByKeyAndUpdate = (data, keyword, objValues, arrInt = [], allowedUpda
             str += newStr
         })
 
-        // Concatena o WHERE a fim de alterar somente o cpf especificado
+        // Concatena o WHERE a fim de alterar somente pela chave fornecida especificado
         let updateStr = str.split('').slice(0, str.length - 2).join('')
         updateStr += ` WHERE cpf = '${keyword}'`
         resolve(updateStr)
