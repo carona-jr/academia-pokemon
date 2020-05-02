@@ -2,6 +2,7 @@ const express = require('express')
 const pool = require('../db/elephant-sql')
 const router = new express.Router()
 const { queryInsertUser, queryFindByCpf, queryDeleteByCpf } = require('../models/user')
+const searchByKeyAndUpdate = require('../services/update')
 // const { validateUser } = require('../services/validate')
 
 // GET POST UPDATE DELETE
@@ -45,30 +46,12 @@ router.post('/user', async (req, res) => {
 
 router.patch('/user/:cpf', async(req, res) => {
     const cpf = req.params.cpf
-    queryFindByCpf.values = [cpf]
     try {
-        const user = await pool.query(queryFindByCpf)
-        const keys = Object.keys(user.rows[0])
-        let update = {}
-        keys.map(value => req.body[value] !== user[value] ? update[value] = req.body[value] : false)
-        const keysOfUpdate = Object.keys(update)
-        let str = 'UPDATE Usuario SET '
-        keysOfUpdate.map(value => {
-            let newStr
-            if (value !== 'cep')
-                newStr = `${value} = '${update[value]}', `
-            else {
-                newStr = `${value} = ${update[value]}, `
-            }
-            str += newStr
-        })
-        let updateStr = str.split('').slice(0, str.length - 2).join('')
-        updateStr += ` WHERE cpf = '${cpf}'`
-
-        const updateUser = await pool.query(updateStr)
+        const query = await searchByKeyAndUpdate(req.body, cpf, queryFindByCpf, ['cep', 'num_casa'], ['nome', 'rua', 'cep'])
+        const updateUser = await pool.query(query)
         res.send()
     } catch (e) {
-        res.status(500).send()
+        res.status(500).send(e)
     }
 })
 
