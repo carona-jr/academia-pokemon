@@ -5,12 +5,13 @@
     *** EXEMPLO ***
 
     searchByKeyAndUpdate(
-        Requisição com os dados para alterar (req.body), 
-        Coluna a ser utilizada na pesquisa (CHAVE, ex. 'cpf'),
-        Valor exato da chave (ex '123456') 
-        Objeto do modelo a ser utilizado como pesquisa (MODELS, ex queryFindByCpf), 
-        Vetor das alterações permitidas (['nome', 'rua', 'cep']),
-        Vetor das colunas inteiras da tabela, opcional se não houver (['num_cara', 'cep'])
+        OBJECT              corpo da requisição             (req.body), 
+        STRING              nome da tabela                  ('Pokemon'),
+        ARRAY               nomes das colunas para busca    (['cpf']),
+        ARRAY               valores das colunas para busca  (['122455']) 
+        OBJECT              modelo do objeto de UPDATE      (queryFindByCpf), 
+        ARRAY               alterações permitidas           (['nome', 'rua', 'cep']),
+        ARRAY   OPCIONAL    colunas com tipo númerico       (['num_cara', 'cep'])
     )
 
     A função retorna uma string no padrão correto para ser inserida na consulta
@@ -24,8 +25,10 @@ const verifyAllowed = (arr, allowedUpdates) => {
     return arr.every(update => allowedUpdates.includes(update))
 }
 
-const searchByKeyAndUpdate = (data, key, keyword, objValues, allowedUpdates = [], arrInt = []) => {
+const searchByKeyAndUpdate = (data, tableName, key, keyword, objValues, allowedUpdates, arrInt = []) => {
     return new Promise(async (resolve, reject) => {
+        if (data.searchTerm)
+            delete data.searchTerm
 
         // Verifica se o update é permitido
         const dataKeys = Object.keys(data)
@@ -42,7 +45,7 @@ const searchByKeyAndUpdate = (data, key, keyword, objValues, allowedUpdates = []
 
         // Realiza a busca no banco de dados, pela key fornecida, do usuário passado por parametro
         try {
-            objValues.values = [keyword]
+            objValues.values = keyword
             const user = await pool.query(objValues)
 
             // Cria um objeto com os valores diferentes daqueles armazenados no banco, verificando, assim, se o dado foi alterado ou não
@@ -52,7 +55,7 @@ const searchByKeyAndUpdate = (data, key, keyword, objValues, allowedUpdates = []
 
             // Concatena o comando UPDATE com os valores alterados na requisição, o restante é ignorado
             const updateKeys = Object.keys(objForUpdates)
-            let createNewQuery = 'UPDATE Usuario SET '
+            let createNewQuery = `UPDATE ${tableName} SET `
             updateKeys.map(value => {
                 let setColumnsToUpdate
                 if (!arrInt.includes(value))
@@ -66,16 +69,27 @@ const searchByKeyAndUpdate = (data, key, keyword, objValues, allowedUpdates = []
             // Concatena o WHERE a fim de alterar somente pela chave fornecida especificado
             let queryToUpdate = createNewQuery.split('').slice(0, createNewQuery.length - 2).join('')
 
-            if(!arrInt.includes(key))
-                queryToUpdate += ` WHERE ${key} = '${keyword}'`
-            else {
-                queryToUpdate += ` WHERE ${key} = ${keyword}`
+            for (let i = 0; i < key.length; i++) {
+                if (i === 0) {
+                    if(!arrInt.includes(key))
+                        queryToUpdate += ` WHERE ${key[i]} = '${keyword[i]}'`
+                    else {
+                        queryToUpdate += ` WHERE ${key[i]} = ${keyword[i]}`
+                    }
+                } else {
+                    if(!arrInt.includes(key))
+                        queryToUpdate += ` AND ${key[i]} = '${keyword[i]}'`
+                    else {
+                        queryToUpdate += ` AND ${key[i]} = ${keyword[i]}`
+                    }
+                }
             }
 
+            // console.log(queryToUpdate)
             // Realiza o update no banco de dados
             const updateUser =  await pool.query(queryToUpdate)
             resolve({ 
-                sucesso: true,
+                sucess: true,
                 command: updateUser.command,
                 rows: updateUser.rowCount
             })

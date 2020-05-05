@@ -8,7 +8,7 @@ const {
     queryFindPokemonByCpfAndName,
     queryDeletePokemonByName
 } = require('../models/pokemon')
-const searchByTwoKeysAndUpdate = require('../utils/updatePokemon')
+const serachByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
 
 router.post('/pokemon', auth, async (req, res) => {
@@ -55,7 +55,7 @@ router.get('/pokemon', auth, async (req, res) => {
 
 router.patch('/pokemon', auth, async (req, res) => {
     try {
-        const pokemon = await searchByTwoKeysAndUpdate(req.body, 'cpf', req.user.cpf, 'nome', req.body.searchTerm, queryFindPokemonByCpfAndName, ['nome'])
+        const pokemon = await serachByKeyAndUpdate(req.body, 'Pokemon', ['cpf', 'nome'], [req.user.cpf, req.body.searchTerm], queryFindPokemonByCpfAndName, ['nome'])
 
         res.send(pokemon)
     } catch (e) {
