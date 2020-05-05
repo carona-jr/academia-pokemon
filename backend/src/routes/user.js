@@ -2,19 +2,33 @@ const express = require('express')
 const pool = require('../db/elephant-sql')
 const router = new express.Router()
 const { queryInsertUser, queryFindByCpf, queryDeleteByCpf } = require('../models/user')
-const searchByKeyAndUpdate = require('../services/update')
+const searchByKeyAndUpdate = require('../utils/update')
+const auth = require('../middlewares/auth')
 // const { validateUser } = require('../services/validate')
 
 // GET POST UPDATE DELETE
 
-router.get('/user/:cpf', async (req, res) => {
-    const cpf = req.params.cpf
-    queryFindByCpf.values = [cpf]
+router.get('/user/me', auth, async (req, res) => {
+    res.send(req.user)
+})
+
+router.get('/user/login', async (req, res) => {
+    queryFindByCpf.values = [req.body.cpf]
+    const password = req.body.password
     try {
         const user = await pool.query(queryFindByCpf)
+
+        const password = req.body.password
+        
+        if (password !== user.rows[0].password)
+            return res.status(400).send({ error: 'Please authenticate' })
+
+        if (!user.rowCount)
+            return res.status(404).send()
+            
         res.send(user.rows[0])
     } catch (e) {
-        res.status(500).send()
+        res.status(500).send(e)
     }
 })
 
@@ -32,7 +46,7 @@ router.post('/user', async (req, res) => {
     try {
         const newUser = await pool.query(queryInsertUser)
 
-        if (!newUser) {
+        if (!newUser.rowCount) {
             return res.status(400).send()
         }
         queryFindByCpf.values = [req.body.cpf]
@@ -44,27 +58,25 @@ router.post('/user', async (req, res) => {
     }
 })
 
-router.patch('/user/:cpf', async(req, res) => {
-    const cpf = req.params.cpf
+router.patch('/user/me', auth, async(req, res) => {
     try {
-        const query = await searchByKeyAndUpdate(req.body, 'cpf', cpf, queryFindByCpf, ['nome', 'rua', 'cep'], ['cep', 'num_casa'])
+        const query = await searchByKeyAndUpdate(req.body, 'cpf', req.user.cpf, queryFindByCpf, ['nome', 'rua', 'cep'], ['cep', 'num_casa'])
         res.send(query)
     } catch (e) {
         res.status(400).send(e)
     }
 })
 
-router.delete('/user/:cpf', async (req, res) => {
-    const cpf = req.params.cpf
-    queryDeleteByCpf.values = [cpf]
+router.delete('/user/me', auth, async (req, res) => {
+    queryDeleteByCpf.values = [req.user.cpf]
     try {
         const user = await pool.query(queryDeleteByCpf)
 
-        if (!user) {
+        if (!user.rowCount) {
             return res.status(404).send()
         }
 
-        res.send('sucesso')
+        res.send({ sucesso: 'Usuário deletado' })
     } catch (e) {
         res.status(500).send(e)
     }
