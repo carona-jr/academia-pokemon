@@ -1,6 +1,6 @@
 # Academia Pokémon
 
-Projeto para a disciplina de banco de dados, cujo objetivo é o desenvolvimento de uma interface gráfica, em comjunto com um api, para visualizar os dados do banco PostgreSQL.
+Projeto para a disciplina de banco de dados, cujo objetivo é o desenvolvimento de uma interface gráfica, em conjunto com um api, para visualizar os dados do banco PostgreSQL.
 
 ## Iniciando
 
