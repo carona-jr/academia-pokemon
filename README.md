@@ -1,9 +1,9 @@
 # Academia Pokémon
 
-O projeto é um trabalho da disciplina de banco de dados I a fim de explorar os conceitos aprendidos em sala de aula com a linguagem SQL. Este trabalho tem como objetivo o desenvolvimento de uma interface gráfica para visualização dos dados contidos no banco.
+O projeto é um trabalho da disciplina de banco de dados I a fim de explorar os conceitos aprendidos em sala de aula com a linguagem SQL. Este trabalho tem como objetivo o desenvolvimento do banco de dados e uma interface gráfica para visualização dos dados contidos neste banco.
 
 #### Diagrama Entidade Relacionamento
-![alt text](https://i.ibb.co/SPRmF68/bd.png "Diagrama Entidade Relacionamento")
+![alt text](https://raw.githubusercontent.com/carona-jr/academia-pokemon/master/img/bd.png?token=AJNMEVCJJJEQHNADR6EQPAK6XR5FI "Diagrama Entidade Relacionamento")
 
 ## Iniciando
 
