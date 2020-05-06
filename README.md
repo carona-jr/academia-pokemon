@@ -13,6 +13,8 @@ Para iniciar um servidor, basta seguir os passos descritos abaixo.
 
 ```
 NodeJS
+Npm
+Yarn
 ReactJS
 PostgreSQL
 ```
@@ -33,7 +35,7 @@ Após isto, instale os pacotes com o comando na pasta backend:
 npm i
 ```
 
-Rode o servidor com o script de desenvolvedor:
+Rode o servidor com o script dev para rodar localmente:
 
 ```
 npm run dev
