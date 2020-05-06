@@ -38,7 +38,7 @@ npm run dev
 
 ## Rodando o React
 
-Explain how to run the automated tests for this system
+not yet
 
 
 ## Built With
@@ -56,7 +56,7 @@ Explain how to run the automated tests for this system
 
 ## Versioning
 
-Para ver as versões deste projeto, utilize as [tags deste repositório](https://github.com/your/project/tags). 
+Para ver as versões deste projeto, utilize as [tags deste repositório](https://github.com/carona-jr/academia-pokemon/releases). 
 
 ## Authors
 
