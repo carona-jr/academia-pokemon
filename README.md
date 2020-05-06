@@ -68,4 +68,4 @@ Para ver as versões deste projeto, utilize as [tags deste repositório](https:/
 
 ## Licença
 
-Licença padrão de uso do GitHub
+MIT License - [see more](https://github.com/carona-jr/academia-pokemon/blob/master/LICENSE)
