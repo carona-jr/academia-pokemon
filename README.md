@@ -1,12 +1,15 @@
 # Academia Pokémon
 
-Projeto para a disciplina de banco de dados, cujo objetivo é o desenvolvimento de uma interface gráfica, em comjunto com um api, para visualizar os dados do banco PostgreSQL.
+O projeto é um trabalho da disciplina de banco de dados I a fim de explorar os conceitos aprendidos em sala de aula com a linguagem SQL. Este trabalho tem como objetivo o desenvolvimento de uma interface gráfica para visualização dos dados contidos no banco.
+
+#### Diagrama Entidade Relacionamento
+![alt text](https://i.ibb.co/SPRmF68/bd.png "Diagrama Entidade Relacionamento")
 
 ## Iniciando
 
 Para iniciar um servidor, basta seguir os passos descritos abaixo.
 
-### Pre-requisitos
+### Pré-requisitos
 
 ```
 NodeJS
@@ -16,32 +19,33 @@ PostgreSQL
 
 ### Instalando API
 
-Defina as suas variáveis ambientes em uma pasta config na pasta backend. Dentro dela, coloque as seguintes variáveis no arquivo dev-env:
+Crie uma pasta **config** dentro de backend. 
+Dentro dela, coloque as seguintes variáveis de ambiente no arquivo **dev-env**:
 
 ```
 PORT=3000
 PG_KEY=ENDEREÇO-DO-BANCO-DE-DADOS-AQUI
 ```
 
-Após isto, instale os pacotes com o comando: 
+Após isto, instale os pacotes com o comando na pasta backend: 
 
 ```
 npm i
 ```
 
-Rode o servidor com o script de test:
+Rode o servidor com o script de desenvolvedor:
 
 ```
 npm run dev
 ```
 
 
-## Rodando o React
+### Rodando o React
 
-Explain how to run the automated tests for this system
+not yet
 
 
-## Built With
+## Feito com S2
 
 * [NodeJS](https://nodejs.org/en/docs/) - servidor da api
 * [NPM](https://www.npmjs.com/) - gerenciador de pacotes
@@ -54,17 +58,17 @@ Explain how to run the automated tests for this system
 * [pg](https://www.npmjs.com/package/pg) - conexão com o banco
 
 
-## Versioning
+## Versões
 
-Para ver as versões deste projeto, utilize as [tags deste repositório](https://github.com/your/project/tags). 
+Para ver as versões deste projeto, utilize as [tags deste repositório](https://github.com/carona-jr/academia-pokemon/releases). 
 
-## Authors
+## Autores
 
-* **Carlos Roberto** - *Initial work* 
-* **Giovanna Simioni** - *Initial work* 
-* **Leandro** - *Initial work* 
-* **Lucas Pederzini** - *Initial work* 
+* **Carlos Roberto** - *Estudante de Sistemas de Informação - UNESP* 
+* **Giovanna Simioni** - *Estudante de Sistemas de Informação - UNESP* 
+* **Leandro** - *Estudante de Sistemas de Informação - UNESP* 
+* **Lucas Pederzini** - *Estudante de Sistemas de Informação - UNESP* 
 
-## License
+## Licença
 
-Licença padrão de uso do GitHub
+MIT License - [see more](https://github.com/carona-jr/academia-pokemon/blob/master/LICENSE)
