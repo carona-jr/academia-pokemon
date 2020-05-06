@@ -41,7 +41,7 @@ npm run dev
 not yet
 
 
-## Built With
+## Feito com
 
 * [NodeJS](https://nodejs.org/en/docs/) - servidor da api
 * [NPM](https://www.npmjs.com/) - gerenciador de pacotes
@@ -54,17 +54,17 @@ not yet
 * [pg](https://www.npmjs.com/package/pg) - conexão com o banco
 
 
-## Versioning
+## Versões
 
 Para ver as versões deste projeto, utilize as [tags deste repositório](https://github.com/carona-jr/academia-pokemon/releases). 
 
-## Authors
+## Autores
 
 * **Carlos Roberto** - *Initial work* 
 * **Giovanna Simioni** - *Initial work* 
 * **Leandro** - *Initial work* 
 * **Lucas Pederzini** - *Initial work* 
 
-## License
+## Licença
 
 Licença padrão de uso do GitHub
