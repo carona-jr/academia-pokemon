@@ -3,7 +3,7 @@
 O projeto é um trabalho da disciplina de banco de dados I a fim de explorar os conceitos aprendidos em sala de aula com a linguagem SQL. Este trabalho tem como objetivo o desenvolvimento de uma interface gráfica para visualização dos dados contidos no banco.
 
 ### Diagrama Entidade Relacionamento
-![alt text](https://drive.google.com/open?id=1AS2GVOAKTWkD-6SRgd5AVsKASQ8PRh64 "Diagrama Entidade Relacionamento")
+![alt text](https://i.ibb.co/SPRmF68/bd.png "Diagrama Entidade Relacionamento")
 
 ## Iniciando
 
