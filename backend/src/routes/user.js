@@ -4,6 +4,7 @@ const router = new express.Router()
 const { queryInsertUser, queryFindByCpf, queryDeleteByCpf } = require('../models/user')
 const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
+
 // const { validateUser } = require('../services/validate')
 
 // GET POST UPDATE DELETE
@@ -19,13 +20,13 @@ router.get('/user/login', async (req, res) => {
         const user = await pool.query(queryFindByCpf)
 
         const password = req.body.password
-        
+
         if (password !== user.rows[0].password)
             return res.status(400).send({ error: 'Please authenticate' })
 
         if (!user.rowCount)
             return res.status(404).send()
-            
+
         res.send(user.rows[0])
     } catch (e) {
         res.status(500).send(e)
@@ -49,6 +50,7 @@ router.post('/user', async (req, res) => {
         if (!newUser.rowCount) {
             return res.status(400).send()
         }
+
         queryFindByCpf.values = [req.body.cpf]
         const user = await pool.query(`SELECT * FROM Usuario WHERE cpf = '${req.body.cpf}'`)
 
@@ -58,7 +60,7 @@ router.post('/user', async (req, res) => {
     }
 })
 
-router.patch('/user/me', auth, async(req, res) => {
+router.patch('/user/me', auth, async (req, res) => {
     try {
         const query = await searchByKeyAndUpdate(req.body, 'Usuario', ['cpf'], [req.user.cpf], queryFindByCpf, ['nome', 'rua', 'cep'], ['cep', 'num_casa'])
         res.send(query)

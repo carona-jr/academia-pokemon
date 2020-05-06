@@ -72,7 +72,7 @@ router.delete('/pokemon/all', auth, async (req, res) => {
             return res.status(404).send()
         }
 
-        res.send('sucesso')
+        res.send()
     } catch (e) {
         res.status(500).send(e)
     }

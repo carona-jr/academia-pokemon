@@ -1,17 +1,17 @@
-const queryInsert = {
+const queryInsertMestre = {
     text : 'INSERT INTO Mestre (cpf) VALUES ($1)'
 }
 
 const queryFindByCpf = {
-    text: 'SELECT * FROM Usuario WHERE cpf = $1'
+    text: 'SELECT * FROM Mestre WHERE cpf = $1'
 }
 
 const queryDeleteByCpf = {
-    text: 'DELETE FROM Usuario WHERE cpf = $1'
+    text: 'DELETE FROM Mestre WHERE cpf = $1'
 }
 
 module.exports = {
-    queryInsert,
+    queryInsertMestre,
     queryFindByCpf,
     queryDeleteByCpf
 }
