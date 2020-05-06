@@ -16,10 +16,12 @@ PostgreSQL
 
 ### Instalando API
 
-Defina as suas variáveis ambientes em uma pasta config na pasta backend. Dentro dela, coloque as seguintes variáveis:
+Defina as suas variáveis ambientes em uma pasta config na pasta backend. Dentro dela, coloque as seguintes variáveis no arquivo dev-env:
 
+```
 PORT=3000
 PG_KEY=ENDEREÇO-DO-BANCO-DE-DADOS-AQUI
+```
 
 Após isto, instale os pacotes com o comando: 
 
