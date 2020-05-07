@@ -51,7 +51,6 @@ router.post('/user/phone', auth, async (req, res) => {
 
 router.patch('/user/phone', auth, async (req, res) => {
     try {
-        // const telefone = await serachByKeyAndUpdate(req.body, 'Telefone', ['cpf', 'nome'], [req.user.cpf, req.body.searchTerm], queryFindPokemonByCpfAndName, ['nome'])
         const telefone = await serachByKeyAndUpdate(req.body, 'Telefone', ['cpf', 'numero_de_telefone'],
          [req.user.cpf, req.body.searchTerm], queryFindByCpfAndPhone, ['numero_de_telefone'])
 

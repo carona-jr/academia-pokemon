@@ -36,6 +36,10 @@ router.get('/pokemon/all', auth, async (req, res) => {
     try {
         queryFindPokemonByCpf.values = [req.user.cpf]
         const pokemon = await pool.query(queryFindPokemonByCpf)
+
+        if(!pokemon.rowCount)
+            return res.status(404).send()
+
         res.send(pokemon.rows)
     } catch (e) {
         res.status(500).send(e)

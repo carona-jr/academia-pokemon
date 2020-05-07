@@ -14,15 +14,24 @@ CREATE TABLE Usuario (
     PRIMARY KEY (cpf)
 );
 
+CREATE TABLE Plano (
+     cpf varchar(24) REFERENCES Usuario (cpf) ON DELETE CASCADE ON UPDATE CASCADE,
+     nome varchar(64),
+     valor varchar(24),
+     data_de_inicio TIMESTAMP,
+     duracao integer,
+     PRIMARY KEY  (cpf)
+);
+
 CREATE TABLE Telefone (
-     cpf varchar(24) REFERENCES Usuario (cpf),
+     cpf varchar(24) REFERENCES Usuario (cpf) ON DELETE CASCADE ON UPDATE CASCADE,
      numero_de_telefone varchar(12),
      PRIMARY KEY (cpf, numero_de_telefone)
 );
 
 CREATE TABLE Pokemon (
      codigo_pokemon SERIAL,
-     cpf varchar(24) REFERENCES Usuario (cpf), 
+     cpf varchar(24) REFERENCES Usuario (cpf) ON DELETE CASCADE ON UPDATE CASCADE, 
      nome varchar(64),
      classificacao varchar(64),
      nivel varchar(24) NOT NULL,
@@ -33,7 +42,7 @@ CREATE TABLE Pokemon (
 );
 
 CREATE TABLE Treinador (
-    cpf varchar(24) REFERENCES Usuario (cpf),
+    cpf varchar(24) REFERENCES Usuario (cpf) ON DELETE CASCADE ON UPDATE CASCADE,
     cpts varchar(24) NOT NULL UNIQUE,
     salario_base varchar(24),
     instituto varchar(64),
@@ -41,18 +50,18 @@ CREATE TABLE Treinador (
 );
 
 CREATE TABLE Especialidade (
-    cpf varchar(24) REFERENCES Treinador(cpf),
+    cpf varchar(24) REFERENCES Treinador(cpf) ON DELETE CASCADE ON UPDATE CASCADE,
     especialidade varchar(64),
-    PRIMARY KEY (cpf)     
+    PRIMARY KEY (cpf, especialidade)     
 );
 
 CREATE TABLE Mestre (
-    cpf varchar(24) REFERENCES Treinador (cpf),
+    cpf varchar(24) REFERENCES Treinador (cpf) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (cpf)     
 );
 
 CREATE TABLE Proficiencia (
-    cpf varchar(24) REFERENCES Mestre (cpf),
+    cpf varchar(24) REFERENCES Mestre (cpf) ON DELETE CASCADE ON UPDATE CASCADE,
     proficiencia varchar(64),
     PRIMARY KEY (cpf, proficiencia)     
 );
@@ -61,29 +70,22 @@ CREATE TABLE Departamento (
     codigo_dept SERIAL,
     nome varchar(64),
     classificacao varchar(64),
-    gerente varchar(24) REFERENCES Mestre (cpf),
+    gerente varchar(24) REFERENCES Mestre (cpf) ON DELETE SET NULL ON UPDATE CASCADE,
     PRIMARY KEY (codigo_dept)
 );
 
-CREATE TABLE Plano (
-     codigo_plano SERIAL,
-     nome varchar(64),
-     valor varchar(24),
-     data_de_inicio TIMESTAMP,
-     data_de_termino TIMESTAMP,
-     PRIMARY KEY  (codigo_plano)
-);
-
 CREATE TABLE Aprimora (
-    codigo_pokemon integer REFERENCES Pokemon (codigo_pokemon),
-    cpf varchar(24) REFERENCES Treinador (cpf),
+    codigo_pokemon integer REFERENCES Pokemon (codigo_pokemon) ON DELETE CASCADE ON UPDATE CASCADE,
+    cpf varchar(24) REFERENCES Treinador (cpf) ON DELETE SET NULL ON UPDATE CASCADE,
     hora_de_entrada TIMESTAMP,
     hora_de_saida TIMESTAMP,
     PRIMARY KEY (codigo_pokemon, cpf, hora_de_entrada, hora_de_saida)
 );
 
 CREATE TABLE Trabalha (
-    codigo_dept integer REFERENCES Departamento (codigo_dept),
-    cpf varchar(24) REFERENCES Treinador (cpf),  
+    codigo_dept integer REFERENCES Departamento (codigo_dept) ON DELETE CASCADE ON UPDATE CASCADE,
+    cpf varchar(24) REFERENCES Treinador (cpf) ON DELETE CASCADE ON UPDATE CASCADE,  
     PRIMARY KEY (cpf, codigo_dept)
 );
+
+DROP TABLE USUARIO, POKEMON, TELEFONE, TREINADOR, ESPECIALIDADE, MESTRE, PROFICIENCIA, DEPARTAMENTO, PLANO, APRIMORA, TRABALHA
