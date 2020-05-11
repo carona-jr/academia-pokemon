@@ -67,8 +67,8 @@ CREATE TABLE Proficiencia (
 );
 
 CREATE TABLE Departamento (
-    codigo_dept SERIAL,
-    nome varchar(64),
+    codigo_dept integer,
+    nome varchar(64) UNIQUE,
     classificacao varchar(64),
     gerente varchar(24) REFERENCES Mestre (cpf) ON DELETE SET NULL ON UPDATE CASCADE,
     PRIMARY KEY (codigo_dept)

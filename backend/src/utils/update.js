@@ -27,6 +27,7 @@ const verifyAllowed = (arr, allowedUpdates) => {
 
 const searchByKeyAndUpdate = (data, tableName, key, keyword, objValues, allowedUpdates, arrInt = []) => {
     return new Promise(async (resolve, reject) => {
+        // console.log(data, key, keyword, arrInt, objValues)
         if (data.searchTerm)
             delete data.searchTerm
 
@@ -71,13 +72,13 @@ const searchByKeyAndUpdate = (data, tableName, key, keyword, objValues, allowedU
 
             for (let i = 0; i < key.length; i++) {
                 if (i === 0) {
-                    if(!arrInt.includes(key))
+                    if(!arrInt.includes(key[i]))
                         queryToUpdate += ` WHERE ${key[i]} = '${keyword[i]}'`
                     else {
                         queryToUpdate += ` WHERE ${key[i]} = ${keyword[i]}`
                     }
                 } else {
-                    if(!arrInt.includes(key))
+                    if(!arrInt.includes(key[i]))
                         queryToUpdate += ` AND ${key[i]} = '${keyword[i]}'`
                     else {
                         queryToUpdate += ` AND ${key[i]} = ${keyword[i]}`
@@ -85,7 +86,7 @@ const searchByKeyAndUpdate = (data, tableName, key, keyword, objValues, allowedU
                 }
             }
 
-            // console.log(queryToUpdate)
+            console.log(queryToUpdate)
             // Realiza o update no banco de dados
             const updateUser =  await pool.query(queryToUpdate)
             resolve({ 

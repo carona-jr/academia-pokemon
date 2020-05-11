@@ -6,8 +6,11 @@ const phoneRouter = require('./routes/phone')
 const treinadorRouter = require('./routes/treinador')
 const proficienciaRouter = require('./routes/proficiencia')
 const especialidadeRouter = require('./routes/especialidade')
-const cors = require('cors')
+const trabalhaRouter = require('./routes/trabalha')
+const departamentoRouter = require('./routes/departamento')
 const planoRouter = require('./routes/plano')
+const aprimoraRouter = require('./routes/aprimora')
+const cors = require('cors')
 
 const app = express()
 const port = process.env.PORT
@@ -23,6 +26,13 @@ app.use(treinadorRouter)
 app.use(proficienciaRouter)
 app.use(especialidadeRouter)
 app.use(planoRouter)
+app.use(trabalhaRouter)
+app.use(departamentoRouter)
+app.use(aprimoraRouter)
+
+app.get('/*', (req, res) => {
+  res.status('400').send({ msg: 'Rota não encontrada' })
+})
  
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`)
