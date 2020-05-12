@@ -1,13 +1,15 @@
 const express = require('express')
 const pool = require('../db/elephant-sql')
 const router = new express.Router()
+
 const { queryInsertMestre, queryFindByCpf, queryDeleteByCpf } = require('../models/mestre')
-const searchByKeyAndUpdate = require('../utils/update')
+
 const auth = require('../middlewares/auth')
 
 router.post('/mestre', auth, async (req, res) => {
     queryInsertMestre.values = [req.user.cpf]
-    try {        
+
+    try {
         const mestre = await pool.query(queryInsertMestre)
 
         if (!mestre.rowCount)
@@ -16,21 +18,19 @@ router.post('/mestre', auth, async (req, res) => {
         queryFindByCpf.values = [req.user.cpf]
         const dataMestre = await pool.query(queryFindByCpf)
 
-        res.status(201).send(dataMestre.rows[0])    
-            
+        res.status(201).send(dataMestre.rows[0])
     } catch (e) {
-        res.status(500).send()
+        res.status(500).send(e)
     }
 })
 
-router.get('/mestre', auth, async (req, res) =>{
+router.get('/mestre', auth, async (req, res) => {
     try {
         queryFindByCpf.values = [req.user.cpf]
         const mestre = await pool.query(queryFindByCpf)
 
-        if (!mestre.rowCount) {
+        if (!mestre.rowCount)
             return res.status(404).send()
-        }
 
         res.send(mestre.rows[0])
     } catch (e) {
@@ -38,17 +38,16 @@ router.get('/mestre', auth, async (req, res) =>{
     }
 })
 
-router.delete('/mestre', auth, async(req, res) => {
-    try{
+router.delete('/mestre', auth, async (req, res) => {
+    try {
         queryDeleteByCpf.values = [req.user.cpf]
         const mestre = await pool.query(queryDeleteByCpf)
-        
-        if(!mestre.rowCount) {
+
+        if (!mestre.rowCount)
             return res.status(404).send()
-        }
-        
-        res.send({msg: 'Mestre Apagado com Sucesso'})
-    }catch(e){
+
+        res.send({ msg: 'O mestre foi deletado.' })
+    } catch (e) {
         res.status(500).send(e)
     }
 })

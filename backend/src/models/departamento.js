@@ -1,5 +1,5 @@
 const queryInsert = {
-    text : 'INSERT INTO Departamento (codigo_dept, nome, classificacao, gerente) VALUES ($1, $2, $3, $4)',
+    text: 'INSERT INTO Departamento (codigo_dept, nome, classificacao, gerente) VALUES ($1, $2, $3, $4)'
 }
 
 const queryFindByName = {
@@ -17,6 +17,6 @@ const queryDeleteByName = {
 module.exports = {
     queryInsert,
     queryFindByName,
-    queryDeleteByName,
-    queryFindByNameAndCod
+    queryFindByNameAndCod,
+    queryDeleteByName
 }

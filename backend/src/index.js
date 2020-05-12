@@ -1,4 +1,4 @@
-const express = require('express') 
+const express = require('express')
 const userRouter = require('./routes/user')
 const pokemonRouter = require('./routes/pokemon')
 const mestreRouter = require('./routes/mestre')
@@ -31,10 +31,10 @@ app.use(departamentoRouter)
 app.use(aprimoraRouter)
 
 app.get('/*', (req, res) => {
-  res.status('400').send({ msg: 'Rota não encontrada' })
+    res.status('400').send({ msg: 'Rota não encontrada' })
 })
- 
+
 app.listen(port, () => {
-  console.log(`Server is up on port ${port}`)
+    console.log(`Server is up on port ${port}`)
 })
 

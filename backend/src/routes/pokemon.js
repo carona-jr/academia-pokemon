@@ -1,6 +1,7 @@
 const express = require('express')
 const pool = require('../db/elephant-sql')
 const router = new express.Router()
+
 const {
     queryInsertPokemon,
     queryDeleteByCpf,
@@ -8,6 +9,7 @@ const {
     queryFindPokemonByCpfAndName,
     queryDeletePokemonByName
 } = require('../models/pokemon')
+
 const serachByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
 
@@ -16,12 +18,12 @@ router.post('/pokemon', auth, async (req, res) => {
     const keys = Object.keys(req.body)
     queryInsertPokemon.values = []
     keys.map(value => queryInsertPokemon.values.push(req.body[value]))
+
     try {
         const newPokemon = await pool.query(queryInsertPokemon)
 
-        if (!newPokemon.rowCount) {
+        if (!newPokemon.rowCount)
             return res.status(400).send()
-        }
 
         queryFindPokemonByCpf.values = [req.user.cpf]
         const pokemon = await pool.query(queryFindPokemonByCpf)
@@ -37,7 +39,7 @@ router.get('/pokemon/all', auth, async (req, res) => {
         queryFindPokemonByCpf.values = [req.user.cpf]
         const pokemon = await pool.query(queryFindPokemonByCpf)
 
-        if(!pokemon.rowCount)
+        if (!pokemon.rowCount)
             return res.status(404).send()
 
         res.send(pokemon.rows)
@@ -49,8 +51,10 @@ router.get('/pokemon/all', auth, async (req, res) => {
 
 router.get('/pokemon', auth, async (req, res) => {
     queryFindPokemonByCpfAndName.values = [req.user.cpf, req.body.nome]
+
     try {
         const pokemon = await pool.query(queryFindPokemonByCpfAndName)
+
         res.send(pokemon.rows[0])
     } catch (e) {
         res.status(500).send(e)
@@ -59,7 +63,8 @@ router.get('/pokemon', auth, async (req, res) => {
 
 router.patch('/pokemon', auth, async (req, res) => {
     try {
-        const pokemon = await serachByKeyAndUpdate(req.body, 'Pokemon', ['cpf', 'nome'], [req.user.cpf, req.body.searchTerm], queryFindPokemonByCpfAndName, ['nome'])
+        const pokemon = await serachByKeyAndUpdate(req.body, 'Pokemon', ['cpf', 'nome'],
+            [req.user.cpf, req.body.searchTerm], queryFindPokemonByCpfAndName, ['nome'])
 
         res.send(pokemon)
     } catch (e) {
@@ -69,14 +74,14 @@ router.patch('/pokemon', auth, async (req, res) => {
 
 router.delete('/pokemon/all', auth, async (req, res) => {
     queryDeleteByCpf.values = [req.user.cpf]
+
     try {
         const pokemon = await pool.query(queryDeleteByCpf)
 
-        if (!pokemon.rowCount) {
+        if (!pokemon.rowCount)
             return res.status(404).send()
-        }
 
-        res.send()
+        res.send({ msg: 'Todos os pokémons foram deletados.' })
     } catch (e) {
         res.status(500).send(e)
     }
@@ -84,14 +89,14 @@ router.delete('/pokemon/all', auth, async (req, res) => {
 
 router.delete('/pokemon', auth, async (req, res) => {
     queryDeletePokemonByName.values = [req.user.cpf, req.body.nome]
+
     try {
         const pokemon = await pool.query(queryDeletePokemonByName)
-        
-        if(!pokemon.rowCount){
+
+        if (!pokemon.rowCount)
             return res.status(404).send()
-        }
-        
-        res.send()
+
+        res.send({ msg: 'O pokémon foi deletado.' })
     } catch (e) {
         res.status(500).send(e)
     }

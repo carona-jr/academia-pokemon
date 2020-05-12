@@ -1,26 +1,17 @@
 const express = require('express')
 const pool = require('../db/elephant-sql')
-const { 
+const router = new express.Router()
+
+const {
     queryInsertPhone,
     queryFindByCpfAndPhone,
     queryFindByCpf,
     queryDeleteByCpf,
     queryDeleteOnePhone
 } = require('../models/phone')
+
 const auth = require('../middlewares/auth')
 const serachByKeyAndUpdate = require('../utils/update')
-
-const router = new express.Router()
-
-router.get('/user/phone', auth, async (req, res) => {
-    try {
-        queryFindByCpf.values = [req.user.cpf]
-        const telefones = await pool.query(queryFindByCpf)
-        res.send(telefones.rows)
-    } catch (e) {
-        res.status(500).send()
-    }
-})
 
 router.post('/user/phone', auth, async (req, res) => {
     req.body.cpf = req.user.cpf
@@ -43,7 +34,17 @@ router.post('/user/phone', auth, async (req, res) => {
         const telefones = await pool.query(queryFindByCpf)
 
         res.status(201).send(telefones.rows)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
 
+router.get('/user/phone', auth, async (req, res) => {
+    try {
+        queryFindByCpf.values = [req.user.cpf]
+        const telefones = await pool.query(queryFindByCpf)
+
+        res.send(telefones.rows)
     } catch (e) {
         res.status(500).send(e)
     }
@@ -52,24 +53,24 @@ router.post('/user/phone', auth, async (req, res) => {
 router.patch('/user/phone', auth, async (req, res) => {
     try {
         const telefone = await serachByKeyAndUpdate(req.body, 'Telefone', ['cpf', 'numero_de_telefone'],
-         [req.user.cpf, req.body.searchTerm], queryFindByCpfAndPhone, ['numero_de_telefone'])
+            [req.user.cpf, req.body.searchTerm], queryFindByCpfAndPhone, ['numero_de_telefone'])
 
         res.send(telefone)
     } catch (e) {
         res.status(500).send(e)
     }
-})  
+})
 
 router.delete('/user/phone/all', auth, async (req, res) => {
     queryDeleteByCpf.values = [req.user.cpf]
+
     try {
         const telefones = await pool.query(queryDeleteByCpf)
-        
-        if(!telefones.rowCount) {
-            return res.status(404).send()
-        }
 
-        res.send({ msg: 'Todos os telefones foram deletados com sucesso' })
+        if (!telefones.rowCount)
+            return res.status(404).send()
+
+        res.send({ msg: 'Todos os telefones foram deletados.' })
     } catch (e) {
         res.status(500).send(e)
     }
@@ -81,12 +82,11 @@ router.delete('/user/phone', auth, async (req, res) => {
     try {
         const telefone = await pool.query(queryDeleteOnePhone)
 
-        if(!telefone.rowCount) {
+        if (!telefone.rowCount)
             return res.status(404).send()
-        }
 
-        res.send({ msg: 'O telefone foi deletado com sucesso' })
-    }catch(e){
+        res.send({ msg: 'O telefone foi deletado.' })
+    } catch (e) {
         res.status(500).send(e)
     }
 })

@@ -1,12 +1,20 @@
 const express = require('express')
 const pool = require('../db/elephant-sql')
 const router = new express.Router()
-const { queryInsert, queryDeleteByCodigoDept, queryFindByCodigoDept, queryFindByCodigoDeptAndCpf } = require('../models/trabalha')
+
+const {
+    queryInsert,
+    queryDeleteByCodigoDept,
+    queryFindByCodigoDept,
+    queryFindByCodigoDeptAndCpf
+} = require('../models/trabalha')
+
 const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
 
 router.post('/trabalha', auth, async (req, res) => {
     queryInsert.values = [req.body.codigo_dept, req.body.cpf]
+
     try {
         await pool.query(queryInsert)
 
@@ -14,12 +22,10 @@ router.post('/trabalha', auth, async (req, res) => {
         const data = await pool.query(queryFindByCodigoDept)
 
         res.status(201).send(data.rows[0])
-
     } catch (e) {
-        res.status(500).send()
+        res.status(500).send(e)
     }
 })
-
 
 router.get('/trabalha', auth, async (req, res) => {
     try {
@@ -35,30 +41,30 @@ router.get('/trabalha', auth, async (req, res) => {
     }
 })
 
-
 router.patch('/trabalha', auth, async (req, res) => {
     const codigo = req.body.searchTerm.codigo_dept
     const cpf = req.body.searchTerm.cpf
+
     try {
-        const trabalha = await searchByKeyAndUpdate(req.body, 'Trabalha', ['codigo_dept', 'cpf'], [codigo, cpf], 
-                                queryFindByCodigoDeptAndCpf, ['codigo_dept', 'cpf'], ['codigo_dept'])
+        const trabalha = await searchByKeyAndUpdate(req.body, 'Trabalha', ['codigo_dept', 'cpf'], [codigo, cpf],
+            queryFindByCodigoDeptAndCpf, ['codigo_dept', 'cpf'], ['codigo_dept'])
+
         res.send(trabalha)
     } catch (e) {
         res.status(500).send(e)
     }
-
 })
 
 router.delete('/trabalha', auth, async (req, res) => {
     queryDeleteByCodigoDept.values = [req.body.codigo_dept, req.body.cpf]
+
     try {
         const trabalha = await pool.query(queryDeleteByCodigoDept)
 
-        if (!trabalha.rowCount) {
+        if (!trabalha.rowCount)
             return res.status(404).send()
-        }
 
-        res.send({ msg: 'Funcionário deletado com sucesso!' })
+        res.send({ msg: 'O funcionário foi deletado.' })
     } catch (e) {
         res.status(500).send(e)
     }

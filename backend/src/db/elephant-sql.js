@@ -1,4 +1,4 @@
-const { Pool } = require('pg') 
+const { Pool } = require('pg')
 const connectionString = process.env.PG_KEY
 
 const pool = new Pool({
