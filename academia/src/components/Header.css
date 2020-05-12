@@ -1,21 +1,8 @@
-.container-header {
-    height: 6vh;
-    background-color: #36393f;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.container-header h1 {
+.logo {
     font-size: 24px;
     background-image: url('../assets/pikachu.svg');
     background-repeat: no-repeat;
     background-size: 32px 32px;
     padding-left: 40px;
     line-height: 32px;
-}
-
-.container-header div {
-    color: #fff;
-    margin: 0 2vw;
 }
