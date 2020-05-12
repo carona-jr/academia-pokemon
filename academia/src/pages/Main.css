@@ -1,0 +1,17 @@
+.container-main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-image: url('../assets/wall.png');
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-login {
+    color: #fff;
+    width: 25vw;
+    height: 80%;
+    background-color: #36393fe8;
+}  
