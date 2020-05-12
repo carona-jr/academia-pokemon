@@ -44,11 +44,17 @@ npm run dev
 
 ### Rodando o React
 
+Instale os pacotes utilizando o comando abaixo
+
 ```
-yarn start
+yarn install
 ```
 
 Rode o aplicativo em modo desenvolvimento. Abra o endereço http://localhost:3000 para visualizar.
+
+```
+yarn start
+```
 
 ## Feito com S2
 
