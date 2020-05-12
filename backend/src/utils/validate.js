@@ -1,7 +1,6 @@
 const cpf = require('cpf')
 const validator = require('validator')
 
-
 const validateUser = (body) => {
     const formattedCpf = cpf.format(body.cpf)
     if (!validator.isEmail(body.e_mail))

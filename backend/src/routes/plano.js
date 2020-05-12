@@ -1,12 +1,35 @@
 const express = require('express')
 const pool = require('../db/elephant-sql')
 const router = new express.Router()
+
 const { queryInsert, queryFindByCpf, queryDeleteByCpf } = require('../models/plano')
+
 const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
 
+router.post('/plano', auth, async (req, res) => {
+    queryInsert.values = [req.user.cpf]
+    const keys = Object.keys(req.body)
+    keys.map(value => queryInsert.values.push(req.body[value]))
+
+    try {
+        const userPlan = await pool.query(queryInsert)
+
+        if (!userPlan.rowCount)
+            return res.status(400).send()
+
+        queryFindByCpf.values = [req.user.cpf]
+        const plan = await pool.query(queryFindByCpf)
+
+        res.status(201).send(plan.rows)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
 router.get('/plano', auth, async (req, res) => {
     queryFindByCpf.values = [req.user.cpf]
+
     try {
         const plano = await pool.query(queryFindByCpf)
 
@@ -19,27 +42,11 @@ router.get('/plano', auth, async (req, res) => {
     }
 })
 
-router.post('/plano', auth, async (req, res) => {
-    queryInsert.values = [req.user.cpf]
-    const keys = Object.keys(req.body)
-    keys.map(value => queryInsert.values.push(req.body[value]))
-    try {
-        const userPlan = await pool.query(queryInsert)
-        if (!userPlan.rowCount) {
-            return res.status(400).send()
-        }
-        queryFindByCpf.values = [req.user.cpf]
-        const plan = await pool.query(queryFindByCpf)
-        res.status(201).send(plan.rows)
-    } catch (e) {
-        res.status(500).send(e)
-    }
-})
-
-router.patch('/plano', auth, async(req, res) => {
+router.patch('/plano', auth, async (req, res) => {
     try {
         const plano = await searchByKeyAndUpdate(req.body, 'Plano', ['cpf'],
             [req.user.cpf], queryFindByCpf, ['nome', 'valor', 'duracao'], ['duracao'])
+
         res.send(plano)
     } catch (e) {
         res.status(500).send(e)
@@ -55,8 +62,7 @@ router.delete('/plano', auth, async (req, res) => {
         if (!plan.rowCount)
             return res.status(404).send()
 
-        res.send({ msg:'O plano fo deletado com sucesso'})
-
+        res.send({ msg: 'O plano foi deletado.' })
     } catch (e) {
         res.status(500).send(e)
     }

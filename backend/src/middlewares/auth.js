@@ -6,6 +6,7 @@ const auth = async (req, res, next) => {
         const cpf = req.header('Authorization').replace('Bearer ', '')
         queryFindByCpf.values = [cpf]
         const user = await pool.query(queryFindByCpf)
+
         if (!user)
             throw new Error({ error: 'Not found' })
 

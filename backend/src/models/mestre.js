@@ -1,5 +1,5 @@
 const queryInsertMestre = {
-    text : 'INSERT INTO Mestre (cpf) VALUES ($1)'
+    text: 'INSERT INTO Mestre (cpf) VALUES ($1)'
 }
 
 const queryFindByCpf = {

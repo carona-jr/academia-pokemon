@@ -1,5 +1,5 @@
 const queryInsertPokemon = {
-    text : 'INSERT INTO Pokemon (nome, classificacao, nivel, nivel_objetivo, data_de_entrada, data_de_saida, cpf) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+    text: 'INSERT INTO Pokemon (nome, classificacao, nivel, nivel_objetivo, data_de_entrada, data_de_saida, cpf) VALUES ($1, $2, $3, $4, $5, $6, $7)'
 }
 
 const queryFindPokemonByCpf = {
@@ -19,9 +19,9 @@ const queryDeletePokemonByName = {
 }
 
 module.exports = {
-    queryDeleteByCpf,
-    queryFindPokemonByCpf,
     queryInsertPokemon,
+    queryFindPokemonByCpf,
     queryFindPokemonByCpfAndName,
+    queryDeleteByCpf,
     queryDeletePokemonByName
 }

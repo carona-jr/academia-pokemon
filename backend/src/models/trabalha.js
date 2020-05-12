@@ -1,5 +1,5 @@
 const queryInsert = {
-    text : 'INSERT INTO Trabalha (codigo_dept, cpf) VALUES ($1, $2)',
+    text: 'INSERT INTO Trabalha (codigo_dept, cpf) VALUES ($1, $2)'
 }
 
 const queryFindByCodigoDept = {
@@ -11,13 +11,12 @@ const queryFindByCodigoDeptAndCpf = {
 }
 
 const queryDeleteByCodigoDept = {
-    
     text: 'DELETE FROM Trabalha WHERE codigo_dept = $1 AND cpf = $2'
 }
 
 module.exports = {
     queryInsert,
-    queryDeleteByCodigoDept,
     queryFindByCodigoDept,
     queryFindByCodigoDeptAndCpf,
+    queryDeleteByCodigoDept
 }

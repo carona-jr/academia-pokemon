@@ -1,6 +1,7 @@
 const express = require('express')
 const pool = require('../db/elephant-sql')
 const router = new express.Router()
+
 const {
     queryInsert,
     queryFindByCpfAndEspecialidade,
@@ -8,27 +9,14 @@ const {
     queryDeleteByCpf,
     queryDeleteOne
 } = require('../models/especialidade')
+
 const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
-
-router.get('/especialidade', auth, async (req, res) => {
-    try {
-
-        queryFindByCpf.values = [req.user.cpf]
-        const especialidade = await pool.query(queryFindByCpf)
-
-        if (!especialidade.rowCount)
-            return res.status(404).send()
-
-        res.send(especialidade.rows)
-    } catch (e) {
-        res.status(500).send(e)
-    }
-})
 
 router.post('/especialidade', auth, async (req, res) => {
     req.body.cpf = req.user.cpf
     const especialidade = req.body.especialidade
+
     try {
         if (!especialidade)
             return res.status(400).send()
@@ -40,6 +28,20 @@ router.post('/especialidade', auth, async (req, res) => {
         const especialidades = await pool.query(queryFindByCpf)
 
         res.status(201).send(especialidades.rows)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
+router.get('/especialidade', auth, async (req, res) => {
+    try {
+        queryFindByCpf.values = [req.user.cpf]
+        const especialidade = await pool.query(queryFindByCpf)
+
+        if (!especialidade.rowCount)
+            return res.status(404).send()
+
+        res.send(especialidade.rows)
     } catch (e) {
         res.status(500).send(e)
     }
@@ -57,15 +59,14 @@ router.patch('/especialidade', auth, async (req, res) => {
 
 router.delete('/especialidade/all', auth, async (req, res) => {
     queryDeleteByCpf.values = [req.user.cpf]
+
     try {
         const especialidade = await pool.query(queryDeleteByCpf)
 
         if (!especialidade.rowCount)
             return res.status(404).send()
 
-        res.send({
-            msg: 'Todas as especialidades foram deletadas'
-        })
+        res.send({ msg: 'Todas as especialidades foram deletadas.' })
     } catch (e) {
         res.status(500).send(e)
     }
@@ -77,16 +78,13 @@ router.delete('/especialidade', auth, async (req, res) => {
     try {
         const especialidade = await pool.query(queryDeleteOne)
 
-        if (!especialidade.rowCount) {
+        if (!especialidade.rowCount)
             return res.status(404).send()
-        }
-        res.send({
-            msg: 'A especialidade foi deletada'
-        })
+
+        res.send({ msg: 'A especialidade foi deletada.' })
     } catch (e) {
         res.status(500).send(e)
     }
 })
-
 
 module.exports = router

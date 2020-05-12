@@ -1,5 +1,5 @@
 const queryInsert = {
-    text : 'INSERT INTO Especialidade (cpf, especialidade) VALUES ($1, $2)',
+    text: 'INSERT INTO Especialidade (cpf, especialidade) VALUES ($1, $2)'
 }
 
 const queryFindByCpf = {

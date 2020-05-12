@@ -1,5 +1,5 @@
 const queryInsert = {
-    text : 'INSERT INTO Proficiencia (cpf, proficiencia) VALUES ($1, $2)',
+    text: 'INSERT INTO Proficiencia (cpf, proficiencia) VALUES ($1, $2)'
 }
 
 const queryFindByCpf = {
@@ -21,7 +21,7 @@ const queryDeleteByCpf = {
 module.exports = {
     queryInsert,
     queryFindByCpf,
-    queryDeleteByCpf,
+    queryFindByCpfAndProf,
     queryDeleteByCpfAndProf,
-    queryFindByCpfAndProf
+    queryDeleteByCpf
 }

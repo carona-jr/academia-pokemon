@@ -1,5 +1,5 @@
 const queryInsertPhone = {
-    text : 'INSERT INTO Telefone (cpf, numero_de_telefone) VALUES ($1, $2)',
+    text: 'INSERT INTO Telefone (cpf, numero_de_telefone) VALUES ($1, $2)'
 }
 
 const queryFindByCpf = {
@@ -20,8 +20,8 @@ const queryDeleteOnePhone = {
 
 module.exports = {
     queryInsertPhone,
-    queryDeleteByCpf,
     queryFindByCpf,
     queryFindByCpfAndPhone,
+    queryDeleteByCpf,
     queryDeleteOnePhone
 }
