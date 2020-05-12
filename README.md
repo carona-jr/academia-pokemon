@@ -44,8 +44,11 @@ npm run dev
 
 ### Rodando o React
 
-not yet
+```
+yarn start
+```
 
+Rode o aplicativo em modo desenvolvimento. Abra o endereço http://localhost:3000 para visualizar.
 
 ## Feito com S2
 
