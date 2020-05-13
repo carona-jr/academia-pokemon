@@ -10,11 +10,11 @@ import SignUp from './pages/SignUp'
 export default function Routes() {
     return (
         <BrowserRouter>
-            <Route path="/" exact component={Main}/>
-            <Route path="/user" component={User}/>
-            <Route path="/signup" component={SignUp}/>
-            <Route path="/about" component={About}/>    
-            <Route path="/pricing" component={Pricing}/>
+            <Route path="/" exact component={Main} />
+            <Route path="/user" component={User} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/about" component={About} />
+            <Route path="/pricing" component={Pricing} />
         </BrowserRouter>
     )
 }
