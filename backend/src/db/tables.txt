@@ -7,10 +7,14 @@ CREATE TABLE Usuario (
     num_casa integer,
     bairro varchar(64),
     cidade varchar(64),
-    estado varchar(2) check(estado in ('SP', 'RJ', 'MG')),
+    estado varchar(2) check(estado in ('sp', 'rj', 'mg')),
     cep integer,
     e_mail varchar(64) NOT NULL UNIQUE,
     password varchar(64) NOT NULL,
+    num_cartao varchar(64),
+    data_vencimento varchar(64),
+    nome_cartao varchar(64),
+    cod_cartao varchar(5),
     PRIMARY KEY (cpf)
 );
 
@@ -33,6 +37,7 @@ CREATE TABLE Pokemon (
      codigo_pokemon SERIAL,
      cpf varchar(24) REFERENCES Usuario (cpf) ON DELETE CASCADE ON UPDATE CASCADE, 
      nome varchar(64),
+     raca varchar(64),
      classificacao varchar(64),
      nivel varchar(24) NOT NULL,
      nivel_objetivo varchar(24) NOT NULL,

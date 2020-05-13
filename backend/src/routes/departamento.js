@@ -11,11 +11,10 @@ const {
 
 const auth = require('../middlewares/auth')
 const serachByKeyAndUpdate = require('../utils/update')
+const toArr = require('../utils/toArr')
 
 router.post('/departamento', auth, async (req, res) => {
-    const keys = Object.keys(req.body)
-    queryInsert.values = []
-    keys.map(value => queryInsert.values.push(req.body[value]))
+    queryInsert.values = await toArr(req.body)
 
     try {
         const newDepartment = await pool.query(queryInsert)

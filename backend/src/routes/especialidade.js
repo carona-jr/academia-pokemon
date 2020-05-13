@@ -12,16 +12,21 @@ const {
 
 const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
+const toArr = require('../utils/toArr')
 
 router.post('/especialidade', auth, async (req, res) => {
-    req.body.cpf = req.user.cpf
     const especialidade = req.body.especialidade
 
-    try {
-        if (!especialidade)
+    if (!especialidade)
             return res.status(400).send()
 
-        queryInsert.values = [req.body.cpf, especialidade]
+    let data = { cpf: req.user.cpf, ...req.body }
+    queryInsert.values = await toArr(data)
+
+    console.log(queryInsert)
+
+    try {
+
         await pool.query(queryInsert)
 
         queryFindByCpf.values = [req.user.cpf]

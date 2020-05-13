@@ -6,11 +6,11 @@ const { queryInsertTreinador, queryFindByCpf, queryDeleteByCpf } = require('../m
 
 const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
+const toArr = require('../utils/toArr')
 
 router.post('/treinador', auth, async (req, res) => {
-    const keys = Object.keys(req.body)
-    queryInsertTreinador.values = [req.user.cpf]
-    keys.map(value => queryInsertTreinador.values.push(req.body[value]))
+    const values = await toArr(req.body)
+    queryInsertTreinador.values = [req.user.cpf, ...values]
 
     try {
         const newTreinador = await pool.query(queryInsertTreinador)

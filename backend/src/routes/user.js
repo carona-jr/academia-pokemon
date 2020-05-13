@@ -10,20 +10,24 @@ const {
 
 const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
+const cpfValidator = require('cpf')
+const validator = require('validator')
+const toArr = require('../utils/toArr')
 
 // const { validateUser } = require('../services/validate')
 
 router.post('/user', async (req, res) => {
-    // try {
-    //     await validateUser(req.body)
-    // } catch (e) {
-    //     console.log(e)
-    //     return res.status(402).send(e)
-    // }
+    try {
+        const formattedCpf = cpfValidator.format(req.body.cpf)
+        cpfValidator.isValid(formattedCpf)
+    } catch (e) {
+        return res.status(400).send({ error: 'O cpf informado não é válido' })
+    }
 
-    const keys = Object.keys(req.body)
-    queryInsertUser.values = []
-    keys.map(value => queryInsertUser.values.push(req.body[value]))
+    if (!validator.isEmail(req.body.e_mail))
+        return res.status(400).send({ error: 'O e-mail é inválido' })
+
+    queryInsertUser.values = await toArr(req.body)
 
     try {
         const newUser = await pool.query(queryInsertUser)
@@ -41,6 +45,8 @@ router.post('/user', async (req, res) => {
 })
 
 router.get('/user/me', auth, async (req, res) => {
+    if(!req.user)
+        return res.status(404).send()
     res.send(req.user)
 })
 

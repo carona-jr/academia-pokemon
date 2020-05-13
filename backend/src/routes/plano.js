@@ -6,11 +6,11 @@ const { queryInsert, queryFindByCpf, queryDeleteByCpf } = require('../models/pla
 
 const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
+const toArr = require('../utils/toArr')
 
 router.post('/plano', auth, async (req, res) => {
-    queryInsert.values = [req.user.cpf]
-    const keys = Object.keys(req.body)
-    keys.map(value => queryInsert.values.push(req.body[value]))
+    let data = { cpf: req.user.cpf, ...req.body }
+    queryInsert.values = await toArr(data)
 
     try {
         const userPlan = await pool.query(queryInsert)

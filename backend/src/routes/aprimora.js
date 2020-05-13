@@ -15,9 +15,7 @@ const serachByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
 
 router.post('/aprimora', auth, async (req, res) => {
-    const keys = Object.keys(req.body)
-    queryInsert.values = []
-    keys.map(value => queryInsert.values.push(req.body[value]))
+    queryInsert.values = await toArr(data)
 
     try {
         const newAprimora = await pool.query(queryInsert)

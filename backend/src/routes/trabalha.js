@@ -11,9 +11,10 @@ const {
 
 const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
+const toArr = require('../utils/toArr')
 
 router.post('/trabalha', auth, async (req, res) => {
-    queryInsert.values = [req.body.codigo_dept, req.body.cpf]
+    queryInsert.values = await toArr(req.body)
 
     try {
         await pool.query(queryInsert)

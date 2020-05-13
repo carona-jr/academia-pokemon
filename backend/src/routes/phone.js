@@ -12,14 +12,15 @@ const {
 
 const auth = require('../middlewares/auth')
 const serachByKeyAndUpdate = require('../utils/update')
+const validator = require('validator')
 
 router.post('/user/phone', auth, async (req, res) => {
     req.body.cpf = req.user.cpf
     const telefone = req.body.telefone
-
+    
     try {
-        if (!telefone)
-            return res.status(400).send()
+        if (!telefone || !validator.isNumeric(telefone.celular) || !validator.isNumeric(telefone.residencia))
+            return res.status(400).send({ error: 'O telefone está errado' })
 
         if (telefone.celular) {
             queryInsertPhone.values = [req.body.cpf, telefone.celular]

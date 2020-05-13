@@ -12,12 +12,11 @@ const {
 
 const serachByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
+const toArr = require('../utils/toArr')
 
 router.post('/pokemon', auth, async (req, res) => {
     req.body.cpf = req.user.cpf
-    const keys = Object.keys(req.body)
-    queryInsertPokemon.values = []
-    keys.map(value => queryInsertPokemon.values.push(req.body[value]))
+    queryInsertPokemon.values = await toArr(req.body)
 
     try {
         const newPokemon = await pool.query(queryInsertPokemon)
