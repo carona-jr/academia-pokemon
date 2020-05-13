@@ -7,7 +7,7 @@ import './Header.css'
 
 export default function LoginHeader() {
     return (
-        <Navbar className="p-0 pl-5" bg="dark" variant="dark" expand="lg" fixed="top">
+        <Navbar className="p-0 pl-md-5" bg="dark" variant="dark" expand="lg" fixed="top">
             <Navbar.Brand href="/">
                 <h2 className="logo display-5">Academia Pokémon</h2>
             </Navbar.Brand>
