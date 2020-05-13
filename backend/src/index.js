@@ -34,6 +34,7 @@ app.get('/*', (req, res) => {
     res.status('400').send({ msg: 'Rota não encontrada' })
 })
 
+
 app.listen(port, () => {
     console.log(`Server is up on port ${port}`)
 })

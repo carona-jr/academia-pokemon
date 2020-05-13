@@ -50,7 +50,7 @@ router.get('/user/me', auth, async (req, res) => {
     res.send(req.user)
 })
 
-router.get('/user/login', async (req, res) => {
+router.post('/user/login', async (req, res) => {
     queryFindByCpf.values = [req.body.cpf]
 
     try {
