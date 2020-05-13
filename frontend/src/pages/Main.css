@@ -7,7 +7,8 @@
 }
 
 .container-login {
-    width: 70vw;
+    margin-top: 60px;
+    width: 80vw;
     height: 80%;
     background-color: #36393fe8;
     color: #fff;
@@ -17,12 +18,11 @@
     .container-main {
         background-image: url('../assets/wall.png');
     }
-}
 
-@media (min-width: 768px) {
     .container-login {
+        margin-top: 0;
         width: 60vw;
-    }  
+    }
 }
 
 @media (min-width: 992px) {    

@@ -1,0 +1,35 @@
+.cardFlex {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-container {
+    margin-bottom: 30px;
+    
+}
+
+@media (min-width: 992px) {  
+    .cardFlex {
+        flex-direction: row;
+    }  
+
+    .card-container {
+        height: 60%;
+        margin-bottom: 0;
+        margin-left: 30px;
+    }
+}
+
+@media (min-width: 1200px) {       
+    .card-container {
+        height: 80%;
+    }
+}
+
+@media (min-width: 1500px) {       
+    .card-container {
+        height: 50%;
+    }
+}

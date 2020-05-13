@@ -2,11 +2,19 @@ import React from 'react'
 
 import Header from '../components/Header'
 
-export default function User() {
+export default function User({ history }) {
     return (
         <div>
-            <Header />
-            <h1>User page</h1>
+            {
+                !localStorage.getItem('cpf') ? (
+                    history.push('/')
+                ) : (
+                    <div>
+                        <Header />
+                        <h1>User page</h1>
+                    </div>
+                )
+            }
         </div>
     )
 }
