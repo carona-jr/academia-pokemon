@@ -1,25 +1,22 @@
-.container-login {
+.container-main{
     width: 100vw;
     height: 100vh;
+    background-image: url('../assets/wallresponsive.png');
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+}
+
+.container-login {
+    width: 70vw;
+    height: 80%;
     background-color: #36393fe8;
     color: #fff;
 }  
 
-@media (min-width: 576px) { 
+@media (min-width: 576px){ 
     .container-main {
-        width: 100vw;
-        height: 100vh;
         background-image: url('../assets/wall.png');
-        background-size: 100vw 100vh;
-        background-repeat: no-repeat;
     }
-
-    .container-login {
-        width: 70vw;
-        height: 80%;
-        background-color: #36393fe8;
-        color: #fff;
-    }  
 }
 
 @media (min-width: 768px) {

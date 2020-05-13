@@ -23,7 +23,7 @@ export default function Main() {
 
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label>Senha</Form.Label>
-                                <Form.Control className="p-4" type="password" placeholder="**********" required/>
+                                <Form.Control className="p-4" type="password" placeholder="********" required/>
                             </Form.Group>
                             <Button className="my-4" variant="primary" type="submit" size="lg" block>
                                 Entrar
