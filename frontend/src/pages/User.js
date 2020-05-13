@@ -9,11 +9,11 @@ export default function User({ history }) {
                 !localStorage.getItem('cpf') ? (
                     history.push('/')
                 ) : (
-                    <div>
-                        <Header />
-                        <h1>User page</h1>
-                    </div>
-                )
+                        <div>
+                            <Header />
+                            <h1>User page</h1>
+                        </div>
+                    )
             }
         </div>
     )
