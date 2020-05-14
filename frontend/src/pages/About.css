@@ -15,7 +15,7 @@
 }  
 
 @media (min-width: 576px){ 
-    .container-maintxt {
+    .container-about {
         background-image: url('../assets/backgrounds/about.jpg');
     }
 
