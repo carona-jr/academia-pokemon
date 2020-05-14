@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
@@ -10,7 +11,7 @@ import './Header.css'
 
 export default function Header() {
     return (
-        <Navbar className="p-2 pl-5" bg="dark" variant="dark" expand="lg" fixed="top">
+        <Navbar className="p-md-2 pl-md-5" bg="dark" variant="dark" expand="lg" fixed="top">
             <Navbar.Brand href="/user">
                 <h2 className="logo display-5">Academia Pokémon</h2>
             </Navbar.Brand>

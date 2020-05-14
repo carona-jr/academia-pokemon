@@ -7,9 +7,9 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import CardImage from 'react-bootstrap/CardImg'
 import NavLink from 'react-bootstrap/NavLink'
 
-import bulbassaur from '../assets/bulbassaur.png'
-import charmander from '../assets/charmander.png'
-import squirtle from '../assets/squirtle.png'
+import bulbassaur from '../assets/images/plans/bulbassaur.png'
+import charmander from '../assets/images/plans/charmander.png'
+import squirtle from '../assets/images/plans/squirtle.png'
 
 import './Pricing.css'
 
@@ -18,7 +18,7 @@ import LoginNav from '../components/LoginHeader'
 function PriceCard({ title, description, price, image, lcolor, first, second, third }) {
     return (  
         <Card className="card-container" style={{ width: '18rem' }} bg="light" text="dark" border="dark">
-            <CardImage top width = "100%" src={image}/>
+            <CardImage top width="100%" src={image} />
             <Card.Body className="mb-3 mt-3">
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>
@@ -44,7 +44,7 @@ export default function Pricing({ history }) {
             <div className="mt-5 p-5">
                 <h1 className="text-center mb-5 display-5 text-uppercase">Conheça nossos planos!</h1>
                 <div className="cardFlex">
-                    <PriceCard  
+                    <PriceCard
                         title="Plano Bulbassaur"
                         description="O plano essencial necessário para você se iniciar no universo pokémon."
                         price="49,99"
@@ -55,7 +55,7 @@ export default function Pricing({ history }) {
                         third="Cada treinamento dura de 6 a 7 dias."
                         history={history}
                     />
-                    <PriceCard  
+                    <PriceCard
                         title="Plano Squirtle"
                         description="O plano intermediário para você tornar seus pokémons mais talentosos."
                         price="99,99"
