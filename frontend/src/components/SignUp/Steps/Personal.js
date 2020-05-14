@@ -20,7 +20,7 @@ export default function Personal({ user, setUser, next }) {
                     <Form.Label>Data de nascimento</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, data_nascimento: e.target.value })}
-                        type="date" placeholder="10/11/2012" value={user.data_nascimento || ''}/>
+                        type="date" placeholder="10/11/2012" value={user.data_nascimento || ''} />
                 </Form.Group>
             </Form.Row>
 
@@ -28,16 +28,20 @@ export default function Personal({ user, setUser, next }) {
                 <Form.Label>CPF</Form.Label>
                 <Form.Control
                     onChange={e => setUser({ ...user, cpf: e.target.value })}
-                    placeholder="12345678900" value={user.cpf || ''}/>
+                    placeholder="12345678900" value={user.cpf || ''} />
             </Form.Group>
 
             <Form.Group controlId="RG">
                 <Form.Label>RG</Form.Label>
                 <Form.Control
                     onChange={e => setUser({ ...user, rg: e.target.value })}
-                    placeholder="12345678" value={user.rg || ''}/>
+                    placeholder="12345678" value={user.rg || ''} />
             </Form.Group>
             <Container className="text-center">
+                <Button className="p-2 mr-3" variant="primary" type="button" alt="Anterior" disabled>
+                    &lt;&lt;&lt;
+                </Button>
+                
                 <Button className="p-2 m-1" variant="primary" type="button" alt="Próximo" onClick={next}>
                     >>>
                 </Button>

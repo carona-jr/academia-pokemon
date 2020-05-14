@@ -29,38 +29,12 @@ export default function SignUp({ history }) {
 
     function handleClickBack(e) {
         e.preventDefault()
-        switch (step[0]) {
-            case 1:
-                setStep([0, 0])
-                break
-            case 2:
-                setStep([1, 33])
-                break
-            case 3:
-                setStep([2, 66])
-                break
-            default:
-                setStep([0, 0])
-                break
-            }
-        }
+        setStep([--step[0], Math.trunc(step[0] * 100 / 3)])
+    }
 
     function handleClickNext(e) {
         e.preventDefault()
-        switch (step[0]) {
-            case 0:
-                setStep([1, 33])
-                break
-            case 1:
-                setStep([2, 66])
-                break
-            case 2:
-                setStep([3, 100])
-                break
-            default:
-                setStep([0, 0])
-                break
-        }
+        setStep([++step[0], Math.trunc(step[0] * 100 / 3)])
     }
 
     return (
@@ -70,34 +44,30 @@ export default function SignUp({ history }) {
             <Form onSubmit={handleSubmit}>
                 {
                     (step[0] === 1) ? (
-                        <Address 
-                            user={user} 
+                        <Address
+                            user={user}
                             setUser={setUser}
                             next={handleClickNext}
-                            back={handleClickBack} 
+                            back={handleClickBack}
                         />
-                    )
-                    : (step[0] === 2) ? (   
-                        <Credentials 
-                            user={user} 
-                            setUser={setUser} 
+                    ) : (step[0] === 2) ? (
+                        <Credentials
+                            user={user}
+                            setUser={setUser}
                             next={handleClickNext}
                             back={handleClickBack}
                         />
-                    ) :
-                    (step[0] === 3) ? (
-                        <Finish 
-                            user={user} 
-                            setUser={setUser} 
+                    ) : (step[0] === 3) ? (
+                        <Finish
+                            user={user}
+                            setUser={setUser}
                             back={handleClickBack}
                         />
-                    ) : (
-                        <Personal 
-                            user={user} 
-                            setUser={setUser} 
-                            next={handleClickNext}
-                        />
-                    )
+                    ) : (<Personal
+                        user={user}
+                        setUser={setUser}
+                        next={handleClickNext}
+                    />)
                 }
 
             </Form>

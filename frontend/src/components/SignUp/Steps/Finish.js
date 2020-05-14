@@ -44,6 +44,10 @@ export default function Finish({ user, setUser, back }) {
             <Button className="p-2 mr-3" variant="primary" type="button" alt="Anterior" onClick={back}>
                 &lt;&lt;&lt;
             </Button>
+
+            <Button className="p-2 m-1" variant="primary" type="button" alt="Próximo" disabled>
+                    >>>
+            </Button>
         </Container>
     )
 }
