@@ -10,7 +10,6 @@
   "author": "Carlos, Giovanna, Leandro, Lucas",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.2",
     "cors": "^2.8.5",
     "cpf": "^2.0.1",
     "express": "^4.17.1",
