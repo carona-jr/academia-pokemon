@@ -30,7 +30,7 @@ function PriceCard({ title, description, price, image, lcolor, first, second, th
                     <ListGroupItem className="mb-2" variant={lcolor} text="dark">{third}</ListGroupItem>
                 </ListGroup>
                 <Button className="mb-3 mt-3" variant="primary">
-                    <NavLink className="text-light" href="/signUp">Assine já por R$ {price}!</NavLink>
+                    <NavLink className="text-light" href="/signup">Assine já por R$ {price}!</NavLink>
                 </Button>
             </Card.Body>
         </Card>
