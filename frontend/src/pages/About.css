@@ -1,38 +1,40 @@
-.container-maintxt{
+.container-about {
     width: 100vw;
     height: 100vh;
-    background-image: url('../assets/wall2responsive.png');
+    background-image: url('../assets/backgrounds/wall2responsive.png');
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
 }
 
 .container-txt {
-    margin-top: 60px;
+    margin-top: 250px;
     width: 80vw;
-    height: 80%;
+    height: 750px;
     background-color: #36393fe8;
     color: #fff;
 }  
 
 @media (min-width: 576px){ 
-    .container-maintxt {
-        background-image: url('../assets/wall2.jpg');
+    .container-about {
+        background-image: url('../assets/backgrounds/wall2.jpg');
     }
 
     .container-txt {
-        margin-top: 0;
-        width: 60vw;
+        margin: 0;
+        width: 70vw;
+        height: 560px;
     }
 }
 
 @media (min-width: 992px) {    
     .container-txt {
-        width: 50vw;
+        width: 60vw;
+        height: 500px;
     }  
 }
 
 @media (min-width: 1200px) {    
     .container-txt {
-        width: 40vw;
+        width: 50vw;
     }  
 }

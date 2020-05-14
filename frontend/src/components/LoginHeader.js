@@ -14,9 +14,9 @@ export default function LoginHeader() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">Início</Nav.Link>
-                    <Nav.Link href="/pricing">Planos</Nav.Link>
-                    <Nav.Link href="/about">Sobre Nós</Nav.Link>
+                    <Nav.Link className="p-3 p-lg-1" href="/">Início</Nav.Link>
+                    <Nav.Link className="p-3 p-lg-1" href="/pricing">Planos</Nav.Link>
+                    <Nav.Link className="p-3 p-lg-1" href="/about">Sobre Nós</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar >

@@ -13,8 +13,8 @@ export default function Main({ history }) {
                 !localStorage.getItem('cpf') ? (
                     <div className="container-main d-flex justify-content-center align-items-center">
                         <LoginNav />
-                        <div className="d-flex justify-content-center align-items-center">
-                            <div className=" container-login p-5 rounded shadow">
+                        <div>
+                            <div className="container-login p-5 rounded shadow">
                                 <h2 className="display-5 text-center">Entrar</h2>
                                 <div>
                                     <LoginForm history={history} />
