@@ -61,6 +61,11 @@ export default function Address({ user, setUser, next, back }) {
                 <Button className="p-2 mr-3" variant="primary" type="button" alt="Anterior" onClick={back}>
                     &lt;&lt;&lt;
                 </Button>
+
+                <Button className="p-2 px-5 mr-3" variant="primary" type="submit" alt="Enviar" disabled>
+                    Enviar
+                </Button>
+
                 <Button className="p-2 m-1" variant="primary" type="button" alt="Próximo" onClick={next}>
                     >>>
                 </Button>

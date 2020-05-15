@@ -14,6 +14,7 @@ import { api } from '../../services/api'
 export default function SignUp({ history }) {
     const [step, setStep] = useState([0, 0])
     const [user, setUser] = useState({})
+    const [phone, setPhone] = useState({})
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -61,11 +62,14 @@ export default function SignUp({ history }) {
                         <Finish
                             user={user}
                             setUser={setUser}
+                            phone={phone}
                             back={handleClickBack}
                         />
                     ) : (<Personal
                         user={user}
                         setUser={setUser}
+                        phone={phone}
+                        setPhone={setPhone}
                         next={handleClickNext}
                     />)
                 }

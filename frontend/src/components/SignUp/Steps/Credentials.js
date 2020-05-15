@@ -23,10 +23,16 @@ export default function Credentials({ user, setUser, next, back }) {
                         type="password" placeholder="********" value={user.password || ''}/>
                 </Form.Group>
             </Form.Row>
+            <br/><br/><br/> <br/><br/><br/><br/>
             <Container className="text-center">
                 <Button className="p-2 mr-3" variant="primary" type="button" alt="Anterior" onClick={back}>
                     &lt;&lt;&lt;
                 </Button>
+
+                <Button className="p-2 px-5 mr-3" variant="primary" type="submit" alt="Enviar" disabled>
+                    Enviar
+                </Button>
+
                 <Button className="p-2 m-1" variant="primary" type="button" alt="Próximo" onClick={next}>
                     >>>
                 </Button>

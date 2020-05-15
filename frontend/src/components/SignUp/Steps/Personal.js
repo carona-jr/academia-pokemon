@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 
-export default function Personal({ user, setUser, next }) {
+export default function Personal({ user, setUser, phone, setPhone, next }) {
     return (
         <Container>
             <Form.Row>
@@ -20,28 +20,52 @@ export default function Personal({ user, setUser, next }) {
                     <Form.Label>Data de nascimento</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, data_nascimento: e.target.value })}
-                        type="date" placeholder="10/11/2012" value={user.data_nascimento || ''} />
+                        type="date" value={user.data_nascimento || ''} />
                 </Form.Group>
             </Form.Row>
 
-            <Form.Group controlId="CPF">
-                <Form.Label>CPF</Form.Label>
-                <Form.Control
-                    onChange={e => setUser({ ...user, cpf: e.target.value })}
-                    placeholder="12345678900" value={user.cpf || ''} />
-            </Form.Group>
+            <Form.Row>
+               <Form.Group as={Col} controlId="CPF">
+                    <Form.Label>Cpf</Form.Label>
+                    <Form.Control
+                        onChange={e => setUser({ ...user, cpf: e.target.value })}
+                        type="text" placeholder="123456789" value={user.cpf || ''} />
+                </Form.Group>
 
-            <Form.Group controlId="RG">
-                <Form.Label>RG</Form.Label>
-                <Form.Control
-                    onChange={e => setUser({ ...user, rg: e.target.value })}
-                    placeholder="12345678" value={user.rg || ''} />
-            </Form.Group>
+                <Form.Group as={Col} controlId="RG">
+                    <Form.Label>RG</Form.Label>
+                    <Form.Control
+                        onChange={e => setUser({ ...user, rg: e.target.value })}
+                        type="text" placeholder="123456" value={user.rg || ''} />
+                </Form.Group>
+            </Form.Row>
+
+            <Form.Row>
+                <Form.Group as={Col} controlId="num_celular">
+                    <Form.Label>Celular</Form.Label>
+                    <Form.Control
+                        onChange={e => setPhone({ ...phone, num_celular: e.target.value })}
+                        type="text" placeholder="123456789" value={phone.num_celular || ''} />
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="Telefone">
+                    <Form.Label>Telefone</Form.Label>
+                    <Form.Control
+                        onChange={e => setPhone({ ...phone, num_telefone: e.target.value })}
+                        type="text" placeholder="123456789" value={phone.num_telefone || ''} />
+                </Form.Group>
+            </Form.Row>
+
+
             <Container className="text-center">
                 <Button className="p-2 mr-3" variant="primary" type="button" alt="Anterior" disabled>
                     &lt;&lt;&lt;
                 </Button>
-                
+
+                <Button className="p-2 px-5 mr-3" variant="primary" type="submit" alt="Enviar" disabled>
+                    Enviar
+                </Button>
+
                 <Button className="p-2 m-1" variant="primary" type="button" alt="Próximo" onClick={next}>
                     >>>
                 </Button>

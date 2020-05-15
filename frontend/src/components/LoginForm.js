@@ -10,8 +10,6 @@ export default function LoginHeader({ history }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        const data = { ...user }
-        console.log(data)
         try {
             const response = await api.post('/user/login', user)
             console.log(response)
@@ -25,16 +23,16 @@ export default function LoginHeader({ history }) {
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
-                <Form.Label>CPF</Form.Label>
-                <Form.Control onChange={e => setUser({ ...user, cpf: e.target.value })} className="p-4" type="text" placeholder="123456789" required pattern="[0-9]{11}" />
+                <Form.Label>Email</Form.Label>
+                <Form.Control onChange={e => setUser({ ...user, e_mail: e.target.value })} className="p-4" type="email" placeholder="seu@email.com" required/>
                 <Form.Text className="text-muted">
-                    Seu CPF não será compartilhado com ninguém.
+                    Seu email não será compartilhado com ninguém.
                 </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
                 <Form.Label>Senha</Form.Label>
-                <Form.Control onChange={e => setUser({ ...user, password: e.target.value })} className="p-4" type="password" placeholder="********" required />
+                <Form.Control onChange={e => setUser({ ...user, password: e.target.value })} className="p-4" type="password" placeholder="********" required/>
             </Form.Group>
             <Button className="my-4" variant="primary" type="submit" size="lg" block>
                 Entrar

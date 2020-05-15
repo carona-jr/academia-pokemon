@@ -10,6 +10,10 @@ import FormControl from 'react-bootstrap/FormControl'
 import './Header.css'
 
 export default function Header() {
+    function handleClick() {
+        localStorage.removeItem('cpf')
+    }
+
     return (
         <Navbar className="p-md-2 pl-md-5" bg="dark" variant="dark" expand="lg" fixed="top">
             <Navbar.Brand href="/user">
@@ -27,7 +31,7 @@ export default function Header() {
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.4" onClick={handleClick}>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </Navbar.Collapse>
