@@ -32,12 +32,12 @@ export default function User({ history }) {
             data_de_saida: pokemon.data_de_saida
         }
         try {
-            const response = await api.post('/pokemon', dataPokemon, {
+            await api.post('/pokemon', dataPokemon, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('cpf')
                 }
             })
-            history.push('/user/pokemon/new')
+            history.push('/user')
         } catch (e) {
             alert(e)
         }
