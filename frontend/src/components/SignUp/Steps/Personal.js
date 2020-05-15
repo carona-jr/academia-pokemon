@@ -13,30 +13,30 @@ export default function Personal({ user, setUser, phone, setPhone, next }) {
                     <Form.Label>Nome</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, nome: e.target.value })}
-                        type="text" placeholder="Jose Maria" value={user.nome || ''} />
+                        type="text" placeholder="Jose Maria" value={user.nome || ''} required/>
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="Bday">
                     <Form.Label>Data de nascimento</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, data_nascimento: e.target.value })}
-                        type="date" value={user.data_nascimento || ''} />
+                        type="date" value={user.data_nascimento || ''}/>
                 </Form.Group>
             </Form.Row>
 
             <Form.Row>
-               <Form.Group as={Col} controlId="CPF">
+                <Form.Group as={Col} controlId="CPF">
                     <Form.Label>Cpf</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, cpf: e.target.value })}
-                        type="text" placeholder="123456789" value={user.cpf || ''} />
+                        type="text" placeholder="123456789" value={user.cpf || ''} required/>
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="RG">
                     <Form.Label>RG</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, rg: e.target.value })}
-                        type="text" placeholder="123456" value={user.rg || ''} />
+                        type="text" placeholder="123456" value={user.rg || ''} required/>
                 </Form.Group>
             </Form.Row>
 

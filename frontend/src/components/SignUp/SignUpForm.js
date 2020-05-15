@@ -15,6 +15,7 @@ export default function SignUp({ history }) {
     const [step, setStep] = useState([0, 0])
     const [user, setUser] = useState({})
     const [phone, setPhone] = useState({})
+    const [verify, setVerify] = useState({})
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -82,6 +83,8 @@ export default function SignUp({ history }) {
                             setUser={setUser}
                             next={handleClickNext}
                             back={handleClickBack}
+                            verify={verify}
+                            setVerify={setVerify}
                         />
                     ) : (step[0] === 3) ? (
                         <Finish
