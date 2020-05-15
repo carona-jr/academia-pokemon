@@ -14,6 +14,8 @@ export default function LoginHeader({ history }) {
             const response = await api.post('/user/login', user)
             console.log(response)
             localStorage.setItem('cpf', response.data.cpf)
+            localStorage.setItem('nome', response.data.nome)
+            localStorage.setItem('e_mail', response.data.e_mail)
             history.push('/user')
         } catch (e) {
             alert(e)

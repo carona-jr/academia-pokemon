@@ -5,11 +5,11 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-export default function Finish({ user, back }) {
+export default function Finish({ user, phone, back }) {
     return (
         <Container className="text-center">
             {
-                (!user.nome || !user.cpf || !user.rg || !user.e_mail || !user.password) ? (
+                (!user.nome || !user.cpf || !user.rg || !user.e_mail || !user.password || !phone.celular || phone.celular === phone.residencia) ? (
                     <div>
                         <h3>Parece que está faltando algo importante :(</h3>
                         <p>Verifique os itens:</p>
@@ -47,6 +47,20 @@ export default function Finish({ user, back }) {
                                     <li style={{ color: 'red', listStyle: 'none' }}>sua senha</li>
                                 ) : (
                                     <li style={{ color: 'green', listStyle: 'none' }}>sua senha</li>
+                                )
+                            }
+                            {
+                                (!phone.celular) ? (
+                                    <li style={{ color: 'red', listStyle: 'none' }}>seu celular</li>
+                                ) : (
+                                    <li style={{ color: 'green', listStyle: 'none' }}>seu celular</li>
+                                )
+                            }
+                            {
+                                (phone.celular !== phone.residencia) ? (
+                                    <li style={{ color: 'red', listStyle: 'none' }}>telefones iguais</li>
+                                ) : (
+                                    <li style={{ color: 'green', listStyle: 'none' }}>telefones</li>
                                 )
                             }
                         </ul>

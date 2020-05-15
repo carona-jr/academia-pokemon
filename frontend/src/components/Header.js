@@ -22,16 +22,15 @@ export default function Header() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                 <Form inline className="mr-auto">
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-success">Search</Button>
+                    <FormControl type="text" placeholder="Pesquisar" className="mr-sm-2" />
+                    <Button variant="outline-success">Pesquisar</Button>
                 </Form>
                 <Nav className="mr-md-5 pr-md-5">
-                    <NavDropdown title={localStorage.getItem('nome') || 'user'} id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                    <NavDropdown title={localStorage.getItem('e_mail') || 'cpf'} id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">Meu Perfil</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2">Alterar Plano</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4" onClick={handleClick}>Logout</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.4" onClick={handleClick}>Sair</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </Navbar.Collapse>

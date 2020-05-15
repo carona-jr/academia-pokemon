@@ -10,13 +10,13 @@ export default function Credentials({ user, setUser, next, back, verify, setVeri
         <Container>
             <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>E-mail</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, e_mail: e.target.value })}
                         type="email" placeholder="email@email.com" value={user.e_mail || ''} required />
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Group as={Col} controlId="formEmail">
                     <Form.Label>Confirme seu e-mail</Form.Label>
                     <Form.Control
                         onChange={e => setVerify({ ...verify, e_mail: e.target.value })}
@@ -32,7 +32,7 @@ export default function Credentials({ user, setUser, next, back, verify, setVeri
                         type="password" placeholder="********" value={user.password || ''} required />
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Group as={Col} controlId="formPassword">
                     <Form.Label>Confirme sua senha</Form.Label>
                     <Form.Control
                         onChange={e => setVerify({ ...verify, password: e.target.value })}

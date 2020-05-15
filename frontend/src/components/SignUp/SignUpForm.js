@@ -18,6 +18,7 @@ export default function SignUp({ history }) {
     const [verify, setVerify] = useState({})
 
     async function handleSubmit(e) {
+        let dataPhone 
         e.preventDefault()
         const dataUser = {
             cpf: user.cpf,
@@ -33,16 +34,28 @@ export default function SignUp({ history }) {
             e_mail: user.e_mail,
             password: user.password
         }
-        const dataPhone = {
-            cpf: user.cpf,
-            telefone: {
-                celular: phone.num_celular,
-                residencia: phone.num_telefone
+
+        if (!phone.residencia) {
+            dataPhone = {
+                cpf: user.cpf,
+                telefone: {
+                    celular: phone.num_celular,
+                    residencia: phone.num_telefone
+                }
+            }
+        } else {
+            dataPhone = {
+                cpf: user.cpf,
+                telefone: {
+                    celular: phone.num_celular
+                }
             }
         }
+        
         try {
             const response = await api.post('/user', dataUser)
             localStorage.setItem('cpf', response.data.cpf)
+            console.log(dataPhone)
             await api.post('/user/phone', dataPhone, {
                 headers: {
                     Authorization: 'Bearer ' + user.cpf
