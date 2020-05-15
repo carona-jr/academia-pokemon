@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import imagemPokemon from '../assets/images/54.png'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
-import Image from 'react-bootstrap/Image'
-import searchImg from '../services/img'
+// import searchImg from '../services/img'
 import Table from 'react-bootstrap/Table'
 
-import { api, apiPokemon } from '../services/api'
+import { api, /* apiPokemon */ } from '../services/api'
 
 export default function PokemonList() {
     const [userPokemons, setUserPokemons] = useState()
-    const pok = ['psyduck', 'pikachu']
 
     async function loadPokemons() {
         const userCpf = localStorage.getItem('cpf')
@@ -22,9 +18,6 @@ export default function PokemonList() {
             }
         })
         setUserPokemons(userPokemons.data)
-        // userPokemons.map(pokemon => setPokemonsNames([...pokemonsNames, pokemon.raca]))
-        // console.log(pokemonsNames)
-        // await console.log(searchImg(pok))
     }
 
     useEffect(() => {

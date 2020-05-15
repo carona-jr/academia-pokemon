@@ -2,10 +2,6 @@ import React, { useRef } from 'react'
 import PokemonList from '../components/PokemonList'
 import Header from '../components/Header'
 import SideNav from '../components/SideNav'
-
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-
 import './User.css'
 
 export default function User({ history }) {
@@ -22,7 +18,6 @@ export default function User({ history }) {
                                 <h2> Bem vindo, <span style={{ textTransform: 'capitalize' }}>{localStorage.getItem('nome')}</span>!</h2>
                                 <h5>Seus Pokémons recentes:</h5>
                                 <PokemonList />
-
                             </div>
                             <SideNav divMain={divMain} />
                         </div>

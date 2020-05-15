@@ -3,7 +3,6 @@ import Nav from 'react-bootstrap/Nav'
 
 import hideImg from '../assets/icons/first_page-white-24dp.svg'
 import hideImgBlack from '../assets/icons/first_page-black-24dp.svg'
-import menu from '../assets/icons/menu_open-white-24dp.svg'
 import menuBlack from '../assets/icons/menu_open-black-24dp.svg'
 import add from '../assets/icons/add-white-24dp.svg'
 import addBlack from '../assets/icons/add-black-24dp.svg'
@@ -66,17 +65,17 @@ export default function User({ history, divMain }) {
                         <img className="icon-2" src={hideImgBlack} alt="x" />
                         <p className="m-0">Ocultar barra</p>
                     </Nav.Link>
-                    <Nav.Link ref={link2} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/home">
+                    <Nav.Link ref={link2} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/user/pokemon/new">
                         <img className="icon-1" src={add} alt="x" />
                         <img className="icon-2" src={addBlack} alt="x" />
                         <p className="m-0">Novo Pokémon</p>
                     </Nav.Link>
-                    <Nav.Link ref={link3} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/home">
+                    <Nav.Link ref={link3} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/user">
                         <img className="icon-1" src={eye} alt="x" />
                         <img className="icon-2" src={eyeBlack} alt="x" />
                         <p className="m-0">Meus Pokémons</p>
                     </Nav.Link>
-                    <Nav.Link ref={link4} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/home">
+                    <Nav.Link ref={link4} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/user">
                         <img className="icon-1" src={edit} alt="x" />
                         <img className="icon-2" src={editBlack} alt="x" />
                         <p className="m-0">Editar Pokémons</p>
