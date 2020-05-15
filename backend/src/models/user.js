@@ -6,6 +6,10 @@ const queryFindByCpf = {
     text: 'SELECT * FROM Usuario WHERE cpf = $1'
 }
 
+const queryFindByEmail = {
+    text: 'SELECT * FROM Usuario WHERE e_mail = $1'
+}
+
 const queryDeleteByCpf = {
     text: 'DELETE FROM Usuario WHERE cpf = $1'
 }
@@ -13,5 +17,6 @@ const queryDeleteByCpf = {
 module.exports = {
     queryInsertUser,
     queryFindByCpf,
-    queryDeleteByCpf
+    queryDeleteByCpf,
+    queryFindByEmail
 }

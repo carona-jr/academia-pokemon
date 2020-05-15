@@ -5,7 +5,8 @@ const router = new express.Router()
 const {
     queryInsertUser,
     queryFindByCpf,
-    queryDeleteByCpf
+    queryDeleteByCpf,
+    queryFindByEmail
 } = require('../models/user')
 
 const searchByKeyAndUpdate = require('../utils/update')
@@ -51,10 +52,11 @@ router.get('/user/me', auth, async (req, res) => {
 })
 
 router.post('/user/login', async (req, res) => {
-    queryFindByCpf.values = [req.body.cpf]
+    queryFindByEmail.values = [req.body.e_mail]
+
 
     try {
-        const user = await pool.query(queryFindByCpf)
+        const user = await pool.query(queryFindByEmail)
 
         const password = req.body.password
 
