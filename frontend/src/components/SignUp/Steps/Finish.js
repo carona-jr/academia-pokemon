@@ -9,10 +9,49 @@ export default function Finish({ user, phone, back }) {
     return (
         <Container className="text-center">
             {
-                (!user.nome && !user.cpf && !user.rg && !user.e_mail && !user.password) ? (
+                (!user.nome || !user.cpf || !user.rg || !user.e_mail || !user.password) ? (
                     <div>
-                        <h1>Verifique o nome, cpf, rg, e_mail ou senha</h1>
-                        <br/><br/><br/> <br/><br/><br/><br/><br/>
+                        <h3>Parece que está faltando algo importante :(</h3>
+                        <p>Verifique os itens:</p>
+                        <ul>
+                            {
+                                (!user.nome) ? (
+                                    <li style={{ color: 'red', listStyle: 'none' }}>seu nome</li>
+                                ) : (
+                                        <li style={{ color: 'green', listStyle: 'none' }}>seu nome</li>
+                                    )
+                            }
+                            {
+                                (!user.cpf) ? (
+                                    <li style={{ color: 'red', listStyle: 'none' }}>seu cpf</li>
+                                ) : (
+                                        <li style={{ color: 'green', listStyle: 'none' }}>seu cpf</li>
+                                    )
+                            }
+                            {
+                                (!user.rg) ? (
+                                    <li style={{ color: 'red', listStyle: 'none' }}>seu rg</li>
+                                ) : (
+                                        <li style={{ color: 'green', listStyle: 'none' }}>seu rg</li>
+                                    )
+                            }
+                            {
+                                (!user.e_mail) ? (
+                                    <li style={{ color: 'red', listStyle: 'none' }}>seu e-mail</li>
+                                ) : (
+                                        <li style={{ color: 'green', listStyle: 'none' }}>seu e-mail</li>
+                                    )
+                            }
+                            {
+                                (!user.senha) ? (
+                                    <li style={{ color: 'red', listStyle: 'none' }}>sua senha</li>
+                                ) : (
+                                        <li style={{ color: 'green', listStyle: 'none' }}>sua senha</li>
+                                    )
+                            }
+                        </ul>
+                        <br />
+                        <br />
                     </div>
                 ) : (
                         <Container className="w-50 text-center">
@@ -54,9 +93,17 @@ export default function Finish({ user, phone, back }) {
                 &lt;&lt;&lt;
             </Button>
 
-            <Button className="p-2 px-5 mr-3" variant="primary" type="submit" alt="Enviar">
-                Enviar
-            </Button>
+            {
+                (!user.nome || !user.cpf || !user.rg || !user.e_mail || !user.password) ? (
+                    <Button className="p-2 px-5 mr-3" variant="primary" type="submit" alt="Enviar" disabled>
+                        Enviar
+                    </Button>
+                ) : (
+                        <Button className="p-2 px-5 mr-3" variant="primary" type="submit" alt="Enviar">
+                            Enviar
+                        </Button>
+                    )
+            }
 
             <Button className="p-2 m-1" variant="primary" type="button" alt="Próximo" disabled>
                 >>>
