@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 export default function Finish({ user, phone, back }) {
-    console.log(phone)
     return (
         <Container className="text-center">
             {

@@ -18,11 +18,36 @@ export default function SignUp({ history }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
+        const dataUser = {
+            cpf: user.cpf,
+            nome: user.nome,
+            rg: user.rg,
+            data_nascimento: user.data_nascimento || null,
+            rua: user.rua || null,
+            num_casa: user.num_casa || null,
+            bairro: user.bairro || null,
+            cidade: user.cidade || null,
+            estado: user.estado || null,
+            cep: user.cep || null,
+            e_mail: user.e_mail,
+            password: user.password
+        }
+        const dataPhone = {
+            cpf: user.cpf,
+            telefone: {
+                celular: phone.num_celular,
+                residencia: phone.num_telefone
+            }
+        }
         try {
-            const response = await api.post('/user', user)
+            const response = await api.post('/user', dataUser)
             localStorage.setItem('cpf', response.data.cpf)
+            await api.post('/user/phone', dataPhone, {
+                headers: {
+                    Authorization: 'Bearer ' + user.cpf
+                }
+            })
             history.push('/user')
-            alert('foi')
         } catch (e) {
             alert(e)
         }
