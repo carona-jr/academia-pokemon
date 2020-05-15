@@ -6,6 +6,10 @@ const queryFindPokemonByCpf = {
     text: 'SELECT * FROM Pokemon WHERE cpf = $1'
 }
 
+const queryFindPokemonByCpfTop = {
+    text: 'SELECT * FROM Pokemon WHERE cpf = $1 ORDER BY nivel LIMIT 3'
+}
+
 const queryFindPokemonByCpfAndName = {
     text: 'SELECT * FROM Pokemon WHERE cpf = $1 AND nome = $2'
 }
@@ -23,5 +27,6 @@ module.exports = {
     queryFindPokemonByCpf,
     queryFindPokemonByCpfAndName,
     queryDeleteByCpf,
-    queryDeletePokemonByName
+    queryDeletePokemonByName,
+    queryFindPokemonByCpfTop
 }
