@@ -1,9 +1,9 @@
 .container-sidebar {
     background-color: #36393fe8;
     position: fixed;
-    width: 15vw;
     height: 100vh;
     top: 58px;
+    transition: width 0.5s;
 }
 
 .nav-link-sidebar {
@@ -40,4 +40,38 @@
 .nav-link-sidebar:hover .icon-2 {
     display: block;
     z-index: 2;
+}
+
+.menu-nav {
+    position: absolute;
+    width: 0;
+    height: 52px;
+    top: 65px;
+    left: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 992px){
+    .container-sidebar {
+        width: 50px;
+    }
+
+    .nav-link-sidebar p {
+        position: absolute;
+        left: -100px;
+    }
+
+    .icon-1 {
+        left: 10px;
+    }
+    
+    .icon-2 {
+        left: -15px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-sidebar {
+        width: 250px;
+    }
 }
