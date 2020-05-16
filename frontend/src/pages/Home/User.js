@@ -3,11 +3,11 @@ import PokemonList from '../../components/Pokemon/PokemonList'
 import Header from '../../components/Nav/Header'
 import SideNav from '../../components/Nav/SideNav'
 import PokemonByTypeChart from '../../components/Pokemon/Charts/PokemonByType'
+import PokemonCalendar from '../../components/Pokemon/Calendar/PokemonCalendar'
 import './User.css'
 
 export default function User({ history }) {
     const divMain = useRef()
-    const chart = useRef
     const [user] = useState(JSON.parse(localStorage.getItem('user')))
 
     return (
@@ -29,6 +29,10 @@ export default function User({ history }) {
                                         <h5>Seus pokémons por classificação</h5>
                                         <PokemonByTypeChart />
                                     </div>
+                                </div>
+                                <div className="container-data-calendar mt-3">
+                                    <h5>Veja o seu histórico de pokémons</h5>
+                                    <PokemonCalendar />
                                 </div>
 
                             </div>

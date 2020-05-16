@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Table from 'react-bootstrap/Table'
 import Spinner from 'react-loading'
 
-import imagemPokemon from '../../assets/images/54.png'
+import imagemPokemon from '../../assets/images/ditto.png'
 import searchImg from '../../services/img'
 import { api } from '../../services/api'
 
@@ -58,7 +58,7 @@ export default function PokemonList() {
                                     <tbody key={pokemon.codigo_pokemon}>
                                         <tr>
                                             <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                <img className="w-50" src={imgPokemon[pokemon.raca] || imagemPokemon} alt="teste" />
+                                                <img className="w-75" src={imgPokemon[pokemon.raca] || imagemPokemon} alt="teste" />
                                             </td>
                                             <td style={{ verticalAlign: 'middle', textAlign: 'center', textTransform: 'capitalize', textSize: '25px' }}>
                                                 {pokemon.nome}

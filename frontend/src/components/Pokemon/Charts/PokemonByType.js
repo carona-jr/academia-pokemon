@@ -38,9 +38,9 @@ export default function PokemonByType() {
                     Authorization: 'Bearer ' + cpf
                 }
             })
+            // eslint-disable-next-line
             response.data.map(value => {
                 const tipo = capitalize(value.classificacao)
-                console.log(colors[value.classificacao], value.classificacao)
                 arr.push({
                     id: tipo,
                     label: tipo,

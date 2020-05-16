@@ -35,6 +35,6 @@ export default function Header() {
                     </NavDropdown>
                 </Nav>
             </Navbar.Collapse>
-        </Navbar >
+        </Navbar>
     )
 }
