@@ -37,7 +37,7 @@ export default function User({ history }) {
                     Authorization: 'Bearer ' + localStorage.getItem('cpf')
                 }
             })
-            history.push('/user')
+            alert('Seu pokémon foi criado com sucesso')
         } catch (e) {
             alert(e)
         }

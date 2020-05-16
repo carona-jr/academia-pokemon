@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
@@ -10,8 +10,9 @@ import FormControl from 'react-bootstrap/FormControl'
 import './Header.css'
 
 export default function Header() {
+    const [user] = useState(JSON.parse(localStorage.getItem('user')))
     function handleClick() {
-        localStorage.removeItem('cpf')
+        localStorage.clear()
     }
 
     return (
@@ -26,11 +27,11 @@ export default function Header() {
                     <Button variant="outline-success">Pesquisar</Button>
                 </Form>
                 <Nav className="mr-md-5 pr-md-5">
-                    <NavDropdown title={localStorage.getItem('e_mail') || 'cpf'} id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Meu Perfil</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Alterar Plano</NavDropdown.Item>
+                    <NavDropdown title={user.data.e_mail || 'seu email'} id="basic-nav-dropdown">
+                        <NavDropdown.Item href="/user">Meu Perfil</NavDropdown.Item>
+                        <NavDropdown.Item href="/user">Alterar Plano</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4" onClick={handleClick}>Sair</NavDropdown.Item>
+                        <NavDropdown.Item href="/" onClick={handleClick}>Sair</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </Navbar.Collapse>

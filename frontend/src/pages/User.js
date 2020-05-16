@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import PokemonList from '../components/PokemonList'
 import Header from '../components/Header'
 import SideNav from '../components/SideNav'
@@ -6,6 +6,7 @@ import './User.css'
 
 export default function User({ history }) {
     const divMain = useRef()
+    const [user] = useState(JSON.parse(localStorage.getItem('user')))
     return (
         <div>
             {
@@ -13,9 +14,9 @@ export default function User({ history }) {
                     history.push('/')
                 ) : (
                         <div>
-                            <Header />
+                            <Header/>
                             <div ref={divMain} className="container-user">
-                                <h2> Bem vindo, <span style={{ textTransform: 'capitalize' }}>{localStorage.getItem('nome')}</span>!</h2>
+                                <h2> Bem vindo, <span style={{ textTransform: 'capitalize' }}>{user.data.nome}</span>!</h2>
                                 <h5>Seus Pokémons recentes:</h5>
                                 <PokemonList />
                             </div>
