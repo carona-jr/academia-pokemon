@@ -19,6 +19,6 @@ export default function LoginHeader() {
                     <Nav.Link className="p-3 p-lg-1" href="/about">Sobre Nós</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
-        </Navbar >
+        </Navbar>
     )
 }

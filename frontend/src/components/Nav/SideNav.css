@@ -1,7 +1,7 @@
 .container-sidebar {
     background-color: #36393fe8;
     position: fixed;
-    height: 100vh;
+    height: 5000px;
     top: 58px;
     transition: width 0.5s;
 }

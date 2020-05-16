@@ -1,7 +1,7 @@
 import React from 'react'
 
-import LoginNav from '../components/LoginHeader'
-import SignUpForm from '../components/SignUp/SignUpForm'
+import LoginNav from '../../components/Nav/LoginHeader'
+import SignUpForm from '../../components/SignUp/SignUpForm'
 
 import Container from 'react-bootstrap/Container'
 

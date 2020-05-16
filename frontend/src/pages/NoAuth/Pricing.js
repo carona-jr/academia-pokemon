@@ -7,13 +7,13 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import CardImage from 'react-bootstrap/CardImg'
 import NavLink from 'react-bootstrap/NavLink'
 
-import bulbassaur from '../assets/images/plans/bulbassaur.png'
-import charmander from '../assets/images/plans/charmander.png'
-import squirtle from '../assets/images/plans/squirtle.png'
+import bulbassaur from '../../assets/images/plans/bulbassaur.png'
+import charmander from '../../assets/images/plans/charmander.png'
+import squirtle from '../../assets/images/plans/squirtle.png'
 
 import './Pricing.css'
 
-import LoginNav from '../components/LoginHeader'
+import LoginNav from '../../components/Nav/LoginHeader'
 
 function PriceCard({ title, description, price, image, lcolor, first, second, third }) {
     return (  

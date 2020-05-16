@@ -1,6 +1,6 @@
 import React from 'react'
 
-import LoginNav from '../components/LoginHeader'
+import LoginNav from '../../components/Nav/LoginHeader'
 
 import './About.css'
 

@@ -1,15 +1,15 @@
 import React, { useRef } from 'react'
 import Nav from 'react-bootstrap/Nav'
 
-import hideImg from '../assets/icons/first_page-white-24dp.svg'
-import hideImgBlack from '../assets/icons/first_page-black-24dp.svg'
-import menuBlack from '../assets/icons/menu_open-black-24dp.svg'
-import add from '../assets/icons/add-white-24dp.svg'
-import addBlack from '../assets/icons/add-black-24dp.svg'
-import eye from '../assets/icons/remove_red_eye-white-24dp.svg'
-import eyeBlack from '../assets/icons/remove_red_eye-black-24dp.svg'
-import edit from '../assets/icons/edit-white-24dp.svg'
-import editBlack from '../assets/icons/edit-black-24dp.svg'
+import hideImg from '../../assets/icons/first_page-white-24dp.svg'
+import hideImgBlack from '../../assets/icons/first_page-black-24dp.svg'
+import menuBlack from '../../assets/icons/menu_open-black-24dp.svg'
+import add from '../../assets/icons/add-white-24dp.svg'
+import addBlack from '../../assets/icons/add-black-24dp.svg'
+import eye from '../../assets/icons/remove_red_eye-white-24dp.svg'
+import eyeBlack from '../../assets/icons/remove_red_eye-black-24dp.svg'
+import edit from '../../assets/icons/edit-white-24dp.svg'
+import editBlack from '../../assets/icons/edit-black-24dp.svg'
 
 import './SideNav.css'
 
@@ -21,7 +21,13 @@ export default function User({ history, divMain }) {
     const link3 = useRef()
     const link4 = useRef()
     function handleClick() {
-        divMain.current.style.marginLeft = '100px'
+        if (window.innerWidth > 992) {
+            divMain.current.style.marginLeft = '100px'
+        }
+        else {
+            divMain.current.style.marginLeft = '50px'
+            divMain.current.style.marginRight = '50px'
+        }
 
         nav.current.style.width = 0
 

@@ -1,18 +1,18 @@
 import React, { useRef, useState } from 'react'
 
-import Header from '../components/Header'
-import SideNav from '../components/SideNav'
+import Header from '../../components/Nav/Header'
+import SideNav from '../../components/Nav/SideNav'
+import { api } from '../../services/api'
 
 import './User.css'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import { api } from '../services/api'
 
 function dataAtual() {
     let dNow = new Date()
-    let localdate = dNow.getFullYear() + '-' + (dNow.getMonth() + 1) + '-' + dNow.getDate() + ' ' + dNow.getHours() + ':' + dNow.getMinutes() + ':' + dNow.getSeconds() 
+    let localdate = dNow.getFullYear() + '-' + (dNow.getMonth() + 1) + '-' + dNow.getDate() + ' ' + dNow.getHours() + ':' + dNow.getMinutes() + ':' + dNow.getSeconds()
     return localdate
 }
 
@@ -25,7 +25,7 @@ export default function User({ history }) {
         const dataPokemon = {
             nome: pokemon.nome || null,
             raca: pokemon.raca || null,
-            classificacao: pokemon.classificacao || null,
+            classificacao: pokemon.classificacao || 'água',
             nivel: pokemon.nivel,
             nivel_objetivo: pokemon.nivel_objetivo,
             data_de_entrada: pokemon.data_de_entrada,
@@ -54,7 +54,7 @@ export default function User({ history }) {
                             <Header />
                             <div ref={divMain} className="container-user">
                                 <h2 className="text-center m-0 p-0 my-5">Cadastre seu Pokémon</h2>
-                                <Form className="w-75" onSubmit={handleSubmit}>
+                                <Form className="w-100 w-lg-50" onSubmit={handleSubmit}>
                                     <Form.Row>
                                         <Form.Group as={Col} controlId="name">
                                             <Form.Label>Nome</Form.Label>
@@ -85,14 +85,33 @@ export default function User({ history }) {
                                                 type="date" placeholder="2020-05-16" value={pokemon.data_de_saida || ''} required />
                                         </Form.Group>
                                     </Form.Row>
-                                    
+
                                     <Form.Row>
                                         <Form.Group as={Col} controlId="classificacao">
-                                            <Form.Label>Classificação</Form.Label>
-                                            <Form.Control
-                                                onChange={e => setPokemon({ ...pokemon, classificacao: e.target.value })}
-                                                type="text" placeholder="Água" value={pokemon.classificacao || ''} required />
+                                            <Form.Label>Tipo</Form.Label>
+                                            <Form.Control as="select" value={pokemon.classificacao}
+                                            onChange={e => setPokemon({ ...pokemon, classificacao: e.target.value })} required>
+                                                <option>Água</option>
+                                                <option>Dragão</option>
+                                                <option>Elétrico</option>
+                                                <option>Fantasma</option>
+                                                <option>Fada</option>
+                                                <option>Fogo</option>
+                                                <option>Gelo</option>
+                                                <option>Inseto</option>
+                                                <option>Lutador</option>
+                                                <option>Metálico</option>
+                                                <option>Normal</option>
+                                                <option>Noturno</option>
+                                                <option>Pedra</option>
+                                                <option>Planta</option>
+                                                <option>Psíquico</option>
+                                                <option>Terra</option>
+                                                <option>Venenoso</option>
+                                                <option>Voador</option>
+                                            </Form.Control>
                                         </Form.Group>
+
                                         <Form.Group as={Col} controlId="nivel">
                                             <Form.Label>Nível</Form.Label>
                                             <Form.Control
@@ -104,7 +123,7 @@ export default function User({ history }) {
                                             <Form.Label>Nível Objetivo</Form.Label>
                                             <Form.Control
                                                 onChange={e => setPokemon({ ...pokemon, nivel_objetivo: e.target.value })}
-                                                type="number" placeholder= "11" value={pokemon.nivel_objetivo || ''} required />
+                                                type="number" placeholder="11" value={pokemon.nivel_objetivo || ''} required />
                                         </Form.Group>
                                     </Form.Row>
                                     <Container className="text-center py-3">

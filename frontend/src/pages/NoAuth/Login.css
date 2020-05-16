@@ -1,7 +1,7 @@
 .container-main{
     width: 100vw;
     height: 100vh;
-    background-image: url('../assets/backgrounds/mainResponsive.png');
+    background-image: url('../../assets/backgrounds/mainResponsive.png');
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
 }
@@ -16,7 +16,7 @@
 
 @media (min-width: 576px){ 
     .container-main {
-        background-image: url('../assets/backgrounds/main.png');
+        background-image: url('../../assets/backgrounds/main.png');
     }
 
     .container-login {

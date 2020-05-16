@@ -1,17 +1,17 @@
 import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import User from './pages/User'
-import Main from './pages/Main'
-import About from './pages/About'
-import Pricing from './pages/Pricing'
-import SignUp from './pages/SignUp'
-import NewPokemon from './pages/NewPokemon'
+import User from './pages/Home/User'
+import NewPokemon from './pages/Home/NewPokemon'
+import Login from './pages/NoAuth/Login'
+import About from './pages/NoAuth/About'
+import Pricing from './pages/NoAuth/Pricing'
+import SignUp from './pages/NoAuth/SignUp'
 
 export default function Routes() {
     return (
         <BrowserRouter>
-            <Route path="/" exact component={Main} />
+            <Route path="/" exact component={Login} />
             <Route path="/user" exact component={User} />
             <Route path="/user/pokemon/new" component={NewPokemon} />
             <Route path="/signup" component={SignUp} />

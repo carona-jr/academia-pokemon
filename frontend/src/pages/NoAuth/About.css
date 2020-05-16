@@ -1,7 +1,7 @@
 .container-about {
     width: 100vw;
     height: 100vh;
-    background-image: url('../assets/backgrounds/aboutResponsive.png');
+    background-image: url('../../assets/backgrounds/aboutResponsive.png');
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
 }
@@ -16,7 +16,7 @@
 
 @media (min-width: 576px){ 
     .container-about {
-        background-image: url('../assets/backgrounds/about.jpg');
+        background-image: url('../../assets/backgrounds/about.jpg');
     }
 
     .container-txt {

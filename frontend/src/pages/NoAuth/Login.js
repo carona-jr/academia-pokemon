@@ -1,10 +1,10 @@
 import React from 'react'
 
 import Button from 'react-bootstrap/Button'
-import LoginNav from '../components/LoginHeader'
-import LoginForm from '../components/LoginForm'
+import LoginNav from '../../components/Nav/LoginHeader'
+import LoginForm from '../../components/LoginForm'
 
-import './Main.css'
+import './Login.css'
 
 export default function Main({ history }) {
     function handleClick() {
