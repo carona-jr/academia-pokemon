@@ -15,6 +15,7 @@ CREATE TABLE Usuario (
     data_vencimento varchar(64),
     nome_cartao varchar(64),
     cod_cartao varchar(5),
+    data_cadastro TIMESTAMP,
     PRIMARY KEY (cpf)
 );
 
@@ -39,10 +40,11 @@ CREATE TABLE Pokemon (
      nome varchar(64),
      raca varchar(64),
      classificacao varchar(64),
-     nivel varchar(24) NOT NULL,
-     nivel_objetivo varchar(24) NOT NULL,
+     nivel integer NOT NULL,
+     nivel_objetivo integer NOT NULL,
      data_de_entrada TIMESTAMP,
      data_de_saida TIMESTAMP, 
+     data_cadastro TIMESTAMP,
      PRIMARY KEY (codigo_pokemon)
 );
 
@@ -51,6 +53,7 @@ CREATE TABLE Treinador (
     cpts varchar(24) NOT NULL UNIQUE,
     salario_base varchar(24),
     instituto varchar(64),
+    data_cadastro TIMESTAMP,
     PRIMARY KEY (cpf)
 );
 
@@ -62,6 +65,7 @@ CREATE TABLE Especialidade (
 
 CREATE TABLE Mestre (
     cpf varchar(24) REFERENCES Treinador (cpf) ON DELETE CASCADE ON UPDATE CASCADE,
+    data_cadastro TIMESTAMP,
     PRIMARY KEY (cpf)     
 );
 

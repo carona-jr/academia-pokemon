@@ -8,7 +8,9 @@ const {
     queryFindPokemonByCpf,
     queryFindPokemonByCpfAndName,
     queryDeletePokemonByName,
-    queryFindPokemonByCpfTop
+    queryFindPokemonByCpfTopByNivel,
+    queryFindPokemonByCpfTopByData,
+    queryFindPokemonByCpfCountByType
 } = require('../models/pokemon')
 
 const serachByKeyAndUpdate = require('../utils/update')
@@ -34,10 +36,10 @@ router.post('/pokemon', auth, async (req, res) => {
     }
 })
 
-router.get('/pokemon/top', auth, async (req, res) => {
+router.get('/pokemon/top3', auth, async (req, res) => {
     try {
-        queryFindPokemonByCpfTop.values = [req.user.cpf]
-        const pokemon = await pool.query(queryFindPokemonByCpfTop)
+        queryFindPokemonByCpfTopByNivel.values = [req.user.cpf]
+        const pokemon = await pool.query(queryFindPokemonByCpfTopByNivel)
 
         if (!pokemon.rowCount)
             return res.status(404).send()
@@ -47,6 +49,36 @@ router.get('/pokemon/top', auth, async (req, res) => {
         res.status(500).send(e)
     }
 })
+
+router.get('/pokemon/top', auth, async (req, res) => {
+    try {
+        queryFindPokemonByCpfTopByData.values = [req.user.cpf]
+        const pokemon = await pool.query(queryFindPokemonByCpfTopByData)
+
+        if (!pokemon.rowCount)
+            return res.status(404).send()
+
+        res.send(pokemon.rows)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
+router.get('/pokemon/countByType', auth, async (req, res) => {
+    try {
+        queryFindPokemonByCpfCountByType.values = [req.user.cpf]
+        const pokemon = await pool.query(queryFindPokemonByCpfCountByType)
+
+        if (!pokemon.rowCount)
+            return res.status(404).send()
+
+        res.send(pokemon.rows)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
+
 
 router.get('/pokemon/all', auth, async (req, res) => {
     try {

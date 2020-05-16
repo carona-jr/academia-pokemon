@@ -1,5 +1,5 @@
 const queryInsertTreinador = {
-    text: 'INSERT INTO Treinador (cpf, cpts, salario_base, instituto) VALUES ($1, $2, $3, $4)'
+    text: 'INSERT INTO Treinador (cpf, cpts, salario_base, instituto, data_cadastro) VALUES ($1, $2, $3, $4, $5)'
 }
 
 const queryFindByCpf = {

@@ -12,29 +12,28 @@ const {
 
 const auth = require('../middlewares/auth')
 const serachByKeyAndUpdate = require('../utils/update')
-const validator = require('validator')
 
 router.post('/user/phone', auth, async (req, res) => {
-    req.body.cpf = req.user.cpf
+    const cpf = req.user.cpf
     const telefone = req.body.telefone
-    
+
     try {
-        if (!telefone || !validator.isNumeric(telefone.celular) || !validator.isNumeric(telefone.residencia))
-            return res.status(400).send({ error: 'O telefone está errado' })
-
         if (telefone.celular) {
-            queryInsertPhone.values = [req.body.cpf, telefone.celular]
+            queryInsertPhone.values = [cpf, telefone.celular]
             await pool.query(queryInsertPhone)
         }
+
         if (telefone.residencia) {
-            queryInsertPhone.values = [req.body.cpf, telefone.residencia]
+            queryInsertPhone.values = [cpf, telefone.residencia]
             await pool.query(queryInsertPhone)
         }
 
-        queryFindByCpf.values = [req.user.cpf]
-        const telefones = await pool.query(queryFindByCpf)
-
-        res.status(201).send(telefones.rows)
+        if (telefone.residencia || telefone.celular) {
+            queryFindByCpf.values = [cpf]
+            const telefones = await pool.query(queryFindByCpf)
+            return res.status(201).send(telefones.rows)
+        }
+        res.status(400).send({ msg: 'Nenhum telefone foi adicionado' })
     } catch (e) {
         res.status(500).send(e)
     }

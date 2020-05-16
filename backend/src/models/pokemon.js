@@ -1,13 +1,21 @@
 const queryInsertPokemon = {
-    text: 'INSERT INTO Pokemon (nome, raca, classificacao, nivel, nivel_objetivo, data_de_entrada, data_de_saida, cpf) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)'
+    text: 'INSERT INTO Pokemon (nome, raca, classificacao, nivel, nivel_objetivo, data_de_entrada, data_de_saida, data_cadastro, cpf) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
 }
 
 const queryFindPokemonByCpf = {
     text: 'SELECT * FROM Pokemon WHERE cpf = $1'
 }
 
-const queryFindPokemonByCpfTop = {
-    text: 'SELECT * FROM Pokemon WHERE cpf = $1 ORDER BY nivel LIMIT 3'
+const queryFindPokemonByCpfTopByNivel = {
+    text: 'SELECT * FROM Pokemon WHERE cpf = $1 ORDER BY nivel DESC LIMIT 3'
+}
+
+const queryFindPokemonByCpfTopByData = {
+    text: 'SELECT * FROM Pokemon WHERE cpf = $1 ORDER BY data_cadastro DESC LIMIT 3'
+}
+
+const queryFindPokemonByCpfCountByType = {
+    text: 'SELECT classificacao, count(classificacao) as quantidade FROM Pokemon WHERE cpf = $1 GROUP BY classificacao'
 }
 
 const queryFindPokemonByCpfAndName = {
@@ -28,5 +36,7 @@ module.exports = {
     queryFindPokemonByCpfAndName,
     queryDeleteByCpf,
     queryDeletePokemonByName,
-    queryFindPokemonByCpfTop
+    queryFindPokemonByCpfTopByNivel,
+    queryFindPokemonByCpfTopByData,
+    queryFindPokemonByCpfCountByType
 }
