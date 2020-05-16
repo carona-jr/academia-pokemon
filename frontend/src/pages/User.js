@@ -16,7 +16,7 @@ export default function User({ history }) {
                         <div>
                             <Header/>
                             <div ref={divMain} className="container-user">
-                                <h2> Bem vindo, <span style={{ textTransform: 'capitalize' }}>{user.data.nome}</span>!</h2>
+                                <h2> Bem vindo, <span style={{ textTransform: 'capitalize' }}>{user.data.nome || 'user'}</span>!</h2>
                                 <h5>Seus Pokémons recentes:</h5>
                                 <PokemonList />
                             </div>

@@ -11,6 +11,12 @@ import Container from 'react-bootstrap/Container'
 
 import { api } from '../../services/api'
 
+function dataAtual() {
+    let dNow = new Date()
+    let localdate = dNow.getFullYear() + '-' + (dNow.getMonth() + 1) + '-' + dNow.getDate() + ' ' + dNow.getHours() + ':' + dNow.getMinutes()
+    return localdate
+}
+
 export default function SignUp({ history }) {
     const [step, setStep] = useState([0, 0])
     const [user, setUser] = useState({})
@@ -29,15 +35,15 @@ export default function SignUp({ history }) {
             num_casa: user.num_casa || null,
             bairro: user.bairro || null,
             cidade: user.cidade || null,
-            estado: user.estado || null,
+            estado: user.estado || 'SP',
             cep: user.cep || null,
             e_mail: user.e_mail,
-            password: user.password
+            password: user.password,
+            data_cadastro: dataAtual()
         }
 
-        if (!phone.residencia) {
+        if (phone.residencia) {
             dataPhone = {
-                cpf: user.cpf,
                 telefone: {
                     celular: phone.num_celular,
                     residencia: phone.num_telefone
@@ -45,18 +51,17 @@ export default function SignUp({ history }) {
             }
         } else {
             dataPhone = {
-                cpf: user.cpf,
                 telefone: {
                     celular: phone.num_celular
                 }
             }
         }
-        
+        console.log(dataUser)
+        console.log(dataPhone)
         try {
             const response = await api.post('/user', dataUser)
             localStorage.setItem('cpf', response.data.cpf)
-            localStorage.setItem('data', JSON.stringify(response))
-            console.log(dataPhone)
+            localStorage.setItem('user', JSON.stringify(response))
             await api.post('/user/phone', dataPhone, {
                 headers: {
                     Authorization: 'Bearer ' + user.cpf

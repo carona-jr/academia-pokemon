@@ -10,7 +10,12 @@ const search = async (pokemon, obj) => {
 
 const searchImg = async (pokemons) => {
     let obj = JSON.parse(localStorage.getItem('pokemons')) || {}
-    const list = await Promise.all(pokemons.map(pokemon => search(pokemon, obj)))
+    let list
+    try {
+        list = await Promise.all(pokemons.map(pokemon => search(pokemon, obj)))
+    } catch (e) {
+        return obj
+    }
 
     for(let i = 0; i < pokemons.length; i++) {
         obj[pokemons[i]] = list[i]

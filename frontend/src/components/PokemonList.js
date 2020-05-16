@@ -23,6 +23,7 @@ export default function PokemonList() {
             pokemonList.push(`${response.data[i].raca}`)
         }
         const pokemonsImg = await searchImg(pokemonList)
+
         setImgPokemon(pokemonsImg)
     }
 
@@ -39,10 +40,10 @@ export default function PokemonList() {
                     <Table className="w-50 m-0 p-0" striped bordered hover responsive>
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Nome</th>
-                                <th>Tipo</th>
-                                <th>Nível</th>
+                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>#</th>
+                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Nome</th>
+                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Raça</th>
+                                <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>Nível</th>
                             </tr>
                         </thead>
                         {

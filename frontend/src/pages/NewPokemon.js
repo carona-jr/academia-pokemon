@@ -10,11 +10,11 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import { api } from '../services/api'
 
-// function dataAtual() {
-//     let dNow = new Date()
-//     let localdate = dNow.getFullYear() + '-' + (dNow.getMonth() + 1) + '-' + dNow.getDate() + ' ' + dNow.getHours() + ':' + dNow.getMinutes()
-//     return localdate
-// }
+function dataAtual() {
+    let dNow = new Date()
+    let localdate = dNow.getFullYear() + '-' + (dNow.getMonth() + 1) + '-' + dNow.getDate() + ' ' + dNow.getHours() + ':' + dNow.getMinutes() + ':' + dNow.getSeconds() 
+    return localdate
+}
 
 export default function User({ history }) {
     const divMain = useRef()
@@ -29,7 +29,8 @@ export default function User({ history }) {
             nivel: pokemon.nivel,
             nivel_objetivo: pokemon.nivel_objetivo,
             data_de_entrada: pokemon.data_de_entrada,
-            data_de_saida: pokemon.data_de_saida
+            data_de_saida: pokemon.data_de_saida,
+            data_cadastro: dataAtual()
         }
         try {
             await api.post('/pokemon', dataPokemon, {
