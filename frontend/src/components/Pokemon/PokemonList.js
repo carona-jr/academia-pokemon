@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table'
 import Spinner from 'react-loading'
 
 import imagemPokemon from '../../assets/images/ditto.png'
-import searchImg from '../../services/img'
+import { searchImg } from '../../services/img'
 import { api } from '../../services/api'
 
 export default function PokemonList() {

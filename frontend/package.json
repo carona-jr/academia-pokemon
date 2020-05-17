@@ -2,6 +2,11 @@
   "name": "academia",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "13.12.x",
+    "npm": "6.14.x",
+    "yarn": "1.22.x"
+  },
   "dependencies": {
     "@nivo/pie": "^0.61.1",
     "@testing-library/jest-dom": "^4.2.4",

@@ -62,11 +62,12 @@
     }
 
     .icon-1 {
+        width: 128px;
         left: 10px;
     }
     
     .icon-2 {
-        left: -15px;
+        left: -100px;
     }
 }
 

@@ -2,8 +2,12 @@ const { apiPokemon } = require('../services/api')
 
 const search = async (pokemon, obj) => {
     if (!obj.hasOwnProperty(pokemon)) {
-        let response = await apiPokemon.get(`/${pokemon.toLowerCase()}`)
-        return response.data.sprites.front_default
+        try {
+            let response = await apiPokemon.get(`/${pokemon.toLowerCase()}`)
+            return response.data.sprites.front_default
+        } catch(e) {
+            return undefined
+        }
     }
     return obj[pokemon]
 }
@@ -22,7 +26,6 @@ const searchImg = async (pokemons) => {
     }
     localStorage.setItem('pokemons', JSON.stringify(obj))
     return obj
-    
 }
 
-module.exports = searchImg
+export { searchImg }
