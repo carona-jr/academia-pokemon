@@ -78,10 +78,50 @@ router.get('/pokemon/countByType', auth, async (req, res) => {
     }
 })
 
+// GET /tasks?completed=true
+// GET /tasks?limit=2&skip=20
+// GET /tasks?sortBy=createdAt:desc
+// router.get('/tasks', auth, async(req, res) => {
+//     const match = {}
+//     const sort = {}
 
+//     if (req.query.completed) {
+//         match.completed = req.query.completed === 'true'
+//     }
 
-router.get('/pokemon/all', auth, async (req, res) => {
+//     if (req.query.sortBy) {
+//         const parts = req.query.sortBy.split(':')
+//         sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
+//     }
+
+//     try {
+//         await req.user.populate({
+//             path: 'tasks',
+//             match,
+//             options: {
+//                 limit: parseInt(req.query.limit),
+//                 skip: parseInt(req.query.skip),
+//                 sort
+//             }
+//         }).execPopulate()
+//         res.send(req.user.tasks)
+//     } catch (e) {
+//         res.status(500).send()
+//     }
+// })
+
+router.get('/pokemon/all', auth, async  (req, res) => {
     try {
+        if (req.query.sortBy && req.query.limit) {
+            const parts = req.query.sortBy.split(':')
+            const select = `SELECT * FROM Pokemon ORDER BY ${parts[0]} ${parts[1]} LIMIT ${req.query.limit}0`
+            const limitSup = parseInt(req.query.limit) * 10
+            const limitInf = limitSup - 10
+            
+            const pokemon = await pool.query(select)
+            const arr = pokemon.rows.slice(limitInf, limitSup)
+            return res.send(arr)
+        }   
         queryFindPokemonByCpf.values = [req.user.cpf]
         const pokemon = await pool.query(queryFindPokemonByCpf)
 
@@ -149,3 +189,4 @@ router.delete('/pokemon', auth, async (req, res) => {
 })
 
 module.exports = router
+
