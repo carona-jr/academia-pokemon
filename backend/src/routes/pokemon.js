@@ -114,7 +114,7 @@ router.get('/pokemon/all', auth, async  (req, res) => {
     try {
         if (req.query.sortBy && req.query.limit) {
             const parts = req.query.sortBy.split(':')
-            const select = `SELECT * FROM Pokemon ORDER BY ${parts[0]} ${parts[1]} LIMIT ${req.query.limit}0`
+            const select = `SELECT * FROM Pokemon WHERE cpf = '${req.user.cpf}' ORDER BY ${parts[0]} ${parts[1]} LIMIT ${req.query.limit}0`
             const limitSup = parseInt(req.query.limit) * 10
             const limitInf = limitSup - 10
             
