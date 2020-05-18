@@ -13,7 +13,7 @@ import editBlack from '../../assets/icons/edit-black-24dp.svg'
 
 import './SideNav.css'
 
-export default function User({ history, divMain }) {
+export default function User({ divMain }) {
     const nav = useRef()
     const menuIcon = useRef()
     const link1 = useRef()
@@ -66,7 +66,8 @@ export default function User({ history, divMain }) {
             <img ref={menuIcon} className="menu-nav" src={menuBlack} alt="x" onClick={handleOpen} />
             <div ref={nav} className="container-sidebar">
                 <Nav defaultActiveKey="/user" className="d-flex flex-column">
-                    <Nav.Link ref={link1} className="nav-link-sidebar nav-home d-flex justify-content-center align-items-center" onClick={handleClick}>
+                    <Nav.Link ref={link1} className="nav-link-sidebar nav-home d-flex justify-content-center align-items-center" 
+                        onClick={handleClick}>
                         <img className="icon-1" src={hideImg} alt="x" />
                         <img className="icon-2" src={hideImgBlack} alt="x" />
                         <p className="m-0">Ocultar barra</p>
@@ -76,7 +77,7 @@ export default function User({ history, divMain }) {
                         <img className="icon-2" src={addBlack} alt="x" />
                         <p className="m-0">Novo Pokémon</p>
                     </Nav.Link>
-                    <Nav.Link ref={link3} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/user">
+                    <Nav.Link ref={link3} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/user/pokemon/mine">
                         <img className="icon-1" src={eye} alt="x" />
                         <img className="icon-2" src={eyeBlack} alt="x" />
                         <p className="m-0">Meus Pokémons</p>

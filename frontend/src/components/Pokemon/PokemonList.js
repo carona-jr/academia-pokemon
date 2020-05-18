@@ -7,7 +7,7 @@ import imagemPokemon from '../../assets/images/ditto.png'
 import { searchImg } from '../../services/img'
 import { api } from '../../services/api'
 
-export default function PokemonList() {
+export default function PokemonList({ route }) {
     let pokemonList = []
     const [userPokemons, setUserPokemons] = useState()
     const [responseData, setResponseData] = useState()
@@ -16,7 +16,7 @@ export default function PokemonList() {
     async function loadPokemons() {
         try {
             const userCpf = localStorage.getItem('cpf')
-            const response = await api.get('/pokemon/top', {
+            const response = await api.get(route, {
                 headers: {
                     Authorization: 'Bearer ' + userCpf
                 }

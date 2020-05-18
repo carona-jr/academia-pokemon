@@ -23,7 +23,7 @@ export default function User({ history }) {
                                 <div className="container-data">
                                     <div className="container-data-pokemon">
                                         <h5>Seus pokémons recentes</h5>
-                                        <PokemonList />
+                                        <PokemonList route="/pokemon/top"/>
                                     </div>
                                     <div className="p-0 m-0 container-data-chart">
                                         <h5>Seus pokémons por classificação</h5>
