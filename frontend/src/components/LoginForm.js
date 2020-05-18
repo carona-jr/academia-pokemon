@@ -16,7 +16,7 @@ export default function LoginHeader({ history }) {
             localStorage.setItem('user', JSON.stringify(response))
             history.push('/user')
         } catch (e) {
-            alert(e)
+            alert('Usuário não encontrado no sistema, por favor, tente novamente')
         }
     }
 

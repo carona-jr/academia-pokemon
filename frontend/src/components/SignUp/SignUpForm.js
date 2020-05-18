@@ -56,8 +56,6 @@ export default function SignUp({ history }) {
                 }
             }
         }
-        console.log(dataUser)
-        console.log(dataPhone)
         try {
             const response = await api.post('/user', dataUser)
             localStorage.setItem('cpf', response.data.cpf)
@@ -70,7 +68,7 @@ export default function SignUp({ history }) {
 
             history.push('/user')
         } catch (e) {
-            alert(e)
+            alert(e.response.data.error)
         }
     }
 

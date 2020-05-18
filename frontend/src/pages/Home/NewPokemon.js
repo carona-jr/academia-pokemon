@@ -40,7 +40,7 @@ export default function User({ history }) {
             })
             alert('Seu pokémon foi criado com sucesso')
         } catch (e) {
-            alert(e)
+            alert('Tente novamente, houve um erro na hora de cadastrar o pokémon.')
         }
     }
 
