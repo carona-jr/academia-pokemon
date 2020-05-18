@@ -62,7 +62,6 @@ export default function Finish({ user, phone, back }) {
                                     )
                             }
                         </ul>
-                        <br />
                     </div>
                 ) : (
                         <Container className="w-75 text-center">
@@ -76,23 +75,23 @@ export default function Finish({ user, phone, back }) {
                     )
             }
 
-            <Button className="p-2 mr-3" variant="primary" type="button" alt="Anterior" onClick={back}>
+            <Button className="p-2 p-lg-3 mr-1 mr-lg-3 mt-4" variant="primary" type="button" alt="Anterior" onClick={back}>
                 &lt;&lt;&lt;
             </Button>
 
             {
                 (!user.nome || !user.cpf || !user.rg || !user.e_mail || !user.password) ? (
-                    <Button className="p-2 px-5 mr-3" variant="primary" type="submit" alt="Enviar" disabled>
+                    <Button className="p-2 px-5 p-lg-3 px-lg-5 mr-1 mr-lg-3 mt-4" variant="primary" type="submit" alt="Enviar" disabled>
                         Enviar
                     </Button>
                 ) : (
-                        <Button className="p-2 px-5 mr-3" variant="primary" type="submit" alt="Enviar">
+                        <Button className="p-2 px-5 p-lg-3 px-lg-5 mr-1 mr-lg-3 mt-4" variant="primary" type="submit" alt="Enviar">
                             Enviar
                         </Button>
                     )
             }
 
-            <Button className="p-2 m-1" variant="primary" type="button" alt="Próximo" disabled>
+            <Button className="p-2 p-lg-3 mt-4" variant="primary" type="button" alt="Próximo" disabled>
                 >>>
             </Button>
         </Container >
