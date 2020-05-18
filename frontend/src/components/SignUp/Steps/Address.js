@@ -62,7 +62,7 @@ export default function Address({ user, setUser, next, back }) {
                     &lt;&lt;&lt;
                 </Button>
 
-                <Button className="p-2 px-5 p-lg-3 px-lg-5 mr-1 mr-lg-3 mt-5" variant="primary" type="submit" alt="Enviar" disabled>
+                <Button className="p-2 px-4 p-lg-3 px-lg-5 mr-1 mr-lg-3 mt-5" variant="primary" type="submit" alt="Enviar" disabled>
                     Enviar
                 </Button>
 

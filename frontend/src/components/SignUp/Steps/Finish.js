@@ -85,7 +85,7 @@ export default function Finish({ user, phone, back }) {
                         Enviar
                     </Button>
                 ) : (
-                        <Button className="p-2 px-5 p-lg-3 px-lg-5 mr-1 mr-lg-3 mt-4" variant="primary" type="submit" alt="Enviar">
+                        <Button className="p-2 px-4 p-lg-3 px-lg-5 mr-1 mr-lg-3 mt-4" variant="primary" type="submit" alt="Enviar">
                             Enviar
                         </Button>
                     )

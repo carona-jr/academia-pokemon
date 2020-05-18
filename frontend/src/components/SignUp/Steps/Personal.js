@@ -26,7 +26,7 @@ export default function Personal({ user, setUser, phone, setPhone, next }) {
 
             <Form.Row>
                 <Form.Group as={Col} controlId="CPF">
-                    <Form.Label>Cpf</Form.Label>
+                    <Form.Label>CPF</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, cpf: e.target.value })}
                         type="text" placeholder="123456789" value={user.cpf || ''} required/>
@@ -62,7 +62,7 @@ export default function Personal({ user, setUser, phone, setPhone, next }) {
                     &lt;&lt;&lt;
                 </Button>
 
-                <Button className="p-2 px-5 p-lg-3 px-lg-5 mr-1 mr-lg-3 mt-5" variant="primary" type="submit" alt="Enviar" disabled>
+                <Button className="p-2 px-4 p-lg-3 px-lg-5 mr-1 mr-lg-3 mt-5" variant="primary" type="submit" alt="Enviar" disabled>
                     Enviar
                 </Button>
 

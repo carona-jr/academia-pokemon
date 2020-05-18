@@ -41,21 +41,21 @@ export default function Credentials({ user, setUser, next, back, verify, setVeri
             </Form.Row>
             <br /><br /><br />
             <Container className="text-center">
-                <Button className="p-2 p-lg-3 mr-1 mr-lg-3 mt-5" variant="primary" type="button" alt="Anterior" onClick={back}>
+                <Button className="p-2 p-lg-3 mr-1 mr-lg-3 mt-lg-5" variant="primary" type="button" alt="Anterior" onClick={back}>
                     &lt;&lt;&lt;
                 </Button>
 
-                <Button className="p-2 px-5 p-lg-3 px-lg-5 mr-1 mr-lg-3 mt-5" variant="primary" type="submit" alt="Enviar" disabled>
+                <Button className="p-2 px-4 p-lg-3 px-lg-5 mr-1 mr-lg-3 mt-lg-5" variant="primary" type="submit" alt="Enviar" disabled>
                     Enviar
                 </Button>
 
                 {
                     (user.e_mail === verify.e_mail && user.password === verify.password && user.e_mail && user.password) ? (
-                        <Button className="p-2 p-lg-3 mt-5" variant="primary" type="button" alt="Próximo" onClick={next}>
+                        <Button className="p-2 p-lg-3 mt-lg-5" variant="primary" type="button" alt="Próximo" onClick={next}>
                             >>>
                         </Button>
                     ) : (
-                            <Button className="p-2 p-lg-3 mt-5" variant="primary" type="button" alt="Próximo" onClick={next} disabled>
+                            <Button className="p-2 p-lg-3 mt-lg-5" variant="primary" type="button" alt="Próximo" onClick={next} disabled>
                                 >>>
                             </Button>
                         )
