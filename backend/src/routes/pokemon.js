@@ -10,7 +10,8 @@ const {
     queryDeletePokemonByName,
     queryFindPokemonByCpfTopByNivel,
     queryFindPokemonByCpfTopByData,
-    queryFindPokemonByCpfCountByType
+    queryFindPokemonByCpfCountByType,
+    queryFindPokemonByCountByDate
 } = require('../models/pokemon')
 
 const serachByKeyAndUpdate = require('../utils/update')
@@ -73,6 +74,25 @@ router.get('/pokemon/countByType', auth, async (req, res) => {
             return res.status(404).send()
 
         res.send(pokemon.rows)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
+router.get('/pokemon/date', auth, async (req, res) => {
+    try {
+        queryFindPokemonByCountByDate.values = [req.user.cpf, req.body.date]
+        const pokemon = await pool.query(queryFindPokemonByCountByDate)
+
+        if (!pokemon.rowCount)
+            return res.status(404).send()
+            
+        let arr = []
+        for(let i = 0; i < pokemon.rows.length; i++){
+            arr.push({ date: `${pokemon.rows[i].year}-${pokemon.rows[i].month}-${pokemon.rows[i].day}`, count: parseInt(pokemon.rows[i].count) })
+        }
+
+        res.send(arr)
     } catch (e) {
         res.status(500).send(e)
     }

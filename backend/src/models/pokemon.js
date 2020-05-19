@@ -18,6 +18,10 @@ const queryFindPokemonByCpfCountByType = {
     text: 'SELECT classificacao, count(classificacao) as quantidade FROM Pokemon WHERE cpf = $1 GROUP BY classificacao'
 }
 
+const queryFindPokemonByCountByDate = {
+    text: 'SELECT extract(year from data_cadastro) as year, extract(month from data_cadastro) as month, extract(day from data_cadastro) as day, count(codigo_pokemon) as count FROM Pokemon WHERE cpf = $1 AND data_cadastro >= $2 GROUP BY 1, 2, 3'
+}
+
 const queryFindPokemonByCpfAndName = {
     text: 'SELECT * FROM Pokemon WHERE cpf = $1 AND nome = $2'
 }
@@ -38,5 +42,6 @@ module.exports = {
     queryDeletePokemonByName,
     queryFindPokemonByCpfTopByNivel,
     queryFindPokemonByCpfTopByData,
-    queryFindPokemonByCpfCountByType
+    queryFindPokemonByCpfCountByType,
+    queryFindPokemonByCountByDate
 }
