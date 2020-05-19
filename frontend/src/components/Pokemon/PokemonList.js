@@ -58,7 +58,7 @@ export default function PokemonList({ route }) {
                                     <tbody key={pokemon.codigo_pokemon}>
                                         <tr>
                                             <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                <img className="w-75" src={imgPokemon[pokemon.raca] || imagemPokemon} alt="teste" />
+                                                <img className="w-50" src={imgPokemon[pokemon.raca] || imagemPokemon} alt="teste" />
                                             </td>
                                             <td style={{ verticalAlign: 'middle', textAlign: 'center', textTransform: 'capitalize', textSize: '25px' }}>
                                                 {pokemon.nome}

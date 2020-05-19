@@ -43,7 +43,7 @@
 }
 
 .menu-nav {
-    position: absolute;
+    position: fixed;
     width: 0;
     height: 52px;
     top: 65px;
