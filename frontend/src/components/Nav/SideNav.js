@@ -35,8 +35,8 @@ export default function User({ divMain }) {
         link2.current.style.left = '-50px'
         link3.current.style.position = 'relative'
         link3.current.style.left = '-50px'
-        link4.current.style.position = 'relative'
-        link4.current.style.left = '-50px'
+        // link4.current.style.position = 'relative'
+        // link4.current.style.left = '-50px'
 
         menuIcon.current.style.width = '52px'
     }
@@ -54,7 +54,7 @@ export default function User({ divMain }) {
         link1.current.style.position = 'static'
         link2.current.style.position = 'static'
         link3.current.style.position = 'static'
-        link4.current.style.position = 'static'
+        // link4.current.style.position = 'static'
 
         menuIcon.current.style.width = 0
     }
