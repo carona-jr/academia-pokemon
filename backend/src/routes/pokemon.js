@@ -12,7 +12,8 @@ const {
     queryFindPokemonByCpfTopByNivel,
     queryFindPokemonByCpfTopByData,
     queryFindPokemonByCpfCountByType,
-    queryFindPokemonByCountByDate
+    queryFindPokemonByCountByDate,
+    queryFindPokemonByCpfAndId
 } = require('../models/pokemon')
 
 const serachByKeyAndUpdate = require('../utils/update')
@@ -135,11 +136,29 @@ router.get('/pokemon/all', auth, async  (req, res) => {
 })
 
 
-router.get('/pokemon', auth, async (req, res) => {
+router.get('/pokemon/byName', auth, async (req, res) => {
     queryFindPokemonByCpfAndName.values = [req.user.cpf, req.body.nome.toLowerCase()]
 
     try {
         const pokemon = await pool.query(queryFindPokemonByCpfAndName)
+
+        if (!pokemon.rowCount)
+            return res.status(404).send()
+
+        res.send(pokemon.rows)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
+router.get('/pokemon/byId', auth, async (req, res) => {
+    queryFindPokemonByCpfAndId.values = [req.user.cpf, req.body.id]
+
+    try {
+        const pokemon = await pool.query(queryFindPokemonByCpfAndId)
+
+        if (!pokemon.rowCount)
+            return res.status(404).send()
 
         res.send(pokemon.rows[0])
     } catch (e) {

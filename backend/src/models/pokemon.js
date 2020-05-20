@@ -26,6 +26,10 @@ const queryFindPokemonByCpfAndName = {
     text: 'SELECT * FROM Pokemon WHERE cpf = $1 AND nome = $2'
 }
 
+const queryFindPokemonByCpfAndId = {
+    text: 'SELECT * FROM Pokemon WHERE cpf = $1 AND codigo_pokemon = $2'
+}
+
 const queryDeleteByCpf = {
     text: 'DELETE FROM Pokemon WHERE cpf = $1'
 }
@@ -43,5 +47,7 @@ module.exports = {
     queryFindPokemonByCpfTopByNivel,
     queryFindPokemonByCpfTopByData,
     queryFindPokemonByCpfCountByType,
-    queryFindPokemonByCountByDate
+    queryFindPokemonByCountByDate,
+    queryFindPokemonByCpfAndId,
+    queryFindPokemonByCpfAndId
 }
