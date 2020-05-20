@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react'
+
 import PokemonList from '../../components/Pokemon/PokemonList'
 import Header from '../../components/Nav/Header'
 import SideNav from '../../components/Nav/SideNav'
 import PokemonByTypeChart from '../../components/Pokemon/Charts/PokemonByType'
 import PokemonCalendar from '../../components/Pokemon/Calendar/PokemonCalendar'
+
 import './User.css'
 
 export default function User({ history }) {
@@ -23,7 +25,7 @@ export default function User({ history }) {
                                 <div className="container-data">
                                     <div className="container-data-pokemon">
                                         <h5>Seus pokémons recentes</h5>
-                                        <PokemonList route="/pokemon/top" />
+                                        <PokemonList route="/pokemon/top" displayItem={['nome', 'raca', 'nivel']} displayText= {['Nome', 'Raça', 'Nível']} showEditAndDelete={false}/>
                                     </div>
                                     <div className="p-0 m-0 container-data-chart">
                                         <h5>Seus pokémons por classificação</h5>

@@ -8,8 +8,6 @@ import add from '../../assets/icons/add-white-24dp.svg'
 import addBlack from '../../assets/icons/add-black-24dp.svg'
 import eye from '../../assets/icons/remove_red_eye-white-24dp.svg'
 import eyeBlack from '../../assets/icons/remove_red_eye-black-24dp.svg'
-import edit from '../../assets/icons/edit-white-24dp.svg'
-import editBlack from '../../assets/icons/edit-black-24dp.svg'
 
 import './SideNav.css'
 
@@ -81,11 +79,6 @@ export default function User({ divMain }) {
                         <img className="icon-1" src={eye} alt="x" />
                         <img className="icon-2" src={eyeBlack} alt="x" />
                         <p className="m-0">Meus Pokémons</p>
-                    </Nav.Link>
-                    <Nav.Link ref={link4} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/user">
-                        <img className="icon-1" src={edit} alt="x" />
-                        <img className="icon-2" src={editBlack} alt="x" />
-                        <p className="m-0">Editar Pokémons</p>
                     </Nav.Link>
                 </Nav>
             </div>

@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 
 import Spinner from 'react-loading'
-import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import { Pagination } from 'react-bootstrap'
 
@@ -56,7 +55,7 @@ export default function MyPokemons({ history }) {
 
     function handleClick(e, number) {
         setSort({ ...sort, limit: number })
-        setActive(number) 
+        setActive(number)
         if (number === 1) {
             setPast(1)
             setFuture(number + 1)
@@ -80,7 +79,12 @@ export default function MyPokemons({ history }) {
 
     function LoadPokemon() {
         return (
-            <PokemonList route={`/pokemon/all?sortBy=${sort.sortBy[0]}:${sort.sortBy[1]}&limit=${sort.limit}`} />
+            <PokemonList
+                route={`/pokemon/all?sortBy=${sort.sortBy[0]}:${sort.sortBy[1]}&limit=${sort.limit}`}
+                displayItem={['nome', 'raca', 'classificacao', 'nivel', 'data_cadastro']}
+                displayText={['Nome', 'Raça', 'Classificação', 'Nível', 'Data de cadastro']}
+                showEditAndDelete={true}
+            />
         )
     }
 
@@ -99,8 +103,8 @@ export default function MyPokemons({ history }) {
                         <h2 className="text-center m-0 p-0 my-5">Seu banco de Pokémons, <span style={{ textTransform: 'capitalize' }}>{user.data.nome || 'user'}</span>!</h2>
                         {
                             (count) ? (
-                                <Container className="w-100 d-flex justify-content-center align-content-center">
-                                    <Container>
+                                <div className="w-100 d-flex justify-content-center align-content-center">
+                                    <div className="w-100">
                                         <Form className="d-flex flex-column flex-lg-row">
                                             <Form.Group controlId="formGridState" className="d-flex flex-row">
                                                 <Form.Label className="w-100 w-lg-75 align-self-center">Ordenar por:</Form.Label>
@@ -149,16 +153,16 @@ export default function MyPokemons({ history }) {
                                                 (active !== 1) ? (
                                                     <Pagination.Ellipsis />
                                                 ) : (
-                                                    <></>
-                                                )
+                                                        <></>
+                                                    )
                                             }
                                             {items}
                                             {
                                                 (active !== 3) ? (
                                                     <Pagination.Ellipsis />
                                                 ) : (
-                                                    <></>
-                                                )
+                                                        <></>
+                                                    )
                                             }
                                             <Pagination.Next
                                                 onClick={(e) => {
@@ -170,8 +174,8 @@ export default function MyPokemons({ history }) {
                                             />
                                             <Pagination.Last onClick={(e) => handleClick(e, count)} />
                                         </Pagination>
-                                    </Container>
-                                </Container>
+                                    </div>
+                                </div>
                             ) : (responseData === 'empty') ? (
                                 <div>
                                     <p>Você não possui nenhum pokémon :(</p>
