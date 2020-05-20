@@ -81,7 +81,7 @@ router.get('/pokemon/countByType', auth, async (req, res) => {
 
 router.get('/pokemon/date', auth, async (req, res) => {
     try {
-        queryFindPokemonByCountByDate.values = [req.user.cpf, req.body.date]
+        queryFindPokemonByCountByDate.values = [req.user.cpf, req.header('DateToSearch')]
         const pokemon = await pool.query(queryFindPokemonByCountByDate)
 
         if (!pokemon.rowCount)
