@@ -4,7 +4,6 @@ import Spinner from 'react-loading'
 import imagemPokemon from '../../assets/images/ditto.png'
 import { searchImg } from '../../services/img'
 import { api } from '../../services/api'
-import Navlink from 'react-bootstrap/Navlink'
 import editImg from '../../assets/icons/edit-black-24dp.svg'
 import deleteImg from '../../assets/icons/delete-black-24dp.svg'
 
@@ -79,14 +78,12 @@ export default function PokemonList({ route, displayItem, displayText, showEditA
                                             {
                                                 showEditAndDelete ? (
                                                     <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                        <Navlink href="/user/pokemon/edit">
-                                                            <img className="mb-2" src={editImg} alt="edit"></img>
-
-                                                        </Navlink>
-                                                        <Navlink>
+                                                        <a className="m-0 mr-3 p-0" href="/user/pokemon/edit">
+                                                            <img src={editImg} alt="edit"></img>
+                                                        </a>
+                                                        <a className="m-0 p-0" href="/user/pokemon/edit">
                                                             <img src={deleteImg} alt="delete"></img>
-
-                                                        </Navlink>
+                                                        </a>
                                                     </td>
 
                                                 ) : (

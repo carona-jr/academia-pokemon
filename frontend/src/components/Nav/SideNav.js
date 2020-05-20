@@ -17,7 +17,7 @@ export default function User({ divMain }) {
     const link1 = useRef()
     const link2 = useRef()
     const link3 = useRef()
-    const link4 = useRef()
+    // const link4 = useRef()
     function handleClick() {
         if (window.innerWidth > 992) {
             divMain.current.style.marginLeft = '100px'
