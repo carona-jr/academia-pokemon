@@ -1,6 +1,7 @@
 const express = require('express')
 const pool = require('../db/elephant-sql')
 const router = new express.Router()
+const moment = require('moment')
 
 const {
     queryInsertPokemon,
@@ -108,6 +109,17 @@ router.get('/pokemon/all', auth, async  (req, res) => {
             
             const pokemon = await pool.query(select)
             const arr = pokemon.rows.slice(limitInf, limitSup)
+            arr.map(value => {
+                if (value.data_de_entrada) {
+                    value.data_de_entrada = moment(value.data_de_entrada).format('DD/MM/YYYY')
+                }
+                if (value.data_de_saida) {
+                    value.data_de_saida = moment(value.data_de_saida).format('DD/MM/YYYY')
+                }
+                if (value.data_cadastro) {
+                    value.data_cadastro = moment(value.data_cadastro).format('DD/MM/YYYY')
+                }
+            })
             return res.send(arr)
         }   
         queryFindPokemonByCpf.values = [req.user.cpf]
@@ -115,7 +127,7 @@ router.get('/pokemon/all', auth, async  (req, res) => {
 
         if (!pokemon.rowCount)
             return res.status(404).send()
-
+        
         res.send(pokemon.rows[0])
     } catch (e) {
         res.status(500).send(e)
@@ -177,4 +189,3 @@ router.delete('/pokemon', auth, async (req, res) => {
 })
 
 module.exports = router
-
