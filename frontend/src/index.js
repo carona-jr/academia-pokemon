@@ -1,41 +1,9 @@
-const express = require('express')
-const userRouter = require('./routes/user')
-const pokemonRouter = require('./routes/pokemon')
-const mestreRouter = require('./routes/mestre')
-const phoneRouter = require('./routes/phone')
-const treinadorRouter = require('./routes/treinador')
-const proficienciaRouter = require('./routes/proficiencia')
-const especialidadeRouter = require('./routes/especialidade')
-const trabalhaRouter = require('./routes/trabalha')
-const departamentoRouter = require('./routes/departamento')
-const planoRouter = require('./routes/plano')
-const aprimoraRouter = require('./routes/aprimora')
-const cors = require('cors')
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-const app = express()
-const port = process.env.PORT
+import App from './App'
 
-app.use(cors())
-app.use(express.json())
+// Importing the Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-app.use(userRouter)
-app.use(pokemonRouter)
-app.use(mestreRouter)
-app.use(phoneRouter)
-app.use(treinadorRouter)
-app.use(proficienciaRouter)
-app.use(especialidadeRouter)
-app.use(planoRouter)
-app.use(trabalhaRouter)
-app.use(departamentoRouter)
-app.use(aprimoraRouter)
-
-app.get('/*', (req, res) => {
-    res.status('400').send({ msg: 'Rota não encontrada' })
-})
-
-
-app.listen(port, () => {
-    console.log(`Server is up on port ${port}`)
-})
-
+ReactDOM.render(<App />, document.getElementById('root'))
