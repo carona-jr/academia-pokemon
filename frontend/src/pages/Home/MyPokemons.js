@@ -1,23 +1,22 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Spinner from 'react-loading'
 import Form from 'react-bootstrap/Form'
 import { Pagination } from 'react-bootstrap'
 
-import Header from '../../components/Nav/Header'
-import SideNav from '../../components/Nav/SideNav'
+import UserTemplate from '../../template/UserTemplate'
 import PokemonList from '../../components/Pokemon/PokemonList'
 
 import { api } from '../../services/api'
 
 export default function MyPokemons({ history }) {
-    const divMain = useRef()
     const [user] = useState(JSON.parse(localStorage.getItem('user')))
     const [responseData, setResponseData] = useState()
     const [active, setActive] = useState(1)
     const [past, setPast] = useState(1)
     const [future, setFuture] = useState(active + 1)
     const [count, setCount] = useState()
+    const [numPokemon, setNumPokemon] = useState()
     const [sort, setSort] = useState({ sortBy: ['nome', 'asc'], limit: 1 })
 
     async function loadPokemonCount() {
@@ -33,6 +32,7 @@ export default function MyPokemons({ history }) {
                 return setResponseData('empty')
             }
 
+            setNumPokemon(response.data.count)
             const number = parseInt(response.data.count)
 
             if (number % 10 === 0)
@@ -94,103 +94,93 @@ export default function MyPokemons({ history }) {
         // eslint-disable-next-line
     }, [sort])
     return (
-        !localStorage.getItem('cpf') ? (
-            history.push('/')
-        ) : (
-                <div>
-                    <Header />
-                    <div ref={divMain} className="container-user">
-                        <h2 className="text-center m-0 p-0 my-5">Seu banco de Pokémons, <span style={{ textTransform: 'capitalize' }}>{user.data.nome || 'user'}</span>!</h2>
-                        {
-                            (count) ? (
-                                <div className="w-100 d-flex justify-content-center align-content-center">
-                                    <div className="w-100">
-                                        <Form className="d-flex flex-column flex-lg-row">
-                                            <Form.Group controlId="formGridState" className="d-flex flex-row">
-                                                <Form.Label className="w-100 w-lg-75 align-self-center">Ordenar por:</Form.Label>
-                                                <Form.Control as="select" value={sort.sortSearch} onChange={e => setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]] })}>
-                                                    <option value="nome">Nome</option>
-                                                    <option value="raca">Raça</option>
-                                                    <option value="classificacao">Classificação</option>
-                                                    <option value="nivel">Nível</option>
-                                                    <option value="data_cadastro">Data de cadastro</option>
-                                                </Form.Control>
-                                            </Form.Group>
-                                            <Form.Group className="d-flex flex-row justify-content-center align-content-center">
-                                                <Form.Label as="legend" column>
-                                                    De forma:
+        <UserTemplate>
+            <h2 className="text-center m-0 p-0 my-5"><span style={{ textTransform: 'capitalize' }}>{user.data.nome || 'user'}</span>, você possui {numPokemon} pokémons!</h2>
+            {
+                (count) ? (
+                    <div className="w-100 d-flex justify-content-center align-content-center">
+                        <div className="w-100">
+                            <Form className="d-flex flex-column flex-lg-row">
+                                <Form.Group controlId="formGridState" className="d-flex flex-row">
+                                    <Form.Label className="w-100 w-lg-75 align-self-center">Ordenar por:</Form.Label>
+                                    <Form.Control as="select" value={sort.sortSearch} onChange={e => setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]] })}>
+                                        <option value="nome">Nome</option>
+                                        <option value="raca">Raça</option>
+                                        <option value="classificacao">Classificação</option>
+                                        <option value="nivel">Nível</option>
+                                        <option value="data_cadastro">Data de cadastro</option>
+                                    </Form.Control>
+                                </Form.Group>
+                                <Form.Group className="d-flex flex-row justify-content-center align-content-center">
+                                    <Form.Label as="legend" column>
+                                        De forma:
                                                     </Form.Label>
-                                                <Form.Check
-                                                    className="align-self-center mr-2"
-                                                    type="radio"
-                                                    label="Crescente"
-                                                    name="formOrganizacao"
-                                                    id="formOrganizacao1"
-                                                    onChange={e => setSort({ ...sort, sortBy: [sort.sortBy[0], 'asc'] })}
-                                                />
-                                                <Form.Check
-                                                    className="align-self-center"
-                                                    type="radio"
-                                                    label="Decrescente"
-                                                    name="formOrganizacao"
-                                                    id="formHorizontalRadios2"
-                                                    onChange={e => setSort({ ...sort, sortBy: [sort.sortBy[0], 'desc'] })}
-                                                />
-                                            </Form.Group>
-                                        </Form>
-                                        <LoadPokemon />
-                                        <Pagination className="justify-content-center mt-3">
-                                            <Pagination.First onClick={(e) => handleClick(e, 1)} />
-                                            <Pagination.Prev
-                                                onClick={(e) => {
-                                                    if (active === 1)
-                                                        return handleClick(e, 1)
-                                                    let number = active
-                                                    return handleClick(e, --number)
-                                                }}
-                                            />
-                                            {
-                                                (active !== 1) ? (
-                                                    <Pagination.Ellipsis />
-                                                ) : (
-                                                        <></>
-                                                    )
-                                            }
-                                            {items}
-                                            {
-                                                (active !== 3) ? (
-                                                    <Pagination.Ellipsis />
-                                                ) : (
-                                                        <></>
-                                                    )
-                                            }
-                                            <Pagination.Next
-                                                onClick={(e) => {
-                                                    if (active === count)
-                                                        return handleClick(e, active)
-                                                    let number = active
-                                                    return handleClick(e, ++number)
-                                                }}
-                                            />
-                                            <Pagination.Last onClick={(e) => handleClick(e, count)} />
-                                        </Pagination>
-                                    </div>
-                                </div>
-                            ) : (responseData === 'empty') ? (
-                                <div>
-                                    <p>Você não possui nenhum pokémon :(</p>
-                                </div>
-                            ) : (
-                                        <div className="d-flex justify-content-center my-5 py-5" >
-                                            <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
-                                        </div>
-                                    )
-                        }
-
+                                    <Form.Check
+                                        className="align-self-center mr-2"
+                                        type="radio"
+                                        label="Crescente"
+                                        name="formOrganizacao"
+                                        id="formOrganizacao1"
+                                        onChange={e => setSort({ ...sort, sortBy: [sort.sortBy[0], 'asc'] })}
+                                    />
+                                    <Form.Check
+                                        className="align-self-center"
+                                        type="radio"
+                                        label="Decrescente"
+                                        name="formOrganizacao"
+                                        id="formHorizontalRadios2"
+                                        onChange={e => setSort({ ...sort, sortBy: [sort.sortBy[0], 'desc'] })}
+                                    />
+                                </Form.Group>
+                            </Form>
+                            <LoadPokemon />
+                            <Pagination className="justify-content-center mt-3">
+                                <Pagination.First onClick={(e) => handleClick(e, 1)} />
+                                <Pagination.Prev
+                                    onClick={(e) => {
+                                        if (active === 1)
+                                            return handleClick(e, 1)
+                                        let number = active
+                                        return handleClick(e, --number)
+                                    }}
+                                />
+                                {
+                                    (active !== 1) ? (
+                                        <Pagination.Ellipsis />
+                                    ) : (
+                                            <></>
+                                        )
+                                }
+                                {items}
+                                {
+                                    (active !== 3) ? (
+                                        <Pagination.Ellipsis />
+                                    ) : (
+                                            <></>
+                                        )
+                                }
+                                <Pagination.Next
+                                    onClick={(e) => {
+                                        if (active === count)
+                                            return handleClick(e, active)
+                                        let number = active
+                                        return handleClick(e, ++number)
+                                    }}
+                                />
+                                <Pagination.Last onClick={(e) => handleClick(e, count)} />
+                            </Pagination>
+                        </div>
                     </div>
-                    <SideNav divMain={divMain} />
-
-                </div>
-            )
+                ) : (responseData === 'empty') ? (
+                    <div>
+                        <p>Você não possui nenhum pokémon :(</p>
+                    </div>
+                ) : (
+                            <div className="d-flex justify-content-center my-5 py-5" >
+                                <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
+                            </div>
+                        )
+            }
+        </UserTemplate>
     )
 }

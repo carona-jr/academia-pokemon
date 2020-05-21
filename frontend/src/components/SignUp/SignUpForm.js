@@ -13,8 +13,7 @@ import { api } from '../../services/api'
 
 function dataAtual() {
     let dNow = new Date()
-    let localdate = dNow.getFullYear() + '-' + (dNow.getMonth() + 1) + '-' + dNow.getDate() + ' ' + dNow.getHours() + ':' + dNow.getMinutes()
-    return localdate
+    return `${dNow.getFullYear()}-${dNow.getMonth() + 1}-${dNow.getDate()} ${dNow.getHours()}:${dNow.getMinutes()}:${dNow.getSeconds()}`
 }
 
 export default function SignUp({ history }) {

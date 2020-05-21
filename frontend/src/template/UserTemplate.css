@@ -1,0 +1,20 @@
+.container-user {
+    transition: margin 0.5s;
+    margin-top: 100px;
+    margin-right: 100px;
+}
+
+@media (max-width: 992px){
+    .container-user {
+        transition: margin 0.5s;
+        margin-left: 100px;
+        margin-right: 50px;
+    }  
+}
+
+@media (min-width: 992px) {
+    .container-user {
+        transition: margin 0.5s;
+        margin-left: 350px;
+    }
+}
