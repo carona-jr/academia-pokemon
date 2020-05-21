@@ -26,12 +26,13 @@ export default function MyPokemons() {
                     Authorization: 'Bearer ' + cpf
                 }
             })
-
+            
             if (response.data.count === '0') {
+                setNumPokemon(0)
                 return setCount(0)
             }
-
             setNumPokemon(response.data.count)
+
             const number = parseInt(response.data.count)
 
             if (number % 10 === 0)
