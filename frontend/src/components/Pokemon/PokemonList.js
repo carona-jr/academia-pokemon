@@ -10,7 +10,6 @@ import deleteImg from '../../assets/icons/delete-black-24dp.svg'
 export default function PokemonList({ route, displayItem, displayText, showEditAndDelete }) {
     let pokemonList = []
     const [userPokemons, setUserPokemons] = useState()
-    const [responseData, setResponseData] = useState()
     const [imgPokemon, setImgPokemon] = useState({})
 
     async function loadPokemons() {
@@ -29,7 +28,7 @@ export default function PokemonList({ route, displayItem, displayText, showEditA
 
             setImgPokemon(pokemonsImg)
         } catch (e) {
-            setResponseData('empty')
+            setUserPokemons(0)
         }
     }
 
@@ -98,7 +97,7 @@ export default function PokemonList({ route, displayItem, displayText, showEditA
                         }
                     </Table>
                 </div>
-            ) : (responseData === 'empty') ? (
+            ) : (userPokemons === 0) ? (
                 <h6>Você ainda não tem pokemons registrados :(</h6>
             ) : (
                         <div className="d-flex justify-content-center my-5 py-5" >
