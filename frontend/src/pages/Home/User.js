@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-import UserTemplate from '../../template/UserTemplate'
+import UserTemplate from '../../templates/UserTemplate'
 import PokemonList from '../../components/Pokemon/PokemonList'
 import PokemonByTypeChart from '../../components/Pokemon/Charts/PokemonByType'
 import PokemonCalendar from '../../components/Pokemon/Calendar/PokemonCalendar'
 
 import './User.css'
 
-export default function User({ history }) {
+export default function User() {
     const [user] = useState(JSON.parse(localStorage.getItem('user')))
 
     return (

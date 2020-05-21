@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import UserTemplate from '../../template/UserTemplate'
+import UserTemplate from '../../templates/UserTemplate'
 
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'

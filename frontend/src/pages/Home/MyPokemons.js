@@ -4,14 +4,13 @@ import Spinner from 'react-loading'
 import Form from 'react-bootstrap/Form'
 import { Pagination } from 'react-bootstrap'
 
-import UserTemplate from '../../template/UserTemplate'
+import UserTemplate from '../../templates/UserTemplate'
 import PokemonList from '../../components/Pokemon/PokemonList'
 
 import { api } from '../../services/api'
 
-export default function MyPokemons({ history }) {
+export default function MyPokemons() {
     const [user] = useState(JSON.parse(localStorage.getItem('user')))
-    const [responseData, setResponseData] = useState()
     const [active, setActive] = useState(1)
     const [past, setPast] = useState(1)
     const [future, setFuture] = useState(active + 1)
@@ -29,7 +28,7 @@ export default function MyPokemons({ history }) {
             })
 
             if (response.data.count === '0') {
-                return setResponseData('empty')
+                return setCount(0)
             }
 
             setNumPokemon(response.data.count)
@@ -92,7 +91,7 @@ export default function MyPokemons({ history }) {
         loadPokemonCount()
         LoadPokemon()
         // eslint-disable-next-line
-    }, [sort])
+    }, [sort, count])
     return (
         <UserTemplate>
             <h2 className="text-center m-0 p-0 my-5"><span style={{ textTransform: 'capitalize' }}>{user.data.nome || 'user'}</span>, você possui {numPokemon} pokémons!</h2>
@@ -171,7 +170,7 @@ export default function MyPokemons({ history }) {
                             </Pagination>
                         </div>
                     </div>
-                ) : (responseData === 'empty') ? (
+                ) : (count === 0) ? (
                     <div>
                         <p>Você não possui nenhum pokémon :(</p>
                     </div>
