@@ -11,10 +11,12 @@ import Login from './pages/NoAuth/Login'
 import About from './pages/NoAuth/About'
 import Pricing from './pages/NoAuth/Pricing'
 import SignUp from './pages/NoAuth/SignUp'
+import NotFound from './pages/NotFound'
 
 export default function Routes() {
     return (
         <BrowserRouter>
+            <Route path="/*" exact component={NotFound} />
             <Route path="/" exact component={Login} />
             <Route path="/user" exact component={User} />
             <Route path="/user/profile" exact component={MyProfile} />

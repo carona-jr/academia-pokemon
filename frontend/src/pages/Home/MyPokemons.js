@@ -107,7 +107,7 @@ export default function MyPokemons({ history }) {
                     history.push('/')
                 ) : (
                         <UserTemplate history={history}>
-                            <h2 className="text-center m-0 p-0 my-5"><span style={{ textTransform: 'capitalize' }}>{user.data.nome || 'user'}</span>, você possui {numPokemon} pokémons!</h2>
+                            <h2 className="text-center m-0 p-0 my-5"><span style={{ textTransform: 'capitalize' }}>{user.nome || 'user'}</span>, você possui {numPokemon} pokémons!</h2>
                             {
                                 (count) ? (
                                     <div className="w-100 d-flex justify-content-center align-content-center">
