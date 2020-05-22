@@ -3,9 +3,12 @@ import React, { useState } from 'react'
 import UserTemplate from '../../templates/UserTemplate'
 import Button from 'react-bootstrap/Button'
 
+import AlertMessage from '../../components/alert'
+
 export default function MyProfile({ history }) {
     const [user] = useState(JSON.parse(localStorage.getItem('user')))
-    console.log(user.data)
+    const [show, setShow] = useState(false)
+
     return (
         <div>
             {
@@ -14,6 +17,14 @@ export default function MyProfile({ history }) {
                 ) : (
                         <UserTemplate history={history}>
                             <h2 className="text-center mb-5">Meu perfil</h2>
+                            <AlertMessage show={show} setShow={setShow}
+                                title="Ops, parece que você quer deletar a sua conta?"
+                                msg="Confirme no botão antes de deletar a sua conta ou aperte o X para voltar :("
+                                button="Desejo apagar a minha conta"
+                                func={() => {setShow(false)}}
+                                colorAlert="warning"
+                                colorButton="outline-danger"
+                            />
 
                             <div className="w-100 d-flex flex-column justify-content-center align-content-center">
                                 <div className="d-flex flex-row">
@@ -62,10 +73,9 @@ export default function MyProfile({ history }) {
                                     <p style={{ textTransform: 'capitalize' }}>{user.data_cadastro.slice(0, 10) || 'user'}</p>
                                 </div>
                                 <div className="d-flex justify-content-center mt-3 mb-5">
+                                    <Button className="px-5 py-2  mr-3" variant="danger" type="button" onClick={() => setShow(true)}>Deletar</Button>
                                     <Button className="px-5 py-2 mr-3" variant="success" type="">Editar</Button>
-                                    <Button className="px-5 py-2" variant="danger" type="">Deletar</Button>
                                 </div>
-
                             </div>
                         </UserTemplate>
                     )

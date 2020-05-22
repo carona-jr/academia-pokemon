@@ -4,6 +4,7 @@ import Personal from './Steps/Personal'
 import Credentials from './Steps/Credentials'
 import Address from './Steps/Address'
 import Finish from './Steps/Finish'
+import AlertMessage from '../alert'
 
 import Form from 'react-bootstrap/Form'
 import ProgressBar from 'react-bootstrap/ProgressBar'
@@ -21,9 +22,11 @@ export default function SignUp({ history }) {
     const [user, setUser] = useState({})
     const [phone, setPhone] = useState({})
     const [verify, setVerify] = useState({})
+    const [show, setShow] = useState(false)
+    const [error, setError] = useState()
 
     async function handleSubmit(e) {
-        let dataPhone 
+        let dataPhone
         e.preventDefault()
         const dataUser = {
             cpf: user.cpf,
@@ -67,7 +70,8 @@ export default function SignUp({ history }) {
 
             history.push('/user')
         } catch (e) {
-            alert(e.response.data.error)
+            setError(e.response.data.error)
+            setShow(true)
         }
     }
 
@@ -85,6 +89,14 @@ export default function SignUp({ history }) {
         <Container>
             <h2 className="text-center mb-5"> Cadastre-se </h2>
             <ProgressBar now={step[1]} label={`${step[1]}%`} className="mb-3" />
+            <AlertMessage show={show} setShow={setShow}
+                title="Ops, parece que houve um erro"
+                msg={error}
+                button="Tentar novamente"
+                func={() => { setShow(false) }}
+                colorAlert="danger"
+                colorButton="outline-danger"
+            />
             <Form onSubmit={handleSubmit}>
                 {
                     (step[0] === 1) ? (

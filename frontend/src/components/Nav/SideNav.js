@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav'
 
 import hideImg from '../../assets/icons/first_page-white-24dp.svg'
 import hideImgBlack from '../../assets/icons/first_page-black-24dp.svg'
-import menuBlack from '../../assets/icons/menu_open-black-24dp.svg'
+import menuBlack from '../../assets/icons/menu-black-24dp.svg'
 import add from '../../assets/icons/add-white-24dp.svg'
 import addBlack from '../../assets/icons/add-black-24dp.svg'
 import eye from '../../assets/icons/remove_red_eye-white-24dp.svg'

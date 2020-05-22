@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import User from './pages/Home/User'
 import NewPokemon from './pages/Home/NewPokemon'
@@ -16,17 +16,19 @@ import NotFound from './pages/NotFound'
 export default function Routes() {
     return (
         <BrowserRouter>
-            <Route path="/*" exact component={NotFound} />
-            <Route path="/" exact component={Login} />
-            <Route path="/user" exact component={User} />
-            <Route path="/user/profile" exact component={MyProfile} />
-            <Route path="/user/pokemon/new" component={NewPokemon} />
-            <Route path="/user/pokemon/mine" component={MyPokemons} />
-            <Route path="/user/pokemon/edit" component={EditPokemon} />
-            <Route path="/user/search" component={SearchPage} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/about" component={About} />
-            <Route path="/pricing" component={Pricing} />
+            <Switch>
+                <Route path="/" exact component={Login} />
+                <Route path="/user" exact component={User} />
+                <Route path="/user/profile" exact component={MyProfile} />
+                <Route path="/user/pokemon/new" component={NewPokemon} />
+                <Route path="/user/pokemon/mine" component={MyPokemons} />
+                <Route path="/user/pokemon/edit" component={EditPokemon} />
+                <Route path="/user/search" component={SearchPage} />
+                <Route path="/signup" component={SignUp} />
+                <Route path="/about" component={About} />
+                <Route path="/pricing" component={Pricing} />
+                <Route component={NotFound} />
+            </Switch>
         </BrowserRouter>
     )
 }

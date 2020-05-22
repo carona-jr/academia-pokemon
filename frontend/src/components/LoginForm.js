@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 
 import { api } from '../services/api'
 
-export default function LoginHeader({ history }) {
+export default function LoginHeader({ history, setShow }) {
     const [user, setUser] = useState({})
     async function handleSubmit(e) {
         e.preventDefault()
@@ -15,7 +15,7 @@ export default function LoginHeader({ history }) {
             localStorage.setItem('user', JSON.stringify(response.data))
             history.push('/user')
         } catch (e) {
-            alert('Usuário não encontrado no sistema, por favor, tente novamente')
+            setShow(true)
         }
     }
 

@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
+import AlertMessage from '../../components/alert'
 
 import { api } from '../../services/api'
 
@@ -16,6 +17,8 @@ function dataAtual() {
 
 export default function NewPokemon({ history }) {
     const [pokemon, setPokemon] = useState({})
+    const [show, setShow] = useState(false)
+    const [show2, setShow2] = useState(false)
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -35,9 +38,9 @@ export default function NewPokemon({ history }) {
                     Authorization: 'Bearer ' + localStorage.getItem('cpf')
                 }
             })
-            alert('Seu pokémon foi criado com sucesso')
+            setShow(true)
         } catch (e) {
-            alert('Tente novamente, houve um erro na hora de cadastrar o pokémon.')
+            setShow2(true)
         }
     }
 
@@ -49,6 +52,22 @@ export default function NewPokemon({ history }) {
                 ) : (
                         <UserTemplate history={history}>
                             <h2 className="text-center m-0 p-0 my-5">Cadastre seu Pokémon</h2>
+                            <AlertMessage show={show} setShow={setShow}
+                                title="Sucesso"
+                                msg="Seu pokémon foi registrado com sucesso :)"
+                                button="Fechar"
+                                func={() => setShow(false)}
+                                colorAlert="success"
+                                colorButton="outline-success"
+                            />
+                            <AlertMessage show={show2} setShow={setShow2}
+                                title="Erro"
+                                msg="Seu pokémon não foi registrado com sucesso. Tente novamente :("
+                                button="Fechar"
+                                func={() => setShow(false)}
+                                colorAlert="danger"
+                                colorButton="outline-danger"
+                            />
                             <Form className="w-100 w-lg-50" onSubmit={handleSubmit}>
                                 <Form.Row>
                                     <Form.Group as={Col} controlId="name">

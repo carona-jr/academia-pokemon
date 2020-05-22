@@ -6,11 +6,14 @@ import { searchImg } from '../../services/img'
 import { api } from '../../services/api'
 import editImg from '../../assets/icons/edit-black-24dp.svg'
 import deleteImg from '../../assets/icons/delete-black-24dp.svg'
+import AlertMessage from '../../components/alert'
 
 export default function PokemonList({ route, displayItem, displayText, showEditAndDelete }) {
     let pokemonList = []
     const [userPokemons, setUserPokemons] = useState()
     const [imgPokemon, setImgPokemon] = useState({})
+    const [show, setShow] = useState(false)
+    const [show2, setShow2] = useState(false)
 
     async function loadPokemons() {
         try {
@@ -37,17 +40,16 @@ export default function PokemonList({ route, displayItem, displayText, showEditA
         console.log(codigo)
         try {
             const userCpf = localStorage.getItem('cpf')
-            const response = await api.delete('/pokemon', 
-            {
-                headers: {
-                    Authorization: 'Bearer ' + userCpf,
-                    PokemonID: codigo
-                }
-            })
-            alert(response.data.msg) 
-            window.location.reload(true)   
+            await api.delete('/pokemon',
+                {
+                    headers: {
+                        Authorization: 'Bearer ' + userCpf,
+                        PokemonID: codigo
+                    }
+                })
+            setShow(true)
         } catch (e) {
-            alert(e.response.data)
+            setShow2(true)
         }
     }
 
@@ -60,6 +62,25 @@ export default function PokemonList({ route, displayItem, displayText, showEditA
         <div>
             {userPokemons && imgPokemon && userPokemons.length > 0 ? (
                 <div className="w-100 m-0 p-0">
+                    <AlertMessage show={show} setShow={setShow}
+                        title="Sucesso"
+                        msg="Seu pokémon foi deletado com sucesso, recarregue a página :)"
+                        button="Recarregar"
+                        func={() => {
+                            setShow(false)
+                            return window.location.reload(true)   
+                        }}
+                        colorAlert="success"
+                        colorButton="outline-success"
+                    />
+                    <AlertMessage show={show2} setShow={setShow2}
+                        title="Erro"
+                        msg="Seu pokémon não foi deletado com sucesso :)"
+                        button="Fechar"
+                        func={() => setShow(false)}
+                        colorAlert="danger"
+                        colorButton="outline-danger"
+                    />
                     <Table className="m-0 p-0" striped bordered hover responsive>
                         <thead>
                             <tr>

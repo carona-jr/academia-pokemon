@@ -51,6 +51,10 @@
     cursor: pointer;
 }
 
+.menu-nav:hover {
+    transform: scale(1.1)
+}
+
 @media (max-width: 992px){
     .container-sidebar {
         width: 50px;

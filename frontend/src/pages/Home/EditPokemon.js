@@ -8,12 +8,15 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 
+import AlertMessage from '../../components/alert'
 import { api } from '../../services/api'
 
 export default function EditPokemon({ history }) {
     const [pokemonID] = useState(localStorage.getItem('pokemonID'))
     const [pokemon, setPokemon] = useState()
     const [dateTime, setDateTime] = useState([])
+    const [show, setShow] = useState(false)
+    const [show2, setShow2] = useState(false)
 
     async function loadPokemon() {
         try {
@@ -50,9 +53,9 @@ export default function EditPokemon({ history }) {
                     Authorization: 'Bearer ' + userCpf
                 }
             })
-            alert('Pokémon atualizado com sucesso')
+            setShow(true)
         } catch (e) {
-            alert(e.response.data.erro)
+            setShow2(true)
         }
     }
 
@@ -71,6 +74,22 @@ export default function EditPokemon({ history }) {
                 ) : (pokemon) ? (
                     <div>
                         <h2 className="text-center m-0 p-0 my-5"><span style={{ textTransform: 'capitalize' }}>{pokemon.nome}</span></h2>
+                        <AlertMessage show={show} setShow={setShow}
+                            title="Sucesso"
+                            msg="Seu pokémon foi alterado com sucesso :)"
+                            button="Fechar"
+                            func={() => setShow(false)}
+                            colorAlert="success"
+                            colorButton="outline-success"
+                        />
+                        <AlertMessage show={show2} setShow={setShow2}
+                            title="Erro"
+                            msg="Seu pokémon não foi alterado com sucesso :("
+                            button="Fechar"
+                            func={() => setShow(false)}
+                            colorAlert="danger"
+                            colorButton="outline-danger"
+                        />
                         <Form className="w-100 w-lg-50" onSubmit={handleSubmit}>
                             <Form.Row>
                                 <Form.Group as={Col} controlId="name">
@@ -144,17 +163,20 @@ export default function EditPokemon({ history }) {
                                 </Form.Group>
                             </Form.Row>
                             <Container className="text-center py-3">
-                                <Button variant="primary" type="submit">
+                                <Button className="mr-3 px-5 py-2" variant="danger" type="button" onClick={() => history.push('/user/pokemon/mine')}>
+                                    Voltar
+                                </Button>
+                                <Button className="mr-3 px-5 py-2" variant="success" type="submit">
                                     Atualizar
                                 </Button>
                             </Container>
                         </Form>
                     </div>
                 ) : (
-                        <div className="d-flex justify-content-center my-5 py-5" >
-                            <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
-                        </div>
-                )
+                                <div className="d-flex justify-content-center my-5 py-5" >
+                                    <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
+                                </div>
+                            )
             }
         </UserTemplate>
     )
