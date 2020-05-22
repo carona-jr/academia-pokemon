@@ -194,7 +194,7 @@ router.delete('/pokemon/all', auth, async (req, res) => {
 })
 
 router.delete('/pokemon', auth, async (req, res) => {
-    queryDeletePokemonById.values = [req.user.cpf, req.body.pokemonID]
+    queryDeletePokemonById.values = [req.user.cpf, req.header('PokemonID')]
 
     try {
         const pokemon = await pool.query(queryDeletePokemonById)
