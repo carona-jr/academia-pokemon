@@ -34,8 +34,8 @@ const queryDeleteByCpf = {
     text: 'DELETE FROM Pokemon WHERE cpf = $1'
 }
 
-const queryDeletePokemonByName = {
-    text: 'DELETE FROM Pokemon WHERE cpf = $1 AND nome = $2'
+const queryDeletePokemonById = {
+    text: 'DELETE FROM Pokemon WHERE cpf = $1 AND codigo_pokemon = $2'
 }
 
 module.exports = {
@@ -43,7 +43,7 @@ module.exports = {
     queryFindPokemonByCpf,
     queryFindPokemonByCpfAndName,
     queryDeleteByCpf,
-    queryDeletePokemonByName,
+    queryDeletePokemonById,
     queryFindPokemonByCpfTopByNivel,
     queryFindPokemonByCpfTopByData,
     queryFindPokemonByCpfCountByType,

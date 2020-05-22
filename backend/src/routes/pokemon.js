@@ -8,7 +8,7 @@ const {
     queryDeleteByCpf,
     queryFindPokemonByCpf,
     queryFindPokemonByCpfAndName,
-    queryDeletePokemonByName,
+    queryDeletePokemonById,
     queryFindPokemonByCpfTopByNivel,
     queryFindPokemonByCpfTopByData,
     queryFindPokemonByCpfCountByType,
@@ -169,10 +169,11 @@ router.get('/pokemon/byId', auth, async (req, res) => {
 router.patch('/pokemon', auth, async (req, res) => {
     try {
         const pokemon = await serachByKeyAndUpdate(req.body, 'Pokemon', ['cpf', 'codigo_pokemon'],
-            [req.user.cpf, req.body.searchTerm], queryFindPokemonByCpfAndId, ['nome', 'raca', 'classificacao', 'nivel', 'nivel_objetivo', 'data_de_entrada', 'data_de_saida'])
+            [req.user.cpf, req.body.searchTerm], queryFindPokemonByCpfAndId, ['nome', 'raca', 'classificacao', 'nivel', 'nivel_objetivo', 'data_de_entrada', 'data_de_saida'], ['nivel', 'nivel_objetivo'])
 
         res.send(pokemon)
     } catch (e) {
+        console.log(e)
         res.status(500).send(e)
     }
 })
@@ -193,10 +194,10 @@ router.delete('/pokemon/all', auth, async (req, res) => {
 })
 
 router.delete('/pokemon', auth, async (req, res) => {
-    queryDeletePokemonByName.values = [req.user.cpf, req.body.nome.toLowerCase()]
+    queryDeletePokemonById.values = [req.user.cpf, req.body.pokemonID]
 
     try {
-        const pokemon = await pool.query(queryDeletePokemonByName)
+        const pokemon = await pool.query(queryDeletePokemonById)
 
         if (!pokemon.rowCount)
             return res.status(404).send()
