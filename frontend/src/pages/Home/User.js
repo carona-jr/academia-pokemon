@@ -16,7 +16,7 @@ export default function User({ history }) {
                     history.push('/')
                 ) : (
                         <UserTemplate history={history}>
-                            <h2>Bem vindo, <span style={{ textTransform: 'capitalize' }}>{user.data.nome || 'user'}</span>!</h2>
+                            <h2>Bem vindo, <span style={{ textTransform: 'capitalize' }}>{user.nome || 'user'}</span>!</h2>
                             <div className="container-data">
                                 <div className="container-data-pokemon">
                                     <h5>Seus pokémons recentes</h5>

@@ -13,7 +13,7 @@ export default function MyPokemons({ history }) {
     const [user] = useState(JSON.parse(localStorage.getItem('user')))
     const [active, setActive] = useState(1)
     const [past, setPast] = useState(1)
-    const [future, setFuture] = useState(active + 1)
+    const [future, setFuture] = useState(1)
     const [count, setCount] = useState()
     const [numPokemon, setNumPokemon] = useState()
     const [sort, setSort] = useState({ sortBy: ['nome', 'asc'], limit: 1 })
@@ -54,24 +54,31 @@ export default function MyPokemons({ history }) {
     }
 
     function handleClick(e, number) {
+        console.log(number)
         setSort({ ...sort, limit: number })
         setActive(number)
         if (number === 1) {
+            console.log('igual a 1')
             setPast(1)
+            if (count === 1)
+                return setFuture(1)
             setFuture(number + 1)
             return
         }
 
         if (number === count) {
+            console.log('igual a', count)
             setPast(count - 1)
             setFuture(count)
             return
         }
 
         if (active < number) {
-            setPast(future)
+            console.log('active <')
+            setPast(past)
             setFuture(future + 1)
         } else {
+            console.log('active >')
             setPast(past - 1)
             setFuture(future - 1)
         }
@@ -158,7 +165,7 @@ export default function MyPokemons({ history }) {
                                                 }
                                                 {items}
                                                 {
-                                                    (active !== 3) ? (
+                                                    (active !== count) ? (
                                                         <Pagination.Ellipsis />
                                                     ) : (
                                                             <></>

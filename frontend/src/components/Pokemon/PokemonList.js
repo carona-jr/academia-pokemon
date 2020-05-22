@@ -32,6 +32,24 @@ export default function PokemonList({ route, displayItem, displayText, showEditA
         }
     }
 
+    async function handleDelete(e, codigo) {
+        e.preventDefault()
+        console.log(codigo)
+        try {
+            const userCpf = localStorage.getItem('cpf')
+            const response = await api.delete('/pokemon', 
+            {
+                headers: {
+                    Authorization: 'Bearer ' + userCpf,
+                    PokemonID: codigo
+                }
+            })
+            alert(response.data.msg) 
+            window.location.reload(true)   
+        } catch (e) {
+            alert(e.response.data)
+        }
+    }
 
     useEffect(() => {
         loadPokemons()
@@ -77,14 +95,15 @@ export default function PokemonList({ route, displayItem, displayText, showEditA
                                             {
                                                 showEditAndDelete ? (
                                                     <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                        <a className="m-0 mr-3 p-0" href="/user/pokemon/edit">
+                                                        <a className="m-0 mr-3 p-0" href="/user/pokemon/edit" onClick={(e) =>
+                                                            localStorage.setItem('pokemonID', pokemon.codigo_pokemon)
+                                                        }>
                                                             <img src={editImg} alt="edit"></img>
                                                         </a>
-                                                        <a className="m-0 p-0" href="/user/pokemon/edit">
-                                                            <img src={deleteImg} alt="delete"></img>
+                                                        <a className="m-0 p-0" href="/user/pokemon/mine" onClick={(e) => handleDelete(e, pokemon.codigo_pokemon)}>
+                                                            <img src={deleteImg} alt="delete" ></img>
                                                         </a>
                                                     </td>
-
                                                 ) : (
                                                         <></>
                                                     )

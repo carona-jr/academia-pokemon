@@ -124,7 +124,7 @@ export default function NewPokemon({ history }) {
                                 <Container className="text-center py-3">
                                     <Button variant="primary" type="submit">
                                         Cadastrar
-                    </Button>
+                                    </Button>
                                 </Container>
                             </Form>
                         </UserTemplate>

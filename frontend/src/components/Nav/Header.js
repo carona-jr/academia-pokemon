@@ -33,8 +33,8 @@ export default function Header({ history }) {
                     <Button variant="outline-success" type="submit">Pesquisar</Button>
                 </Form>
                 <Nav className="mr-md-5 pr-md-5">
-                    <NavDropdown title={user.data.e_mail || 'seu email'} id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/user">Meu Perfil</NavDropdown.Item>
+                    <NavDropdown title={user.e_mail || 'seu email'} id="basic-nav-dropdown">
+                        <NavDropdown.Item href="/user/profile">Meu Perfil</NavDropdown.Item>
                         <NavDropdown.Item href="/user">Alterar Plano</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="/" onClick={handleClick}>Sair</NavDropdown.Item>

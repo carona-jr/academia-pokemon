@@ -12,7 +12,7 @@ export default function LoginHeader({ history }) {
         try {
             const response = await api.post('/user/login', user)
             localStorage.setItem('cpf', response.data.cpf)
-            localStorage.setItem('user', JSON.stringify(response))
+            localStorage.setItem('user', JSON.stringify(response.data))
             history.push('/user')
         } catch (e) {
             alert('Usuário não encontrado no sistema, por favor, tente novamente')
