@@ -7,7 +7,6 @@ import { api } from '../services/api'
 
 export default function LoginHeader({ history }) {
     const [user, setUser] = useState({})
-
     async function handleSubmit(e) {
         e.preventDefault()
         try {
@@ -22,7 +21,7 @@ export default function LoginHeader({ history }) {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="emailInput">
                 <Form.Label>Email</Form.Label>
                 <Form.Control onChange={e => setUser({ ...user, e_mail: e.target.value })} className="p-4" type="email" placeholder="seu@email.com" required/>
                 <Form.Text className="text-muted">
@@ -30,7 +29,7 @@ export default function LoginHeader({ history }) {
                 </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="passwordInput">
                 <Form.Label>Senha</Form.Label>
                 <Form.Control onChange={e => setUser({ ...user, password: e.target.value })} className="p-4" type="password" placeholder="********" required/>
             </Form.Group>

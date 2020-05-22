@@ -9,10 +9,16 @@ import FormControl from 'react-bootstrap/FormControl'
 
 import './Header.css'
 
-export default function Header() {
+export default function Header({ history }) {
     const [user] = useState(JSON.parse(localStorage.getItem('user')))
+    const [search, setSearch] = useState()
     function handleClick() {
         localStorage.clear()
+    }
+
+    function handleSearch(e) {
+        console.log(search)
+        history.push('/user/search')
     }
 
     return (
@@ -22,9 +28,9 @@ export default function Header() {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-                <Form inline className="mr-auto">
-                    <FormControl type="text" placeholder="Pesquisar" className="mr-sm-2" />
-                    <Button variant="outline-success">Pesquisar</Button>
+                <Form inline className="mr-auto" onSubmit={handleSearch}>
+                    <FormControl type="text" placeholder="Pesquisar" className="mr-sm-2" onChange={e => setSearch(e.target.value)}/>
+                    <Button variant="outline-success" type="submit">Pesquisar</Button>
                 </Form>
                 <Nav className="mr-md-5 pr-md-5">
                     <NavDropdown title={user.data.e_mail || 'seu email'} id="basic-nav-dropdown">
