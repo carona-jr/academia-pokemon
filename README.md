@@ -3,7 +3,7 @@
 O projeto é um trabalho da disciplina de banco de dados I a fim de explorar os conceitos aprendidos em sala de aula com a linguagem SQL. Este trabalho tem como objetivo o desenvolvimento do banco de dados e uma interface gráfica para visualização dos dados contidos neste banco.
 
 #### Diagrama Entidade Relacionamento
-![alt text](https://raw.githubusercontent.com/carona-jr/academia-pokemon/master/img/bd.png?token=AJNMEVC6DDQNKS2JRQUEMFC6YRSOK "Diagrama Entidade Relacionamento")
+![alt text](https://raw.githubusercontent.com/carona-jr/academia-pokemon/master/img/bd.png?token=AJNMEVBP7VK5WBZF4T7J7YK62GTU4 "Diagrama Entidade Relacionamento"
 
 ## Iniciando
 
@@ -67,7 +67,11 @@ yarn start
 * [Nodemon](https://www.npmjs.com/package/nodemon) - monitoramento de arquivos
 * [env-cmd](https://www.npmjs.com/package/env-cmd) - criar variáveis ambientes
 * [pg](https://www.npmjs.com/package/pg) - conexão com o banco
-
+* [Nivo](https://nivo.rocks/components) - gráfico
+* [JQuery](https://jquery.com/) - jquery
+* [PopperJS](https://popper.js.org/) - ferramenta de posição
+* [React Calendar Heat Map](https://www.npmjs.com/package/react-calendar-heatmap) - calendário
+* [React Loading](https://www.npmjs.com/package/react-loading) - loading animation
 
 ## Versões
 
