@@ -16,7 +16,7 @@ import './Pricing.css'
 import LoginNav from '../../components/Nav/LoginHeader'
 
 function PriceCard({ title, description, price, image, lcolor, first, second, third }) {
-    return (  
+    return (
         <Card className="card-container" style={{ width: '18rem' }} bg="light" text="dark" border="dark">
             <CardImage top width="100%" src={image} />
             <Card.Body className="mb-3 mt-3">

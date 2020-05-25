@@ -37,7 +37,6 @@ export default function PokemonList({ route, displayItem, displayText, showEditA
 
     async function handleDelete(e, codigo) {
         e.preventDefault()
-        console.log(codigo)
         try {
             const userCpf = localStorage.getItem('cpf')
             await api.delete('/pokemon',
@@ -68,7 +67,7 @@ export default function PokemonList({ route, displayItem, displayText, showEditA
                         button="Recarregar"
                         func={() => {
                             setShow(false)
-                            return window.location.reload(true)   
+                            return window.location.reload(true)
                         }}
                         colorAlert="success"
                         colorButton="outline-success"

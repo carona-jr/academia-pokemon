@@ -19,7 +19,7 @@ export default function PokemonCalendar() {
 
         try {
             const cpf = localStorage.getItem('cpf')
-            const response = await api.get('/pokemon/date',{
+            const response = await api.get('/pokemon/date', {
                 headers: {
                     Authorization: 'Bearer ' + cpf,
                     DateToSearch: '2020-05-07'
@@ -39,7 +39,7 @@ export default function PokemonCalendar() {
     return (
         (data && data.length > 0) ? (
             <>
-                <Calendar data={data} today={formattedToday} past={formattedDate}/>
+                <Calendar data={data} today={formattedToday} past={formattedDate} />
             </>
         ) : (responseData === 'empty') ? (
             <div>
@@ -47,7 +47,7 @@ export default function PokemonCalendar() {
             </div>
         ) : (
             <div className="d-flex justify-content-center my-5 py-5" >
-                <Spinner type="bars" width={'32px'} height={'32px'} color={'blue'}/>
+                <Spinner type="bars" width={'32px'} height={'32px'} color={'blue'} />
             </div>
         )
     )
