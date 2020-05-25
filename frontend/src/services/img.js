@@ -10,14 +10,14 @@ const search = async (pokemon, obj, err) => {
         try {
             let response = await apiPokemon.get(`/${pokemon.toLowerCase()}`)
             return response.data.sprites.front_default
-        } catch(e) {
+        } catch (e) {
             err[`${pokemon}Err`] = pokemon
             localStorage.setItem('pokemonsImgError', JSON.stringify(err))
             return undefined
         }
     }
     return obj[pokemon]
-}   
+}
 
 const searchImg = async (pokemons) => {
     let obj = JSON.parse(localStorage.getItem('pokemons')) || {}
@@ -29,7 +29,7 @@ const searchImg = async (pokemons) => {
         return obj
     }
 
-    for(let i = 0; i < pokemons.length; i++) {
+    for (let i = 0; i < pokemons.length; i++) {
         obj[pokemons[i]] = list[i]
     }
     localStorage.setItem('pokemons', JSON.stringify(obj))

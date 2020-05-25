@@ -10,7 +10,7 @@ export default function NotFound({ history }) {
             <div className="d-flex flex-column justify-content-center align-items-center">
                 <h2 className="my-4 title-404" style={{ color: '#808080', textTransform: 'uppercase' }}>Page Not Found - 404</h2>
                 <div className="my-4">
-                    <img src={charizard} alt="charizard"/>
+                    <img src={charizard} alt="charizard" />
                 </div>
                 <div className="my-4">
                     <Button className="py-2 px-5" variant="outline-danger" type="button" onClick={() => history.push('/user')}>Voltar para a página anterior</Button>

@@ -62,16 +62,16 @@ export default function PokemonByType() {
     return (
         (chartData && chartData.length > 0) ? (
             <>
-                <PieChart data={chartData}/>
+                <PieChart data={chartData} />
             </>
         ) : (responseData === 'empty') ? (
             <div>
                 <p>Você ainda não adicionou nenhum pokémon :(</p>
             </div>
         ) : (
-            <div className="d-flex justify-content-center my-5 py-5" >
-                <Spinner type="bars" width={'32px'} height={'32px'} color={'blue'}/>
-            </div>
-        )
+                    <div className="d-flex justify-content-center my-5 py-5" >
+                        <Spinner type="bars" width={'32px'} height={'32px'} color={'blue'} />
+                    </div>
+                )
     )
 }

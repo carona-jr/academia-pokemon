@@ -23,7 +23,7 @@ export default function LoginHeader({ history, setShow }) {
         <Form onSubmit={handleSubmit}>
             <Form.Group controlId="emailInput">
                 <Form.Label>Email</Form.Label>
-                <Form.Control onChange={e => setUser({ ...user, e_mail: e.target.value })} className="p-4" type="email" placeholder="seu@email.com" required/>
+                <Form.Control onChange={e => setUser({ ...user, e_mail: e.target.value })} className="p-4" type="email" placeholder="seu@email.com" required />
                 <Form.Text className="text-muted">
                     Seu email não será compartilhado com ninguém.
                 </Form.Text>
@@ -31,7 +31,7 @@ export default function LoginHeader({ history, setShow }) {
 
             <Form.Group controlId="passwordInput">
                 <Form.Label>Senha</Form.Label>
-                <Form.Control onChange={e => setUser({ ...user, password: e.target.value })} className="p-4" type="password" placeholder="********" required/>
+                <Form.Control onChange={e => setUser({ ...user, password: e.target.value })} className="p-4" type="password" placeholder="********" required />
             </Form.Group>
             <Button className="my-4" variant="primary" type="submit" size="lg" block>
                 Entrar

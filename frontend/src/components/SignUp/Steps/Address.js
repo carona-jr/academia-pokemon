@@ -13,13 +13,13 @@ export default function Address({ user, setUser, next, back }) {
                     <Form.Label>Rua</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, rua: e.target.value })}
-                        placeholder="Rua dos Andrades" value={user.rua || ''}/>
+                        placeholder="Rua dos Andrades" value={user.rua || ''} />
                 </Form.Group>
                 <Form.Group as={Col} controlId="Numero">
                     <Form.Label>Número</Form.Label>
                     <Form.Control
-                          md="4"  onChange={e => setUser({ ...user, num_casa: e.target.value })}
-                        placeholder="123" value={user.num_casa || ''}/>
+                        md="4" onChange={e => setUser({ ...user, num_casa: e.target.value })}
+                        placeholder="123" value={user.num_casa || ''} />
                 </Form.Group>
             </Form.Row>
 
@@ -28,13 +28,13 @@ export default function Address({ user, setUser, next, back }) {
                     <Form.Label>Bairro</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, bairro: e.target.value })}
-                        placeholder="Bairro do Limoeiro" value={user.bairro || ''}/>
+                        placeholder="Bairro do Limoeiro" value={user.bairro || ''} />
                 </Form.Group>
                 <Form.Group as={Col} controlId="Cidade">
                     <Form.Label>Cidade</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, cidade: e.target.value })}
-                        placeholder="Cidade" value={user.cidade || ''}/>
+                        placeholder="Cidade" value={user.cidade || ''} />
                 </Form.Group>
             </Form.Row>
 

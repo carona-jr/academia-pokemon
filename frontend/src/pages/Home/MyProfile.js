@@ -21,7 +21,7 @@ export default function MyProfile({ history }) {
                                 title="Ops, parece que você quer deletar a sua conta?"
                                 msg="Confirme no botão antes de deletar a sua conta ou aperte o X para voltar :("
                                 button="Desejo apagar a minha conta"
-                                func={() => {setShow(false)}}
+                                func={() => { setShow(false) }}
                                 colorAlert="warning"
                                 colorButton="outline-danger"
                             />

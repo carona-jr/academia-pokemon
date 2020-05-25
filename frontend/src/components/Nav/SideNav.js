@@ -64,7 +64,7 @@ export default function User({ divMain }) {
             <img ref={menuIcon} className="menu-nav" src={menuBlack} alt="x" onClick={handleOpen} />
             <div ref={nav} className="container-sidebar">
                 <Nav defaultActiveKey="/user" className="d-flex flex-column">
-                    <Nav.Link ref={link1} className="nav-link-sidebar nav-home d-flex justify-content-center align-items-center" 
+                    <Nav.Link ref={link1} className="nav-link-sidebar nav-home d-flex justify-content-center align-items-center"
                         onClick={handleClick}>
                         <img className="icon-1" src={hideImg} alt="x" />
                         <img className="icon-2" src={hideImgBlack} alt="x" />

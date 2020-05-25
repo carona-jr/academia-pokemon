@@ -17,7 +17,6 @@ export default function Header({ history }) {
     }
 
     function handleSearch(e) {
-        console.log(search)
         history.push('/user/search')
     }
 
@@ -29,7 +28,7 @@ export default function Header({ history }) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                 <Form inline className="mr-auto" onSubmit={handleSearch}>
-                    <FormControl type="text" placeholder="Pesquisar" className="mr-sm-2" onChange={e => setSearch(e.target.value)}/>
+                    <FormControl type="text" placeholder="Pesquisar" className="mr-sm-2" onChange={e => setSearch(e.target.value)} />
                     <Button variant="outline-success" type="submit">Pesquisar</Button>
                 </Form>
                 <Nav className="mr-md-5 pr-md-5">
