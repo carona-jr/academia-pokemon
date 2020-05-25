@@ -75,7 +75,7 @@ router.post('/user/login', async (req, res) => {
 router.patch('/user/me', auth, async (req, res) => {
     try {
         const query = await searchByKeyAndUpdate(req.body, 'Usuario', ['cpf'], [req.user.cpf],
-            queryFindByCpf, ['nome', 'rua', 'cep'], ['cep', 'num_casa'])
+            queryFindByCpf, ['nome', 'data_nascimento', 'cpf', 'rg', 'e_mail', 'password', 'rua', 'num_casa', 'bairro', 'cidade', 'estado', 'cep'], ['cep', 'num_casa'])
 
         res.send(query)
     } catch (e) {
