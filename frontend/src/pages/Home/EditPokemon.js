@@ -14,7 +14,6 @@ import { api } from '../../services/api'
 export default function EditPokemon({ history }) {
     const [pokemonID] = useState(localStorage.getItem('pokemonID'))
     const [pokemon, setPokemon] = useState()
-    const [dateTime, setDateTime] = useState([])
     const [show, setShow] = useState(false)
     const [show2, setShow2] = useState(false)
 
@@ -27,7 +26,6 @@ export default function EditPokemon({ history }) {
                     PokemonID: pokemonID
                 }
             })
-            setDateTime([response.data.data_de_entrada.slice(0, 10), response.data.data_de_saida.slice(0, 10)])
             setPokemon(response.data)
         } catch (e) {
             history.push('/user/pokemon/mine')
@@ -112,13 +110,13 @@ export default function EditPokemon({ history }) {
                                     <Form.Label>Data de entrada</Form.Label>
                                     <Form.Control
                                         onChange={e => setPokemon({ ...pokemon, data_de_entrada: e.target.value })}
-                                        type="date" value={dateTime[0]} required />
+                                        type="date" value={pokemon.data_de_entrada.slice(0,10)} required />
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="dataSaida">
                                     <Form.Label>Data de Saída</Form.Label>
                                     <Form.Control
                                         onChange={e => setPokemon({ ...pokemon, data_de_saida: e.target.value })}
-                                        type="date" value={dateTime[1]} required />
+                                        type="date" value={pokemon.data_de_saida.slice(0,10)} required />
                                 </Form.Group>
                             </Form.Row>
 

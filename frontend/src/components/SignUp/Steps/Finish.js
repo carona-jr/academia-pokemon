@@ -69,7 +69,7 @@ export default function Finish({ user, phone, back }) {
                             <p className="p-1">O meu nome é <span className="font-weight-bold">{user.nome}</span>, nasci na data <span className="font-weight-bold">{user.data_nascimento}</span>.</p>
                             <p className="p-1">O meu cpf é <span className="font-weight-bold">{user.cpf}</span> e meu rg é <span className="font-weight-bold">{user.rg}</span>.</p>
                             <p className="p-1">Meu e-mail é <span className="font-weight-bold">{user.e_mail}</span>, meu número de telefone é <span className="font-weight-bold">{phone.num_celular}</span></p>
-                            <p className="p-1">Tenho residência no endereço: <span className="font-weight-bold">{user.rua}, {user.num_casa}, {user.bairro}, {user.cidade}, {user.estado}, {user.cep}</span>.</p>
+                            <p className="p-1">Tenho residência no endereço: <span className="font-weight-bold">{user.rua}, {user.num_casa}, {user.bairro}, {user.cidade}, {user.estado || 'SP'}, {user.cep}</span>.</p>
                             <br /><br />
                         </Container >
                     )

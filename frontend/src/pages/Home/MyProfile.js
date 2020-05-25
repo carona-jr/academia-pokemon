@@ -3,11 +3,19 @@ import React, { useState } from 'react'
 import UserTemplate from '../../templates/UserTemplate'
 import Button from 'react-bootstrap/Button'
 
+import { api } from '../../services/api'
+
 import AlertMessage from '../../components/alert'
+import EditPhone from '../../components/EditPhone'
+
+import editImg from '../../assets/icons/edit-black-24dp.svg'
 
 export default function MyProfile({ history }) {
     const [user] = useState(JSON.parse(localStorage.getItem('user')))
+    const [phones] = useState(JSON.parse(localStorage.getItem('phones')))
+    const [phone, setPhone] = useState('')
     const [show, setShow] = useState(false)
+    const [edit, setEdit] = useState(false)
 
     return (
         <div>
@@ -21,7 +29,16 @@ export default function MyProfile({ history }) {
                                 title="Ops, parece que você quer deletar a sua conta?"
                                 msg="Confirme no botão antes de deletar a sua conta ou aperte o X para voltar :("
                                 button="Desejo apagar a minha conta"
-                                func={() => { setShow(false) }}
+                                func={async () => {
+                                    await api.delete('/user/me', {
+                                        headers: {
+                                            Authorization: localStorage.getItem('cpf')
+                                        }
+                                    })
+                                    localStorage.clear()
+                                    setShow(false)
+                                    window.location.reload(true)
+                                }}
                                 colorAlert="warning"
                                 colorButton="outline-danger"
                             />
@@ -69,12 +86,31 @@ export default function MyProfile({ history }) {
                                     <p>{user.e_mail || 'user'}</p>
                                 </div>
                                 <div className="d-flex flex-row">
+                                    <p style={{ width: '150px', fontWeight: 'bold' }}>Telefone 1:</p>
+                                    <p className="mr-3">{phones[0]['numero_de_telefone'] || 'user'}</p>
+                                    <button style={{ width: '24px', height: '24px', padding: 0, margin: 0, border: 'none', backgroundColor: '#fff' }} type="button"
+                                        onClick={() => setEdit(true)}>
+                                        <img style={{ width: '24px', height: '24px' }} src={editImg} alt="edit"></img>
+                                    </button>
+                                    <EditPhone edit={edit} setEdit={setEdit} phone={phone} setPhone={setPhone} num="0"/>
+                                </div>
+                                {
+                                    (phones[1]) ? (
+                                        <div className="d-flex flex-row">
+                                            <p style={{ width: '150px', fontWeight: 'bold' }}>Telefone 2:</p>
+                                            <p>{phones[1]['numero_de_telefone'] || 'user'}</p>
+                                        </div>
+                                    ) : (
+                                            <></>
+                                        )
+                                }
+                                <div className="d-flex flex-row">
                                     <p style={{ width: '150px', fontWeight: 'bold' }}>Membro desde:</p>
                                     <p style={{ textTransform: 'capitalize' }}>{user.data_cadastro.slice(0, 10) || 'user'}</p>
                                 </div>
                                 <div className="d-flex justify-content-center mt-3 mb-5">
                                     <Button className="px-5 py-2  mr-3" variant="danger" type="button" onClick={() => setShow(true)}>Deletar</Button>
-                                    <Button className="px-5 py-2 mr-3" variant="success" type="">Editar</Button>
+                                    <Button className="px-5 py-2 mr-3" variant="success" type="button" onClick={() => history.push('/user/profile/edit')}>Editar</Button>
                                 </div>
                             </div>
                         </UserTemplate>

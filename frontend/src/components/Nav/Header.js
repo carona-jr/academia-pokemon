@@ -14,6 +14,7 @@ export default function Header({ history }) {
     const [search, setSearch] = useState()
     function handleClick() {
         localStorage.clear()
+        console.log(search)
     }
 
     function handleSearch(e) {

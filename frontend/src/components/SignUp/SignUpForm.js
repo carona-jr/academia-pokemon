@@ -61,12 +61,19 @@ export default function SignUp({ history }) {
         try {
             const response = await api.post('/user', dataUser)
             localStorage.setItem('cpf', response.data.cpf)
-            localStorage.setItem('user', JSON.stringify(response))
+            localStorage.setItem('user', JSON.stringify(response.data))
             await api.post('/user/phone', dataPhone, {
                 headers: {
                     Authorization: 'Bearer ' + user.cpf
                 }
             })
+
+            const responsePhone = await api.get('/user/phone', {
+                headers: {
+                    Authorization: 'Bearer ' + user.cpf
+                }
+            })
+            localStorage.setItem('phones', JSON.stringify(responsePhone.data))
 
             history.push('/user')
         } catch (e) {

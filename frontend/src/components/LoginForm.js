@@ -11,6 +11,12 @@ export default function LoginHeader({ history, setShow }) {
         e.preventDefault()
         try {
             const response = await api.post('/user/login', user)
+            const responsePhone = await api.get('/user/phone', {
+                headers: {
+                    Authorization: 'Bearer ' + response.data.cpf
+                }
+            })
+            localStorage.setItem('phones', JSON.stringify(responsePhone.data))
             localStorage.setItem('cpf', response.data.cpf)
             localStorage.setItem('user', JSON.stringify(response.data))
             history.push('/user')

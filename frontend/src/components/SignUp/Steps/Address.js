@@ -19,7 +19,7 @@ export default function Address({ user, setUser, next, back }) {
                     <Form.Label>Número</Form.Label>
                     <Form.Control
                         md="4" onChange={e => setUser({ ...user, num_casa: e.target.value })}
-                        placeholder="123" value={user.num_casa || ''} />
+                        placeholder="123" value={user.num_casa || ''} type="number"/>
                 </Form.Group>
             </Form.Row>
 
@@ -44,16 +44,16 @@ export default function Address({ user, setUser, next, back }) {
                     <Form.Control
                         onChange={e => setUser({ ...user, estado: e.target.value })}
                         as="select" value={user.estado || 'SP'}>
-                        <option>SP</option>
-                        <option>RJ</option>
-                        <option>MG</option>
+                        <option value="sp">SP</option>
+                        <option value="rj">RJ</option>
+                        <option value="mg">MG</option>
                     </Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} controlId="CEP">
                     <Form.Label>CEP</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, cep: e.target.value })}
-                        placeholder="12345678" value={user.cep || ''} />
+                        placeholder="12345678" value={user.cep || ''} type="number"/>
                 </Form.Group>
             </Form.Row>
 

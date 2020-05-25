@@ -57,7 +57,7 @@ router.patch('/user/phone', auth, async (req, res) => {
 
         res.send(telefone)
     } catch (e) {
-        res.status(500).send(e)
+        res.status(500).send(e) 
     }
 })
 
