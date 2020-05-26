@@ -7,9 +7,7 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import CardImage from 'react-bootstrap/CardImg'
 import NavLink from 'react-bootstrap/NavLink'
 
-import bulbassaur from '../../assets/images/plans/bulbassaur.png'
-import charmander from '../../assets/images/plans/charmander.png'
-import squirtle from '../../assets/images/plans/squirtle.png'
+import { planData } from '../../utils/planData'
 
 import './Pricing.css'
 
@@ -18,7 +16,7 @@ import LoginNav from '../../components/Nav/LoginHeader'
 function PriceCard({ title, description, price, image, lcolor, first, second, third }) {
     return (
         <Card className="card-container" style={{ width: '18rem' }} bg="light" text="dark" border="dark">
-            <CardImage top width="100%" src={image} />
+            <CardImage top="true" width="100%" src={image} />
             <Card.Body className="mb-3 mt-3">
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>
@@ -30,7 +28,7 @@ function PriceCard({ title, description, price, image, lcolor, first, second, th
                     <ListGroupItem className="mb-2" variant={lcolor} text="dark">{third}</ListGroupItem>
                 </ListGroup>
                 <Button className="mb-3 mt-3" variant="primary">
-                    <NavLink className="text-light" href="/signup">Assine já por R$ {price}!</NavLink>
+                    <NavLink className="text-light" href="/signup">{price}</NavLink>
                 </Button>
             </Card.Body>
         </Card>
@@ -44,39 +42,23 @@ export default function Pricing({ history }) {
             <div className="mt-5 p-5">
                 <h1 className="text-center mb-5 display-5 text-uppercase">Conheça nossos planos!</h1>
                 <div className="cardFlex">
-                    <PriceCard
-                        title="Plano Bulbassaur"
-                        description="O plano essencial necessário para você se iniciar no universo pokémon."
-                        price="49,99"
-                        image={bulbassaur}
-                        lcolor="success"
-                        first="Upar até cinco níveis de cada pokémon."
-                        second="Treine até cinco pokémons diferentes."
-                        third="Cada treinamento dura de 6 a 7 dias."
-                        history={history}
-                    />
-                    <PriceCard
-                        title="Plano Squirtle"
-                        description="O plano intermediário para você tornar seus pokémons mais talentosos."
-                        price="99,99"
-                        image={squirtle}
-                        lcolor="primary"
-                        first="Upar até quinze níveis de cada pokémon."
-                        second="Treine até quinze pokémons diferentes."
-                        third="Cada treinamento dura de 3 a 4 dias."
-                        history={history}
-                    />
-                    <PriceCard
-                        title="Plano Charmander"
-                        description="O plano completo com todos os benefícios para os seus pokémons se tornarem os melhores."
-                        price="199,99"
-                        image={charmander}
-                        lcolor="danger"
-                        first="Upar níveis ilimitados de cada pokémon."
-                        second="Treine quantos pokémons desejar."
-                        third="Cada treinamento dura no máximo 2 dias."
-                        history={history}
-                    />
+                    {
+                        planData.map(value => {
+                            return (
+                                <PriceCard
+                                    title={value.name}
+                                    description={value.description}
+                                    price={value.priceMessage}
+                                    image={value.image}
+                                    lcolor={value.color}
+                                    first={value.first}
+                                    second={value.second}
+                                    third={value.third}
+                                    history={history}
+                                />
+                            )
+                        })
+                    }
                 </div>
             </div>
         </div>

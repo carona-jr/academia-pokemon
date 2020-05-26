@@ -77,7 +77,8 @@ export default function SignUp({ history }) {
 
             history.push('/user')
         } catch (e) {
-            setError(e.response.data.error)
+            const msg = e.response.data.detail.slice(4, e.response.data.detail.length)
+            setError(e.response.data.error || msg)
             setShow(true)
         }
     }
@@ -97,7 +98,7 @@ export default function SignUp({ history }) {
             <h2 className="text-center mb-5"> Cadastre-se </h2>
             <ProgressBar now={step[1]} label={`${step[1]}%`} className="mb-3" />
             <AlertMessage show={show} setShow={setShow}
-                title="Ops, parece que houve um erro"
+                title="Ops, parece que houve um erro :("
                 msg={error}
                 button="Tentar novamente"
                 func={() => { setShow(false) }}
