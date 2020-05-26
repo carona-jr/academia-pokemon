@@ -45,7 +45,7 @@ router.get('/plano', auth, async (req, res) => {
 router.patch('/plano', auth, async (req, res) => {
     try {
         const plano = await searchByKeyAndUpdate(req.body, 'Plano', ['cpf'],
-            [req.user.cpf], queryFindByCpf, ['nome', 'valor', 'duracao'], ['duracao'])
+            [req.user.cpf], queryFindByCpf, ['nome', 'valor', 'data_de_inicio', 'duracao'], ['duracao'])
 
         res.send(plano)
     } catch (e) {

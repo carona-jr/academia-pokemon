@@ -83,6 +83,17 @@ router.patch('/user/me', auth, async (req, res) => {
     }
 })
 
+router.patch('/user/payment', auth, async (req, res) => {
+    try {
+        const query = await searchByKeyAndUpdate(req.body, 'Usuario', ['cpf'], [req.user.cpf],
+            queryFindByCpf, ['num_cartao', 'data_vencimento', 'nome_cartao', 'cod_cartao'])
+
+        res.send(query)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
 router.delete('/user/me', auth, async (req, res) => {
     queryDeleteByCpf.values = [req.user.cpf]
 

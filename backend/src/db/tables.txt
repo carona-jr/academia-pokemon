@@ -98,3 +98,18 @@ CREATE TABLE Trabalha (
 );
 
 DROP TABLE USUARIO, POKEMON, TELEFONE, TREINADOR, ESPECIALIDADE, MESTRE, PROFICIENCIA, DEPARTAMENTO, PLANO, APRIMORA, TRABALHA
+
+CREATE OR REPLACE FUNCTION add_plan()
+RETURNS trigger AS
+$BODY$
+BEGIN
+INSERT INTO Plano (cpf, nome, valor, data_de_inicio, duracao) VALUES (new.cpf, 'pikachu', 'gratuito', new.data_cadastro, 'infinito');
+RETURN NEW;
+END;
+$BODY$
+LANGUAGE 'plpgsql';
+
+CREATE TRIGGER addPlanBasic
+AFTER INSERT ON Usuario
+FOR EACH ROW
+EXECUTE PROCEDURE add_plan();

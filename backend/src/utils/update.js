@@ -86,7 +86,7 @@ const searchByKeyAndUpdate = (data, tableName, key, keyword, objValues, allowedU
                 }
             }
 
-            console.log(queryToUpdate)
+            // console.log(queryToUpdate)
             // Realiza o update no banco de dados
             const updateUser = await pool.query(queryToUpdate)
             resolve({
