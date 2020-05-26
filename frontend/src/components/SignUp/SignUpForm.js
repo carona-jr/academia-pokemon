@@ -77,8 +77,7 @@ export default function SignUp({ history }) {
 
             history.push('/user')
         } catch (e) {
-            const msg = e.response.data.detail.slice(4, e.response.data.detail.length)
-            setError(e.response.data.error || msg)
+            setError(e.response.data.error || e.response.data.detail)
             setShow(true)
         }
     }
