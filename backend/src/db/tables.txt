@@ -22,7 +22,6 @@ CREATE TABLE Usuario (
 CREATE TABLE Plano (
      cpf varchar(24) REFERENCES Usuario (cpf) ON DELETE CASCADE ON UPDATE CASCADE,
      codigo_plano integer,
-     nome varchar(64),
      valor varchar(24),
      data_de_inicio TIMESTAMP,
      duracao integer,
@@ -104,7 +103,7 @@ CREATE OR REPLACE FUNCTION add_plan()
 RETURNS trigger AS
 $BODY$
 BEGIN
-INSERT INTO Plano (cpf, codigo_plano, nome, valor, data_de_inicio, duracao) VALUES (new.cpf, 0,'pikachu', '0', new.data_cadastro, 999);
+INSERT INTO Plano (cpf, codigo_plano, valor, data_de_inicio, duracao) VALUES (new.cpf, 0, '0', new.data_cadastro, 999);
 RETURN NEW;
 END;
 $BODY$
