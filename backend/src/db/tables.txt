@@ -103,7 +103,7 @@ CREATE OR REPLACE FUNCTION add_plan()
 RETURNS trigger AS
 $BODY$
 BEGIN
-INSERT INTO Plano (cpf, nome, valor, data_de_inicio, duracao) VALUES (new.cpf, 'pikachu', 'gratuito', new.data_cadastro, 'infinito');
+INSERT INTO Plano (cpf, nome, valor, data_de_inicio, duracao) VALUES (new.cpf, 'pikachu', '0', new.data_cadastro, 'infinito');
 RETURN NEW;
 END;
 $BODY$
