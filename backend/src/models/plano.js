@@ -1,5 +1,5 @@
 const queryInsert = {
-    text: 'INSERT INTO Plano (cpf, nome, valor, data_de_inicio, duracao) VALUES ($1, $2, $3, $4, $5)'
+    text: 'INSERT INTO Plano (cpf, codigo_plano, nome, valor, data_de_inicio, duracao) VALUES ($1, $2, $3, $4, $5, $6)'
 }
 
 const queryFindByCpf = {
