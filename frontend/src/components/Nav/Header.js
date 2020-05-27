@@ -38,7 +38,7 @@ export default function Header({ history }) {
                 <Nav className="mr-md-5 pr-md-5">
                     <NavDropdown title={user.e_mail || 'seu email'} id="basic-nav-dropdown">
                         <NavDropdown.Item href="/user/profile">Meu Perfil</NavDropdown.Item>
-                        <NavDropdown.Item href="/user/plan">Alterar Plano</NavDropdown.Item>
+                        <NavDropdown.Item href="/user/plan">Meu Plano</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="/" onClick={handleClick}>Sair</NavDropdown.Item>
                     </NavDropdown>

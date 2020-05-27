@@ -6,7 +6,7 @@ import squirtleImg from '../assets/images/plans/squirtle.png'
 const planData = [
     {
         name: 'Plano Pikachu',
-        value: '0',
+        value: 0,
         basic: true,
         image: pikachuImg,
         description: 'Plano básico, que contém o minímo necessário para aperfeiçoar seu pokémon.',
@@ -21,7 +21,7 @@ const planData = [
     },
     {
         name: 'Plano Bulbassaur',
-        value: '1',
+        value: 1,
         basic: false,
         image: bulbassaurImg,
         duration: 1,
@@ -36,7 +36,7 @@ const planData = [
     },
     {
         name: 'Plano Squirtle',
-        value: '2',
+        value: 2,
         basic: false,
         image: squirtleImg,
         duration: 3,
@@ -52,7 +52,7 @@ const planData = [
     {
         name: 'Plano Charmander',
         basic: false,
-        value: '3',
+        value: 3,
         image: charmanderImg,
         duration: 6,
         description: 'O plano completo com todos os benefícios para os seus pokémons se tornarem os melhores.',
