@@ -25,11 +25,9 @@ function PriceCard({ title, lcolor, first, second, third, price }) {
     )
 }
 
-export default function MyProfile({ history }) {
+export default function AddPlan({ history }) {
     const [plan, setPlan] = useState({})
     const [show, setShow] = useState(false)
-    const [show2, setShow2] = useState(false)
-    let i = 1
     const now = new Date()
 
     async function handleSubmit(e) {
@@ -47,12 +45,12 @@ export default function MyProfile({ history }) {
                 }
             })
         } catch (e) {
-            setShow2(true)
+            setShow(true)
         }
 
         try {
             await api.patch('/plano', {
-                nome: planData[parseInt(plan.plano)].value,
+                codigo_plano: planData[parseInt(plan.plano)].value,
                 valor: planData[parseInt(plan.plano)].price,
                 data_de_inicio: now,
                 duracao: planData[parseInt(plan.plano)].duration,
@@ -61,11 +59,10 @@ export default function MyProfile({ history }) {
                     Authorization: 'Bearer ' + userCpf
                 }
             })
+            history.push('/user/plan')
         } catch (e) {
-            setShow2(false)
+            setShow(false)
         }
-        setShow(true)
-        console.log(plan)
     }
 
     return (
@@ -77,18 +74,10 @@ export default function MyProfile({ history }) {
                         <UserTemplate history={history}>
                             <h2 className="text-center mb-5">Assine um plano</h2>
                             <AlertMessage show={show} setShow={setShow}
-                                title="Parabéns"
-                                msg="Você adicionou um plano com sucesso, aproveite! :D"
-                                button="Voltar"
-                                func={() => setShow(false)}
-                                colorAlert="success"
-                                colorButton="outline-success"
-                            />
-                            <AlertMessage show={show2} setShow={setShow2}
                                 title="Ops, parece que aconteceu uma coisa inesperada."
                                 msg="Confirme no botão antes de deletar a sua conta ou aperte o X para voltar :("
                                 button="Voltar"
-                                func={() => setShow2(false)}
+                                func={() => setShow(false)}
                                 colorAlert="danger"
                                 colorButton="outline-danger"
                             />
@@ -117,7 +106,7 @@ export default function MyProfile({ history }) {
                                         Data de vencimento
                                     </Form.Label>
                                     <Col sm={10}>
-                                        <Form.Control type="month" placeholder="10" onChange={e => setPlan({ ...plan, data_vencimento: e.target.value })} required />
+                                        <Form.Control type="month" placeholder="10/2020" onChange={e => setPlan({ ...plan, data_vencimento: e.target.value })} required />
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} controlId="codigoCartao">
@@ -153,7 +142,7 @@ export default function MyProfile({ history }) {
                                                             }
                                                             name="radio"
                                                             id={item.value}
-                                                            value={i++}
+                                                            value={item.value}
                                                             onChange={e => setPlan({ ...plan, plano: e.target.value })}
                                                         />
                                                     ) : (

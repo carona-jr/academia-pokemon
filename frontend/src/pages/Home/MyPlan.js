@@ -12,9 +12,9 @@ export default function MyProfile({ history }) {
                     history.push('/')
                 ) : (
                         <UserTemplate history={history}>
-                            <div className="d-flex align-items-center flex-column">
+                            <div className="d-flex align-items-center flex-column mb-5">
                                 <h2 className="mb-5">Meu plano</h2>
-                                <CurrentPlan/>
+                                <CurrentPlan />
                             </div>
                         </UserTemplate>
                     )
