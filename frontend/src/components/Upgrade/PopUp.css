@@ -1,0 +1,8 @@
+.container-popup {
+    z-index: 20;
+    position: absolute;
+    width: 80%;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+}   
