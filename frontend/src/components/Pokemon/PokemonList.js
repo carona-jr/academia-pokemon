@@ -6,7 +6,7 @@ import { searchImg } from '../../services/img'
 import { api } from '../../services/api'
 import editImg from '../../assets/icons/edit-black-24dp.svg'
 import deleteImg from '../../assets/icons/delete-black-24dp.svg'
-import AlertMessage from '../../components/alert'
+import AlertMessage from '../../components/Alert'
 
 export default function PokemonList({ route, displayItem, displayText, showEditAndDelete }) {
     let pokemonList = []

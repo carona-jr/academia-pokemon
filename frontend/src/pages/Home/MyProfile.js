@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 
 import { api } from '../../services/api'
 
-import AlertMessage from '../../components/alert'
+import AlertMessage from '../../components/Alert'
 import EditPhone from '../../components/EditPhone'
 
 import editImg from '../../assets/icons/edit-black-24dp.svg'

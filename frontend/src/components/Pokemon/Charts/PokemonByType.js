@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import PieChart from './piechart'
+import PieChart from './PieChart'
 import Spinner from 'react-loading'
 import { api } from '../../../services/api'
 

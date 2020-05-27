@@ -9,7 +9,7 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 
 import UserTemplate from '../../templates/UserTemplate'
 import { api } from '../../services/api'
-import AlertMessage from '../../components/alert'
+import AlertMessage from '../../components/Alert'
 import { planData } from '../../utils/planData'
 
 function PriceCard({ title, lcolor, first, second, third, price }) {

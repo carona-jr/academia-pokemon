@@ -4,7 +4,7 @@ import Personal from './Steps/Personal'
 import Credentials from './Steps/Credentials'
 import Address from './Steps/Address'
 import Finish from './Steps/Finish'
-import AlertMessage from '../alert'
+import AlertMessage from '../Alert'
 
 import Form from 'react-bootstrap/Form'
 import ProgressBar from 'react-bootstrap/ProgressBar'

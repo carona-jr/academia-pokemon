@@ -26,7 +26,6 @@ export default function CurrentPlan() {
                 }
             })
             setPlan({ number: response.data.codigo_plano, data_de_inicio: response.data.data_de_inicio })
-            console.log(response.data.duracao)
             const today = new Date(response.data.data_de_inicio)
             const unix_timestamp = parseInt((today.getTime() / 1000).toFixed(0)) + 86400 * 30 * response.data.duracao
             const pastDate = new Date(unix_timestamp * 1000)

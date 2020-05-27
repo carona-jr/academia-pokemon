@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import AlertMessage from '../../components/alert'
+import AlertMessage from '../../components/Alert'
 
 import { api } from '../../services/api'
 
