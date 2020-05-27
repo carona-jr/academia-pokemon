@@ -6,7 +6,8 @@ const {
     queryInsert,
     queryDeleteByCodigoDept,
     queryFindByCodigoDept,
-    queryFindByCodigoDeptAndCpf
+    queryFindByCodigoDeptAndCpf,
+    queryFindByCpf
 } = require('../models/trabalha')
 
 const searchByKeyAndUpdate = require('../utils/update')
@@ -30,8 +31,8 @@ router.post('/trabalha', auth, async (req, res) => {
 
 router.get('/trabalha', auth, async (req, res) => {
     try {
-        queryFindByCodigoDept.values = [req.body.codigo_dept]
-        const trabalha = await pool.query(queryFindByCodigoDept)
+        queryFindByCpf.values = [req.user.cpf]
+        const trabalha = await pool.query(queryFindByCpf)
 
         if (!trabalha.rowCount)
             return res.status(404).send()

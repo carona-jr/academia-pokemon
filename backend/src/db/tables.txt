@@ -5,7 +5,7 @@ CREATE TABLE Usuario (
     data_nascimento date,
     rua varchar(64),
     num_casa integer,
-    bairro varchar(64),
+    bairro varchar(64), 
     cidade varchar(64),
     estado varchar(2) check(estado in ('sp', 'rj', 'mg')),
     cep integer,

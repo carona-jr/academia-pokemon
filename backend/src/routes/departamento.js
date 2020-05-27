@@ -33,7 +33,7 @@ router.post('/departamento', auth, async (req, res) => {
 
 router.get('/departamento', auth, async (req, res) => {
     try {
-        queryFindByName.values = [req.body.nome]
+        queryFindByName.values = [req.header('nome')]
         const departamento = await pool.query(queryFindByName)
 
         if (!departamento.rowCount)
