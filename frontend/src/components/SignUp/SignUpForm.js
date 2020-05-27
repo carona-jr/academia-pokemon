@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 
+import Form from 'react-bootstrap/Form'
+import ProgressBar from 'react-bootstrap/ProgressBar'
+import Container from 'react-bootstrap/Container'
+
+import AlertMessage from '../PopUp/Alert'
 import Personal from './Steps/Personal'
 import Credentials from './Steps/Credentials'
 import Address from './Steps/Address'
 import Finish from './Steps/Finish'
-import AlertMessage from '../Alert'
-
-import Form from 'react-bootstrap/Form'
-import ProgressBar from 'react-bootstrap/ProgressBar'
-import Container from 'react-bootstrap/Container'
 
 import { api } from '../../services/api'
 
@@ -17,7 +17,7 @@ function dataAtual() {
     return `${dNow.getFullYear()}-${dNow.getMonth() + 1}-${dNow.getDate()} ${dNow.getHours()}:${dNow.getMinutes()}:${dNow.getSeconds()}`
 }
 
-export default function SignUp({ history }) {
+export default function SignUpForm({ history }) {
     const [step, setStep] = useState([0, 0])
     const [user, setUser] = useState({})
     const [phone, setPhone] = useState({})

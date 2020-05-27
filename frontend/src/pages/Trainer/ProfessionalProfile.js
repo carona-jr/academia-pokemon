@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
-import UserTemplate from '../../templates/UserTemplate'
-
 import { api } from '../../services/api'
 
-export default function Department({ history }) {
+import UserTemplate from '../../templates/UserTemplate'
+
+export default function ProfessionalProfile({ history }) {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
     async function loadProfile() {
         try {

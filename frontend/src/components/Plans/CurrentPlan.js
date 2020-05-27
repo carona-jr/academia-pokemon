@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import Spinner from 'react-loading'
+
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -7,11 +9,9 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import CardImage from 'react-bootstrap/CardImg'
 import NavLink from 'react-bootstrap/NavLink'
 
-import Spinner from 'react-loading'
+import { api } from '../../services/api'
 
 import { planData } from '../../utils/planData'
-
-import { api } from '../../services/api'
 
 export default function CurrentPlan() {
     const [plan, setPlan] = useState()

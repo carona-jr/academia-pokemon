@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-import { api } from '../services/api'
+import { api } from '../../services/api'
 
-export default function LoginHeader({ history, setShow }) {
+export default function LoginForm({ history, setShow }) {
     const [user, setUser] = useState({})
     async function handleSubmit(e) {
         e.preventDefault()

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 
 import Spinner from 'react-loading'
+
 import Form from 'react-bootstrap/Form'
 import { Pagination } from 'react-bootstrap'
 
-import UserTemplate from '../../templates/UserTemplate'
 import PokemonList from '../../components/Pokemon/PokemonList'
 
 import { api } from '../../services/api'
+
+import UserTemplate from '../../templates/UserTemplate'
 
 export default function MyPokemons({ history }) {
     const [user] = useState(JSON.parse(localStorage.getItem('user')))

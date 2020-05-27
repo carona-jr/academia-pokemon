@@ -1,8 +1,10 @@
 import React from 'react'
 
 import Button from 'react-bootstrap/Button'
+
 import './NotFound.css'
-import charizard from '../assets/images/charizard.gif'
+
+import charizard from '../../assets/images/charizard.gif'
 
 export default function NotFound({ history }) {
     return (

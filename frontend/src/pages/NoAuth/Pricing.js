@@ -7,11 +7,11 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import CardImage from 'react-bootstrap/CardImg'
 import NavLink from 'react-bootstrap/NavLink'
 
-import { planData } from '../../utils/planData'
-
 import './Pricing.css'
 
 import LoginNav from '../../components/Nav/LoginHeader'
+
+import { planData } from '../../utils/planData'
 
 function PriceCard({ title, description, price, image, lcolor, first, second, third }) {
     return (

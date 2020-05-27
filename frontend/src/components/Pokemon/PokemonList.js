@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import Table from 'react-bootstrap/Table'
+
 import Spinner from 'react-loading'
+
+import Table from 'react-bootstrap/Table'
+
 import imagemPokemon from '../../assets/images/ditto.png'
-import { searchImg } from '../../services/img'
-import { api } from '../../services/api'
 import editImg from '../../assets/icons/edit-black-24dp.svg'
 import deleteImg from '../../assets/icons/delete-black-24dp.svg'
-import AlertMessage from '../../components/Alert'
+
+import AlertMessage from '../../components/PopUp/Alert'
+
+import { api } from '../../services/api'
+import { searchImg } from '../../services/img'
 
 export default function PokemonList({ route, displayItem, displayText, showEditAndDelete }) {
     let pokemonList = []

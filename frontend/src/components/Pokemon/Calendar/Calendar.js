@@ -1,6 +1,9 @@
 import React from 'react'
+
 import ReactTooltip from 'react-tooltip'
+
 import CalendarHeatmap from 'react-calendar-heatmap'
+
 import './styles.css'
 
 export default function Calendar({ data, today, past }) {

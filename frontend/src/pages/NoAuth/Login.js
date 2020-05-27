@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 
 import Button from 'react-bootstrap/Button'
-import LoginNav from '../../components/Nav/LoginHeader'
-import LoginForm from '../../components/LoginForm'
-import AlertMessage from '../../components/Alert'
 
 import './Login.css'
 
-export default function Main({ history }) {
+import LoginNav from '../../components/Nav/LoginHeader'
+import LoginForm from '../../components/Login/LoginForm'
+import AlertMessage from '../../components/PopUp/Alert'
+
+export default function Login({ history }) {
     const [show, setShow] = useState(false)
 
     function handleClick() {

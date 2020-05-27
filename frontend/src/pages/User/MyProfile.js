@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 
-import UserTemplate from '../../templates/UserTemplate'
 import Button from 'react-bootstrap/Button'
+
+import editImg from '../../assets/icons/edit-black-24dp.svg'
+
+import AlertMessage from '../../components/PopUp/Alert'
+import EditPhone from '../../components/Phone/EditPhone'
 
 import { api } from '../../services/api'
 
-import AlertMessage from '../../components/Alert'
-import EditPhone from '../../components/EditPhone'
-
-import editImg from '../../assets/icons/edit-black-24dp.svg'
+import UserTemplate from '../../templates/UserTemplate'
 
 export default function MyProfile({ history }) {
     const [user] = useState(JSON.parse(localStorage.getItem('user')))

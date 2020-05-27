@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 
-import UserTemplate from '../../templates/UserTemplate'
-
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import AlertMessage from '../../components/Alert'
+
+import AlertMessage from '../../components/PopUp/Alert'
 
 import { api } from '../../services/api'
+
+import UserTemplate from '../../templates/UserTemplate'
 
 function dataAtual() {
     let dNow = new Date()

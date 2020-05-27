@@ -1,22 +1,25 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import User from './pages/Home/User'
-import NewPokemon from './pages/Home/NewPokemon'
-import MyPokemons from './pages/Home/MyPokemons'
-import MyProfile from './pages/Home/MyProfile'
-import MyPlan from './pages/Home/MyPlan'
-import AddPlan from './pages/Home/AddPlan'
-import EditProfile from './pages/Home/EditProfile'
-import Department from './pages/Home/Department'
-import Upgrade from './pages/Home/Upgrade'
-import EditPokemon from './pages/Home/EditPokemon'
-import SearchPage from './pages/Home/SearchPage'
+import User from './pages/User/User'
+import NewPokemon from './pages/User/NewPokemon'
+import MyPokemons from './pages/User/MyPokemons'
+import MyProfile from './pages/User/MyProfile'
+import MyPlan from './pages/User/MyPlan'
+import AddPlan from './pages/User/AddPlan'
+import EditProfile from './pages/User/EditProfile'
+import EditPokemon from './pages/User/EditPokemon'
+import SearchPage from './pages/User/SearchPage'
+
+import ProfessionalProfile from './pages/Trainer/ProfessionalProfile'
+import Upgrade from './pages/Trainer/Upgrade'
+
 import Login from './pages/NoAuth/Login'
 import About from './pages/NoAuth/About'
 import Pricing from './pages/NoAuth/Pricing'
 import SignUp from './pages/NoAuth/SignUp'
-import NotFound from './pages/NotFound'
+
+import NotFound from './pages/404/NotFound'
 
 export default function Routes() {
     return (
@@ -34,12 +37,12 @@ export default function Routes() {
                 <Route path="/user/pokemon/edit" component={EditPokemon} />
                 <Route path="/user/search" component={SearchPage} />
 
+                <Route path="/trainer/profile" component={ProfessionalProfile} />
+                <Route path="/trainer/upgrade" component={Upgrade} />
+
                 <Route path="/signup" component={SignUp} />
                 <Route path="/about" component={About} />
                 <Route path="/pricing" component={Pricing} />
-
-                <Route path="/trainer/department" component={Department} />
-                <Route path="/trainer/upgrade" component={Upgrade} />
 
                 <Route component={NotFound} />
             </Switch>

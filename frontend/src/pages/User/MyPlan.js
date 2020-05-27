@@ -4,7 +4,7 @@ import CurrentPlan from '../../components/Plans/CurrentPlan'
 
 import UserTemplate from '../../templates/UserTemplate'
 
-export default function MyProfile({ history }) {
+export default function MyPlan({ history }) {
     return (
         <div>
             {

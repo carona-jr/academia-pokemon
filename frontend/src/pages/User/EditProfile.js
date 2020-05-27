@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 
-import UserTemplate from '../../templates/UserTemplate'
-import Form from 'react-bootstrap/Form'
-
 import Spinner from 'react-loading'
+
+import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 
-import AlertMessage from '../../components/Alert'
+import AlertMessage from '../../components/PopUp/Alert'
+
 import { api } from '../../services/api'
+
+import UserTemplate from '../../templates/UserTemplate'
 
 export default function EditProfile({ history }) {
     const [user, setUser] = useState()
@@ -53,6 +55,15 @@ export default function EditProfile({ history }) {
                     Authorization: 'Bearer ' + userCpf
                 }
             })
+
+            const response = await api.get('/user/me', {
+                headers: {
+                    Authorization: 'Bearer ' + user.cpf
+                }
+            })
+
+            localStorage.setItem('cpf', user.cpf)
+            localStorage.setItem('user', JSON.stringify(response.data))
             setShow(true)
         } catch (e) {
             setShow2(true)
@@ -74,7 +85,7 @@ export default function EditProfile({ history }) {
                         <h2 className="text-center m-0 p-0 my-5"><span style={{ textTransform: 'capitalize' }}>{user.nome}</span></h2>
                         <AlertMessage show={show} setShow={setShow}
                             title="Sucesso"
-                            msg="Seu pokémon foi alterado com sucesso :)"
+                            msg="Sua conta foi alterada com sucesso :)"
                             button="Fechar"
                             func={() => setShow(false)}
                             colorAlert="success"
@@ -82,7 +93,7 @@ export default function EditProfile({ history }) {
                         />
                         <AlertMessage show={show2} setShow={setShow2}
                             title="Erro"
-                            msg="Seu pokémon não foi alterado com sucesso :("
+                            msg="Sua conta não foi alterada com sucesso :("
                             button="Fechar"
                             func={() => setShow(false)}
                             colorAlert="danger"
