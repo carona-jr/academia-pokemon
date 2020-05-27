@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 
-import AlertMessage from '../../components/alert'
+import AlertMessage from '../../components/Alert'
 import { api } from '../../services/api'
 
 export default function EditPokemon({ history }) {
