@@ -8,6 +8,8 @@ import MyProfile from './pages/Home/MyProfile'
 import MyPlan from './pages/Home/MyPlan'
 import AddPlan from './pages/Home/AddPlan'
 import EditProfile from './pages/Home/EditProfile'
+import Department from './pages/Home/Department'
+import Upgrade from './pages/Home/Upgrade'
 import EditPokemon from './pages/Home/EditPokemon'
 import SearchPage from './pages/Home/SearchPage'
 import Login from './pages/NoAuth/Login'
@@ -21,6 +23,7 @@ export default function Routes() {
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Login} />
+
                 <Route path="/user" exact component={User} />
                 <Route path="/user/profile" exact component={MyProfile} />
                 <Route path="/user/plan" exact component={MyPlan} />
@@ -30,9 +33,14 @@ export default function Routes() {
                 <Route path="/user/pokemon/mine" component={MyPokemons} />
                 <Route path="/user/pokemon/edit" component={EditPokemon} />
                 <Route path="/user/search" component={SearchPage} />
+
                 <Route path="/signup" component={SignUp} />
                 <Route path="/about" component={About} />
                 <Route path="/pricing" component={Pricing} />
+
+                <Route path="/trainer/department" component={Department} />
+                <Route path="/trainer/upgrade" component={Upgrade} />
+
                 <Route component={NotFound} />
             </Switch>
         </BrowserRouter>

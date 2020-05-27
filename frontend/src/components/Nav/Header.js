@@ -11,6 +11,7 @@ import './Header.css'
 
 export default function Header({ history }) {
     const [user] = useState(JSON.parse(localStorage.getItem('user')))
+    // eslint-disable-next-line
     const [search, setSearch] = useState()
     function handleClick() {
         localStorage.clear()

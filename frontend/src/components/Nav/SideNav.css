@@ -22,7 +22,7 @@
 
 .nav-link-sidebar p {
     position: relative;
-    left: -24px;
+    left: -22px;
 }
 
 .icon-1 {
@@ -62,7 +62,7 @@
 
     .nav-link-sidebar p {
         position: absolute;
-        left: -500px;
+        left: -1000px;
     }
 
     .icon-1 {

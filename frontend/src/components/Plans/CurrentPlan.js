@@ -38,6 +38,7 @@ export default function CurrentPlan() {
 
     useEffect(() => {
         loadCurrentPlan()
+        // eslint-disable-next-line
     }, [])
 
     return (

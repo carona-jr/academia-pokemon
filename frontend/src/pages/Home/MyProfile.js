@@ -55,13 +55,16 @@ export default function MyProfile({ history }) {
                                 <div className="d-flex flex-row">
                                     <p style={{ width: '150px', fontWeight: 'bold' }}>RG:</p>
                                     <p style={{ textTransform: 'capitalize' }}>{user.rg || 'user'}</p>
-                                </div> <div className="d-flex flex-row">
+                                </div> 
+                                <div className="d-flex flex-row">
                                     <p style={{ width: '150px', fontWeight: 'bold' }}>Nascimento:</p>
                                     <p style={{ textTransform: 'capitalize' }}>{user.data_nascimento.slice(0, 10) || 'user'}</p>
-                                </div> <div className="d-flex flex-row">
+                                </div> 
+                                <div className="d-flex flex-row">
                                     <p style={{ width: '150px', fontWeight: 'bold' }}>Rua:</p>
                                     <p style={{ textTransform: 'capitalize' }}>{user.rua || 'user'}</p>
-                                </div> <div className="d-flex flex-row">
+                                </div> 
+                                <div className="d-flex flex-row">
                                     <p style={{ width: '150px', fontWeight: 'bold' }}>Número:</p>
                                     <p style={{ textTransform: 'capitalize' }}>{user.num_casa || 'user'}</p>
                                 </div>
@@ -92,7 +95,7 @@ export default function MyProfile({ history }) {
                                         onClick={() => setEdit(true)}>
                                         <img style={{ width: '24px', height: '24px' }} src={editImg} alt="edit"></img>
                                     </button>
-                                    <EditPhone edit={edit} setEdit={setEdit} phone={phone} setPhone={setPhone} num="0"/>
+                                    <EditPhone edit={edit} setEdit={setEdit} phone={phone} setPhone={setPhone} num="0" />
                                 </div>
                                 {
                                     (phones[1]) ? (

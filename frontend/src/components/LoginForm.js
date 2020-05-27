@@ -16,8 +16,20 @@ export default function LoginHeader({ history, setShow }) {
                     Authorization: 'Bearer ' + response.data.cpf
                 }
             })
+
+            try {
+                const responseTrainer = await api.get('/treinador/me', {
+                    headers: {
+                        Authorization: 'Bearer ' + response.data.cpf
+                    }
+                })
+                localStorage.setItem('coidse', 'true')
+            } catch (e) {
+                localStorage.setItem('coidse', 'false')
+            }
+
             localStorage.setItem('phones', JSON.stringify(responsePhone.data))
-            localStorage.setItem('cpf', response.data.cpf)
+            localStorage.setItem('cpf', response.data.cpf)  
             localStorage.setItem('user', JSON.stringify(response.data))
             history.push('/user')
         } catch (e) {
