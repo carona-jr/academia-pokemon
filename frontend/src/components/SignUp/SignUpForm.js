@@ -4,13 +4,14 @@ import Form from 'react-bootstrap/Form'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import Container from 'react-bootstrap/Container'
 
-import AlertMessage from '../PopUp/Alert'
 import Personal from './Steps/Personal'
 import Credentials from './Steps/Credentials'
 import Address from './Steps/Address'
 import Finish from './Steps/Finish'
 
-import { api } from '../../services/api'
+import AlertMessage from '~/components/PopUp/Alert'
+
+import { api } from '~/services/api'
 
 function dataAtual() {
     let dNow = new Date()

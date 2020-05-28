@@ -4,9 +4,9 @@ import Button from 'react-bootstrap/Button'
 
 import './Login.css'
 
-import LoginNav from '../../components/Nav/LoginHeader'
-import LoginForm from '../../components/Login/LoginForm'
-import AlertMessage from '../../components/PopUp/Alert'
+import LoginNav from '~/components/Nav/LoginHeader'
+import LoginForm from '~/components/Login/LoginForm'
+import AlertMessage from '~/components/PopUp/Alert'
 
 export default function Login({ history }) {
     const [show, setShow] = useState(false)

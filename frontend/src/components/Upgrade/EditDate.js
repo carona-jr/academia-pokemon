@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 
 import Form from 'react-bootstrap/Form'
 
-import check from '../../assets/icons/check-black-24dp.svg'
-import close from '../../assets/icons/close-black-24dp.svg'
+import check from '~/assets/icons/check-black-24dp.svg'
+import close from '~/assets/icons/close-black-24dp.svg'
 
-import { api } from '../../services/api'
+import { api } from '~/services/api'
 
 export default function EditDate({ handleClose, pokemon, inputNumber, time }) {
     const [date, setDate] = useState({})

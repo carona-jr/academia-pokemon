@@ -2,8 +2,8 @@ import React from 'react'
 
 import Container from 'react-bootstrap/Container'
 
-import LoginNav from '../../components/Nav/LoginHeader'
-import SignUpForm from '../../components/SignUp/SignUpForm'
+import LoginNav from '~/components/Nav/LoginHeader'
+import SignUpForm from '~/components/SignUp/SignUpForm'
 
 export default function SignUp({ history }) {
     return (

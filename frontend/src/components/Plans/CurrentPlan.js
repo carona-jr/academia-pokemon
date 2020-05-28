@@ -9,9 +9,9 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import CardImage from 'react-bootstrap/CardImg'
 import NavLink from 'react-bootstrap/NavLink'
 
-import { api } from '../../services/api'
+import { api } from '~/services/api'
 
-import { planData } from '../../utils/planData'
+import { planData } from '~/utils/planData'
 
 export default function CurrentPlan() {
     const [plan, setPlan] = useState()

@@ -1,8 +1,8 @@
 import React from 'react'
 
-import CurrentPlan from '../../components/Plans/CurrentPlan'
+import CurrentPlan from '~/components/Plans/CurrentPlan'
 
-import UserTemplate from '../../templates/UserTemplate'
+import UserTemplate from '~/templates/UserTemplate'
 
 export default function MyPlan({ history }) {
     return (

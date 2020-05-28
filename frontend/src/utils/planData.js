@@ -1,7 +1,7 @@
-import pikachuImg from '../assets/images/plans/pikachu.png'
-import bulbassaurImg from '../assets/images/plans/bulbassaur.png'
-import charmanderImg from '../assets/images/plans/charmander.png'
-import squirtleImg from '../assets/images/plans/squirtle.png'
+import pikachuImg from '~/assets/images/plans/pikachu.png'
+import bulbassaurImg from '~/assets/images/plans/bulbassaur.png'
+import charmanderImg from '~/assets/images/plans/charmander.png'
+import squirtleImg from '~/assets/images/plans/squirtle.png'
 
 const planData = [
     {

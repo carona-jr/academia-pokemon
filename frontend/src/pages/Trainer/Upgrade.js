@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
-import PokemonUpgradeList from '../../components/Upgrade/PokemonUpgradeList'
+import PokemonUpgradeList from '~/components/Upgrade/PokemonUpgradeList'
 
-import { api } from '../../services/api'
+import { api } from '~/services/api'
 
-import UserTemplate from '../../templates/UserTemplate'
+import UserTemplate from '~/templates/UserTemplate'
 
 export default function Upgrade({ history }) {
     const [count, setCount] = useState('??')

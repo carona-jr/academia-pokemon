@@ -1,4 +1,4 @@
-const { apiPokemon } = require('../services/api')
+const { apiPokemon } = require('./api')
 
 const search = async (pokemon, obj, err) => {
     if (!obj.hasOwnProperty(pokemon)) {

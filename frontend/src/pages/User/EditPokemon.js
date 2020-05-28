@@ -7,11 +7,11 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 
-import AlertMessage from '../../components/PopUp/Alert'
+import AlertMessage from '~/components/PopUp/Alert'
 
-import { api } from '../../services/api'
+import { api } from '~/services/api'
 
-import UserTemplate from '../../templates/UserTemplate'
+import UserTemplate from '~/templates/UserTemplate'
 
 export default function EditPokemon({ history }) {
     const [pokemonID] = useState(localStorage.getItem('pokemonID'))
