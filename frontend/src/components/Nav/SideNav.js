@@ -19,12 +19,13 @@ import upgradeBlack from '~/assets/icons/fitness_center-black-24dp.svg'
 export default function SideNav({ divMain }) {
     const nav = useRef()
     const menuIcon = useRef()
+    const menuOpen = useRef()
     const link1 = useRef()
     const link2 = useRef()
     const link3 = useRef()
     const link4 = useRef()
     const link5 = useRef()
-    function handleClick() {
+    function handleClose() {
         if (window.innerWidth > 992) {
             divMain.current.style.marginLeft = '100px'
         }
@@ -32,6 +33,8 @@ export default function SideNav({ divMain }) {
             divMain.current.style.marginLeft = '50px'
             divMain.current.style.marginRight = '50px'
         }
+
+        menuOpen.current.style.width = '48px'
 
         nav.current.style.width = 0
 
@@ -59,6 +62,9 @@ export default function SideNav({ divMain }) {
             divMain.current.style.marginLeft = '100px'
             nav.current.style.width = '50px'
         }
+        
+        menuOpen.current.style.width = 0
+
         link1.current.style.position = 'static'
         link2.current.style.position = 'static'
         link3.current.style.position = 'static'
@@ -70,11 +76,13 @@ export default function SideNav({ divMain }) {
 
     return (
         <div>
-            <img ref={menuIcon} className="menu-nav" src={menuBlack} alt="x" onClick={handleOpen} />
+            <div ref={menuOpen} className="menu-nav" onClick={handleOpen}>
+                <img className="w-100" ref={menuIcon} src={menuBlack} alt="x" />
+            </div>
             <div ref={nav} className="container-sidebar">
                 <Nav defaultActiveKey="/user" className="d-flex flex-column">
                     <Nav.Link ref={link1} className="nav-link-sidebar nav-home d-flex justify-content-center align-items-center"
-                        onClick={handleClick}>
+                        onClick={handleClose}>
                         <img className="icon-1" src={hideImg} alt="x" />
                         <img className="icon-2" src={hideImgBlack} alt="x" />
                         <p className="m-0">Ocultar barra</p>

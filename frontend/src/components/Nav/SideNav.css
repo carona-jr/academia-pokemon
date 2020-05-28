@@ -45,10 +45,11 @@
 .menu-nav {
     position: fixed;
     width: 0;
-    height: 52px;
+    height: 48px;
     top: 65px;
     left: 10px;
     cursor: pointer;
+    transition: width 1s;
 }
 
 .menu-nav:hover {
