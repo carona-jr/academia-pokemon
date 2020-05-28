@@ -1,6 +1,8 @@
 const express = require('express')
 const pool = require('../db/elephant-sql')
 const router = new express.Router()
+const momentTz = require('moment-timezone')
+const moment = require('moment')
 
 const {
     queryInsert,
@@ -44,6 +46,17 @@ router.get('/aprimora/treinador', auth, async (req, res) => {
             
             const aprimora = await pool.query(select)
             const arr = aprimora.rows.slice(limitInf, limitSup)
+            arr.map(value => {
+                if (value.hora_de_entrada) {
+                    value.hora_de_entrada = momentTz(value.hora_de_entrada).tz('America/Argentina/Buenos_Aires').format('DD/MM/YYYY HH:mm:ss')
+                }
+                if (value.hora_de_saida) {
+                    value.hora_de_saida = momentTz(value.hora_de_saida).tz('America/Argentina/Buenos_Aires').format('DD/MM/YYYY HH:mm:ss')
+                }
+                if (value.data_cadastro) {
+                    value.data_cadastro = momentTz(value.data_cadastro).tz('America/Argentina/Buenos_Aires').format('DD/MM/YYYY HH:mm:ss')
+                }
+            })
             return res.send(arr)
         }   
         const aprimora = await pool.query(`SELECT count(codigo_pokemon) FROM Aprimora WHERE cpf = '${req.user.cpf}'`)
@@ -53,6 +66,7 @@ router.get('/aprimora/treinador', auth, async (req, res) => {
         
         res.send(aprimora.rows[0])
     } catch (e) {
+        console.log(e)
         res.status(500).send(e)
     }
 })
@@ -74,12 +88,19 @@ router.get('/aprimora/pokemon', auth, async (req, res) => {
 router.patch('/aprimora', auth, async (req, res) => {
     const cpf = req.body.searchTerm.cpf
     const codigo = req.body.searchTerm.codigo_pokemon
-    const hora_de_entrada = req.body.searchTerm.hora_de_entrada
+    const dateTime = req.body.searchTerm.hora_de_entrada.split(' ')
+    const data = dateTime[0].split('/').reverse().join('-')
+    const hora_de_entrada = `${data} ${dateTime[1]}`
+
+    if (req.body.hora_de_entrada)
+        req.body.hora_de_entrada = moment(req.body.hora_de_entrada).format('YYYY-MM-DD HH:mm:ss')
+    if (req.body.hora_de_saida)
+        req.body.hora_de_saida = moment(req.body.hora_de_saida).format('YYYY-MM-DD HH:mm:ss')
 
     try {
         const aprimora = await serachByKeyAndUpdate(req.body, 'Aprimora', ['codigo_pokemon', 'cpf', 'hora_de_entrada'],
             [codigo, cpf, hora_de_entrada], queryFindByCodigoDeptAndHour,
-            ['codigo_pokemon', 'cpf', 'hora_de_saida'], ['codigo_pokemon', 'cpf', 'hora_de_entrada', 'hora_de_saida'])
+            ['codigo_pokemon', 'cpf', 'hora_de_entrada', 'hora_de_saida'], ['codigo_pokemon'])
 
         res.send(aprimora)
     } catch (e) {
