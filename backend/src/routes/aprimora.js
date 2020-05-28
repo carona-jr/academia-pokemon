@@ -79,7 +79,7 @@ router.patch('/aprimora', auth, async (req, res) => {
     try {
         const aprimora = await serachByKeyAndUpdate(req.body, 'Aprimora', ['codigo_pokemon', 'cpf', 'hora_de_entrada'],
             [codigo, cpf, hora_de_entrada], queryFindByCodigoDeptAndHour,
-            ['codigo_pokemon', 'cpf', 'hora_de_saida'], ['codigo_pokemon'])
+            ['codigo_pokemon', 'cpf', 'hora_de_saida'], ['codigo_pokemon', 'cpf', 'hora_de_entrada', 'hora_de_saida'])
 
         res.send(aprimora)
     } catch (e) {
