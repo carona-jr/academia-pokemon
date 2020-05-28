@@ -4,7 +4,7 @@ import Spinner from 'react-loading'
 
 import PieChart from './PieChart'
 
-import { api } from '../../../services/api'
+import { api } from '~/services/api'
 
 export default function PokemonByType() {
     let arr = []

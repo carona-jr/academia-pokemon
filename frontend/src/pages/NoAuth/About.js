@@ -2,7 +2,7 @@ import React from 'react'
 
 import './About.css'
 
-import LoginNav from '../../components/Nav/LoginHeader'
+import LoginNav from '~/components/Nav/LoginHeader'
 
 export default function About() {
     return (

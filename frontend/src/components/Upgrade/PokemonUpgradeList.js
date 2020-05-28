@@ -12,13 +12,13 @@ import Button from 'react-bootstrap/Button'
 
 import './PokemonUpgradeList.css'
 
-import imagemPokemon from '../../assets/images/ditto.png'
-import editImg from '../../assets/icons/edit-black-24dp.svg'
+import imagemPokemon from '~/assets/images/ditto.png'
+import editImg from '~/assets/icons/edit-black-24dp.svg'
 
 // import AlertMessage from '../PopUp/Alert'
 
-import { searchImg } from '../../services/img'
-import { api } from '../../services/api'
+import { searchImg } from '~/services/img'
+import { api } from '~/services/api'
 
 export default function PokemonUpgradeList() {
     let pokemonList = []

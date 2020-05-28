@@ -9,9 +9,9 @@ import NavLink from 'react-bootstrap/NavLink'
 
 import './Pricing.css'
 
-import LoginNav from '../../components/Nav/LoginHeader'
+import LoginNav from '~/components/Nav/LoginHeader'
 
-import { planData } from '../../utils/planData'
+import { planData } from '~/utils/planData'
 
 function PriceCard({ title, description, price, image, lcolor, first, second, third }) {
     return (

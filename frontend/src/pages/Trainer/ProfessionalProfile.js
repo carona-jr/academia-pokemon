@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
-import { api } from '../../services/api'
+import { api } from '~/services/api'
 
-import UserTemplate from '../../templates/UserTemplate'
+import UserTemplate from '~/templates/UserTemplate'
 
 export default function ProfessionalProfile({ history }) {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))

@@ -4,7 +4,7 @@ import Spinner from 'react-loading'
 
 import Calendar from './Calendar'
 
-import { api } from '../../../services/api'
+import { api } from '~/services/api'
 
 const today = new Date()
 

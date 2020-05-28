@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-import PokemonList from '../../components/Pokemon/PokemonList'
-import PokemonByTypeChart from '../../components/Pokemon/Charts/PokemonByType'
-import PokemonCalendar from '../../components/Pokemon/Calendar/PokemonCalendar'
+import PokemonList from '~/components/Pokemon/PokemonList'
+import PokemonByTypeChart from '~/components/Pokemon/Charts/PokemonByType'
+import PokemonCalendar from '~/components/Pokemon/Calendar/PokemonCalendar'
 
-import UserTemplate from '../../templates/UserTemplate'
+import UserTemplate from '~/templates/UserTemplate'
 
 import './User.css'
 

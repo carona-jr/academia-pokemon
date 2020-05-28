@@ -7,13 +7,13 @@ import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
 
-import AlertMessage from '../../components/PopUp/Alert'
+import AlertMessage from '~/components/PopUp/Alert'
 
-import { api } from '../../services/api'
+import { api } from '~/services/api'
 
-import UserTemplate from '../../templates/UserTemplate'
+import UserTemplate from '~/templates/UserTemplate'
 
-import { planData } from '../../utils/planData'
+import { planData } from '~/utils/planData'
 
 function PriceCard({ title, lcolor, first, second, third, price }) {
     return (

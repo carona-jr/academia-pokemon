@@ -4,17 +4,17 @@ import Nav from 'react-bootstrap/Nav'
 
 import './SideNav.css'
 
-import hideImg from '../../assets/icons/first_page-white-24dp.svg'
-import hideImgBlack from '../../assets/icons/first_page-black-24dp.svg'
-import menuBlack from '../../assets/icons/menu-black-24dp.svg'
-import add from '../../assets/icons/add-white-24dp.svg'
-import addBlack from '../../assets/icons/add-black-24dp.svg'
-import eye from '../../assets/icons/remove_red_eye-white-24dp.svg'
-import eyeBlack from '../../assets/icons/remove_red_eye-black-24dp.svg'
-import work from '../../assets/icons/work-white-24dp.svg'
-import workBlack from '../../assets/icons/work-black-24dp.svg'
-import upgrade from '../../assets/icons/fitness_center-white-24dp.svg'
-import upgradeBlack from '../../assets/icons/fitness_center-black-24dp.svg'
+import hideImg from '~/assets/icons/first_page-white-24dp.svg'
+import hideImgBlack from '~/assets/icons/first_page-black-24dp.svg'
+import menuBlack from '~/assets/icons/menu-black-24dp.svg'
+import add from '~/assets/icons/add-white-24dp.svg'
+import addBlack from '~/assets/icons/add-black-24dp.svg'
+import eye from '~/assets/icons/remove_red_eye-white-24dp.svg'
+import eyeBlack from '~/assets/icons/remove_red_eye-black-24dp.svg'
+import work from '~/assets/icons/work-white-24dp.svg'
+import workBlack from '~/assets/icons/work-black-24dp.svg'
+import upgrade from '~/assets/icons/fitness_center-white-24dp.svg'
+import upgradeBlack from '~/assets/icons/fitness_center-black-24dp.svg'
 
 export default function SideNav({ divMain }) {
     const nav = useRef()
