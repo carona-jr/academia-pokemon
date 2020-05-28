@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 
-import UserTemplate from '../../templates/UserTemplate'
-import Form from 'react-bootstrap/Form'
-
 import Spinner from 'react-loading'
+
+import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 
-import AlertMessage from '../../components/Alert'
+import AlertMessage from '../../components/PopUp/Alert'
+
 import { api } from '../../services/api'
+
+import UserTemplate from '../../templates/UserTemplate'
 
 export default function EditPokemon({ history }) {
     const [pokemonID] = useState(localStorage.getItem('pokemonID'))

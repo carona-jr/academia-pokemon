@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import PieChart from './PieChart'
+
 import Spinner from 'react-loading'
+
+import PieChart from './PieChart'
+
 import { api } from '../../../services/api'
 
 export default function PokemonByType() {

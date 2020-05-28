@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import Calendar from './Calendar'
+
 import Spinner from 'react-loading'
+
+import Calendar from './Calendar'
+
 import { api } from '../../../services/api'
 
 const today = new Date()

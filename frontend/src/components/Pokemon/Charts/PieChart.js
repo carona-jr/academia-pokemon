@@ -1,7 +1,8 @@
 import React from 'react'
+
 import { ResponsivePie } from '@nivo/pie'
 
-export default function MyResponsivePie({ data }) {
+export default function PieChart({ data }) {
     return (
         <ResponsivePie
             data={data}

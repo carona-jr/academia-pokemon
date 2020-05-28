@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-import imagemPokemon from '../../assets/images/ditto.png'
-import editImg from '../../assets/icons/edit-black-24dp.svg'
-
-import AlertMessage from '../Alert'
-import { searchImg } from '../../services/img'
-import { api } from '../../services/api'
-
 import Spinner from 'react-loading'
 
 import Card from 'react-bootstrap/Card'
@@ -15,6 +8,14 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import Button from 'react-bootstrap/Button'
 import NavLink from 'react-bootstrap/NavLink'
+
+import imagemPokemon from '../../assets/images/ditto.png'
+import editImg from '../../assets/icons/edit-black-24dp.svg'
+
+import AlertMessage from '../PopUp/Alert'
+
+import { searchImg } from '../../services/img'
+import { api } from '../../services/api'
 
 export default function PokemonUpgradeList() {
     let pokemonList = []

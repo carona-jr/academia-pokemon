@@ -1,5 +1,8 @@
 import React, { useRef } from 'react'
+
 import Nav from 'react-bootstrap/Nav'
+
+import './SideNav.css'
 
 import hideImg from '../../assets/icons/first_page-white-24dp.svg'
 import hideImgBlack from '../../assets/icons/first_page-black-24dp.svg'
@@ -8,14 +11,12 @@ import add from '../../assets/icons/add-white-24dp.svg'
 import addBlack from '../../assets/icons/add-black-24dp.svg'
 import eye from '../../assets/icons/remove_red_eye-white-24dp.svg'
 import eyeBlack from '../../assets/icons/remove_red_eye-black-24dp.svg'
-import location from '../../assets/icons/location_city-white-24dp.svg'
-import locationBlack from '../../assets/icons/location_city-black-24dp.svg'
-import aprimora from '../../assets/icons/fitness_center-white-24dp.svg'
-import aprimoraBlack from '../../assets/icons/fitness_center-black-24dp.svg'
+import work from '../../assets/icons/work-white-24dp.svg'
+import workBlack from '../../assets/icons/work-black-24dp.svg'
+import upgrade from '../../assets/icons/fitness_center-white-24dp.svg'
+import upgradeBlack from '../../assets/icons/fitness_center-black-24dp.svg'
 
-import './SideNav.css'
-
-export default function User({ divMain }) {
+export default function SideNav({ divMain }) {
     const nav = useRef()
     const menuIcon = useRef()
     const link1 = useRef()
@@ -90,10 +91,10 @@ export default function User({ divMain }) {
                     </Nav.Link>
                     {
                         (localStorage.getItem('coidse') === 'true') ? (
-                            <Nav.Link ref={link4} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/trainer/department">
-                                <img className="icon-1" src={location} alt="x" />
-                                <img className="icon-2" src={locationBlack} alt="x" />
-                                <p className="m-0">Departamento</p>
+                            <Nav.Link ref={link4} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/trainer/profile">
+                                <img className="icon-1" src={work} alt="x" />
+                                <img className="icon-2" src={workBlack} alt="x" />
+                                <p className="m-0">Treinador</p>
                             </Nav.Link>
                         ) : (
                                 <></>
@@ -102,8 +103,8 @@ export default function User({ divMain }) {
                     {
                         (localStorage.getItem('coidse') === 'true') ? (
                             <Nav.Link ref={link5} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/trainer/upgrade">
-                                <img className="icon-1" src={aprimora} alt="x" />
-                                <img className="icon-2" src={aprimoraBlack} alt="x" />
+                                <img className="icon-1" src={upgrade} alt="x" />
+                                <img className="icon-2" src={upgradeBlack} alt="x" />
                                 <p className="m-0">Aprimora</p>
                             </Nav.Link>
                         ) : (

@@ -1,7 +1,8 @@
 import React from 'react'
 
-import UserTemplate from '../../templates/UserTemplate'
 import PokemonUpgradeList from '../../components/Upgrade/PokemonUpgradeList'
+
+import UserTemplate from '../../templates/UserTemplate'
 
 export default function Upgrade({ history }) {
     return (
