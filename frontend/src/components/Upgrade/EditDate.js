@@ -7,17 +7,33 @@ import close from '~/assets/icons/close-black-24dp.svg'
 
 import { api } from '~/services/api'
 
-export default function EditDate({ handleClose, pokemon, inputNumber, time }) {
+export default function EditDate({ handleClose, pokemon, inputNumber, time, setShow }) {
     const [date, setDate] = useState({})
 
     async function handleSubmit() {
+        const userCpf = localStorage.getItem('cpf')
+        if (time === 'data_de_saida') {
+            try {
+                await api.patch('/pokemon', {
+                    searchTerm: pokemon.codigo_pokemon,
+                    [time]: date[time]
+                }, {
+                    headers: {
+                        Authorization: 'Bearer ' + userCpf
+                    }
+                })
+                window.location.reload(true)
+            } catch (e) {
+                setShow(true)
+            }
+            return
+        }
         try {
-            const userCpf = localStorage.getItem('cpf')
-            const response = await api.patch('/aprimora', {
+            await api.patch('/aprimora', {
                 searchTerm: {
                     codigo_pokemon: pokemon.codigo_pokemon,
                     cpf: userCpf,
-                    [time]: pokemon[time]
+                    hora_de_entrada: pokemon.hora_de_entrada
                 },
                 [time]: date[time]
             }, {
@@ -27,8 +43,7 @@ export default function EditDate({ handleClose, pokemon, inputNumber, time }) {
             })
             window.location.reload(true)
         } catch (e) {
-            console.log(e.response.data)
-            alert(e.response.data)
+            setShow(true)
         }
     }
 

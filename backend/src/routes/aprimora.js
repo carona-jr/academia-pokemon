@@ -46,15 +46,16 @@ router.get('/aprimora/treinador', auth, async (req, res) => {
             
             const aprimora = await pool.query(select)
             const arr = aprimora.rows.slice(limitInf, limitSup)
+
             arr.map(value => {
                 if (value.hora_de_entrada) {
-                    value.hora_de_entrada = momentTz(value.hora_de_entrada).tz('America/Argentina/Buenos_Aires').format('DD/MM/YYYY HH:mm:ss')
+                    value.hora_de_entrada = momentTz(value.hora_de_entrada).tz('America/Argentina/Buenos_Aires').format('YYYY-MM-DDTHH:mm:ss')
                 }
                 if (value.hora_de_saida) {
-                    value.hora_de_saida = momentTz(value.hora_de_saida).tz('America/Argentina/Buenos_Aires').format('DD/MM/YYYY HH:mm:ss')
+                    value.hora_de_saida = momentTz(value.hora_de_saida).tz('America/Argentina/Buenos_Aires').format('YYYY-MM-DDTHH:mm:ss')
                 }
                 if (value.data_cadastro) {
-                    value.data_cadastro = momentTz(value.data_cadastro).tz('America/Argentina/Buenos_Aires').format('DD/MM/YYYY HH:mm:ss')
+                    value.data_cadastro = momentTz(value.data_cadastro).tz('America/Argentina/Buenos_Aires').format('YYYY-MM-DDTHH:mm:ss')
                 }
             })
             return res.send(arr)
@@ -88,9 +89,7 @@ router.get('/aprimora/pokemon', auth, async (req, res) => {
 router.patch('/aprimora', auth, async (req, res) => {
     const cpf = req.body.searchTerm.cpf
     const codigo = req.body.searchTerm.codigo_pokemon
-    const dateTime = req.body.searchTerm.hora_de_entrada.split(' ')
-    const data = dateTime[0].split('/').reverse().join('-')
-    const hora_de_entrada = `${data} ${dateTime[1]}`
+    const hora_de_entrada = req.body.searchTerm.hora_de_entrada
 
     if (req.body.hora_de_entrada)
         req.body.hora_de_entrada = moment(req.body.hora_de_entrada).format('YYYY-MM-DD HH:mm:ss')
@@ -124,7 +123,7 @@ router.delete('/aprimora/all', auth, async (req, res) => {
 })
 
 router.delete('/aprimora', auth, async (req, res) => {
-    queryDeleteByCodPokemonAndCpfAndHour.values = [req.body.codigo_pokemon, req.body.cpf, req.body.hora_de_entrada]
+    queryDeleteByCodPokemonAndCpfAndHour.values = [req.header('codigo_pokemon'), req.user.cpf, req.header('hora_de_entrada')]
 
     try {
         const aprimora = await pool.query(queryDeleteByCodPokemonAndCpfAndHour)
