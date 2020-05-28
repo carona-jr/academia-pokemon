@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react'
 
 import Spinner from 'react-loading'
 
+import EditDate from './EditDate'
+
 import Card from 'react-bootstrap/Card'
 import CardImage from 'react-bootstrap/CardImg'
 import ListGroup from 'react-bootstrap/ListGroup'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
 import Button from 'react-bootstrap/Button'
-import NavLink from 'react-bootstrap/NavLink'
+
+import './PokemonUpgradeList.css'
 
 import imagemPokemon from '../../assets/images/ditto.png'
 import editImg from '../../assets/icons/edit-black-24dp.svg'
 
-import AlertMessage from '../PopUp/Alert'
+// import AlertMessage from '../PopUp/Alert'
 
 import { searchImg } from '../../services/img'
 import { api } from '../../services/api'
@@ -27,10 +30,16 @@ export default function PokemonUpgradeList() {
     async function loadPokemons() {
         try {
             const userCpf = localStorage.getItem('cpf')
-            const response = await api.get('/aprimora/treinador?sortBy=codigo_pokemon:asc&limit=1', {
+            const response = await api.get('/aprimora/treinador?sortBy=data_cadastro:desc&limit=1', {
                 headers: {
                     Authorization: 'Bearer ' + userCpf
                 }
+            })
+            response.data.map(pokemon => {
+                pokemon.input1 = false
+                pokemon.input2 = false
+                pokemon.input3 = false
+                return pokemon
             })
             setUserPokemons(response.data)
             for (let i = 0; i < response.data.length; i++) {
@@ -42,6 +51,24 @@ export default function PokemonUpgradeList() {
         } catch (e) {
             setUserPokemons(0)
         }
+    }
+
+    function handleOpen(e, cod, inputNumber) {
+        e.preventDefault()
+        setUserPokemons(userPokemons.filter(pokemon => {
+            if (cod === pokemon.codigo_pokemon)
+                pokemon[inputNumber] = true
+            return pokemon
+        }))
+    }
+
+    function handleClose(e, cod, inputNumber) {
+        e.preventDefault()
+        setUserPokemons(userPokemons.filter(pokemon => {
+            if (cod === pokemon.codigo_pokemon)
+                pokemon[inputNumber] = false
+            return pokemon
+        }))
     }
 
     async function handleDelete(e, codigo) {
@@ -69,7 +96,7 @@ export default function PokemonUpgradeList() {
     return (
         <div>
             {
-                userPokemons && imgPokemon && userPokemons.length > 0 ? (
+                userPokemons && imgPokemon ? (
                     <div className="w-100 m-0 p-0">
                         {/* <AlertMessage show={show} setShow={setShow}
                             title="Sucesso"
@@ -95,8 +122,8 @@ export default function PokemonUpgradeList() {
                                 userPokemons.map(pokemon => {
                                     return (
                                         <Card key={pokemon.codigo_pokemon} className="w-auto w-lg-25 mr-5 mb-5">
-                                            <CardImage className="mx-5 mt-5" top="true" style={{ width: '100px' }} src={imgPokemon[pokemon.raca] || imagemPokemon} />
                                             <Card.Body className="mb-3 mt-3">
+                                                <CardImage top="true" style={{ width: '100px' }} src={imgPokemon[pokemon.raca] || imagemPokemon} />
                                                 <Card.Title><span style={{ textTransform: 'capitalize' }}>{pokemon.raca} - Nível {pokemon.codigo_pokemon}</span></Card.Title>
                                                 <Card.Text>
                                                     <span style={{ textTransform: 'capitalize' }}>Nome: {pokemon.nome}</span>
@@ -105,23 +132,50 @@ export default function PokemonUpgradeList() {
                                                     <span style={{ textTransform: 'capitalize' }}>Classificação: {pokemon.classificacao}</span>
                                                 </Card.Text>
                                                 <ListGroup className="list-group-flush" variant="dark" text="light ">
-                                                    <ListGroupItem className="mb-2 d-flex justify-content-between" variant="light" text="dark">
-                                                        <p className="m-0 p-0">
-                                                            Início do serviço: {pokemon.hora_de_entrada.slice(0, 19).split('T').join(' ')}
-                                                        </p>
-                                                        <img className="w-auto" src={editImg} />
+                                                    <ListGroupItem className="mb-2 d-flex flex-column" variant="light" text="dark">
+                                                        <div className="mb-2 d-flex justify-content-between">
+                                                            <p className="m-0 p-0">
+                                                                Início do serviço: {pokemon.hora_de_entrada.slice(0, 19).split('T').join(' ')}
+                                                            </p>
+                                                            <img className="w-auto hover-cursor" src={editImg} alt="editar" onClick={(e) => handleOpen(e, pokemon.codigo_pokemon, 'input1')} />
+                                                        </div>
+                                                        {
+                                                            (pokemon.input1) ? (
+                                                                <EditDate handleClose={handleClose} pokemon={pokemon} inputNumber="input1" time="hora_de_entrada"/>
+                                                            ) : (
+                                                                    <></>
+                                                                )
+                                                        }
                                                     </ListGroupItem>
-                                                    <ListGroupItem className="mb-2 d-flex justify-content-between" variant="light" text="dark">
-                                                        <p className="m-0 p-0">
-                                                            Término do serviço: {pokemon.hora_de_saida.slice(0, 19).split('T').join(' ')}
-                                                        </p>
-                                                        <img className="w-auto" src={editImg} />
+                                                    <ListGroupItem className="mb-2 d-flex flex-column" variant="light" text="dark">
+                                                        <div className="mb-2 d-flex justify-content-between">
+                                                            <p className="m-0 p-0">
+                                                                Término do serviço: {pokemon.hora_de_saida.slice(0, 19).split('T').join(' ')}
+                                                            </p>
+                                                            <img className="w-auto hover-cursor" alt="editar" src={editImg} onClick={(e) => handleOpen(e, pokemon.codigo_pokemon, 'input2')} />
+                                                        </div>
+                                                        {
+                                                            (pokemon.input2) ? (
+                                                                <EditDate handleClose={handleClose} pokemon={pokemon} inputNumber="input2" time="hora_de_entrada" />
+                                                            ) : (
+                                                                    <></>
+                                                                )
+                                                        }
                                                     </ListGroupItem>
-                                                    <ListGroupItem className="mb-2 d-flex justify-content-between" variant="light" text="dark">
-                                                        <p className="m-0 p-0">
-                                                            Data de entrega do pokémon: {pokemon.data_de_saida.slice(0, 10).split('T').join(' ')}
-                                                        </p>
-                                                        <img className="w-auto" src={editImg} />
+                                                    <ListGroupItem className="mb-2 d-flex flex-column" variant="light" text="dark">
+                                                        <div className="mb-2 d-flex justify-content-between">
+                                                            <p className="m-0 p-0">
+                                                                Data de entrega: {pokemon.data_de_saida.slice(0, 10).split('T').join(' ')}
+                                                            </p>
+                                                            <img className="w-auto hover-cursor" alt="editar" src={editImg} onClick={(e) => handleOpen(e, pokemon.codigo_pokemon, 'input3')} />
+                                                        </div>
+                                                        {
+                                                            (pokemon.input3) ? (
+                                                                <EditDate handleClose={handleClose} pokemon={pokemon} inputNumber="input3" time="hora_de_entrada"/>
+                                                            ) : (
+                                                                    <></>
+                                                                )
+                                                        }
                                                     </ListGroupItem>
                                                 </ListGroup>
                                                 <div className="d-flex justify-content-center">
@@ -136,8 +190,6 @@ export default function PokemonUpgradeList() {
                                 })
                             }
                         </div>
-
-
                     </div>
                 ) : (userPokemons === 0) ? (
                     <h6>Você não tem nenhum trabalho pendente!</h6>

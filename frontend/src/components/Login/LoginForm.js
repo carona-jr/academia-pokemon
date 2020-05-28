@@ -18,7 +18,7 @@ export default function LoginForm({ history, setShow }) {
             })
 
             try {
-                const responseTrainer = await api.get('/treinador/me', {
+                await api.get('/treinador/me', {
                     headers: {
                         Authorization: 'Bearer ' + response.data.cpf
                     }
