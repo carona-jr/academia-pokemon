@@ -14,6 +14,10 @@ import SearchPage from './pages/User/SearchPage'
 import ProfessionalProfile from './pages/Trainer/ProfessionalProfile'
 import Upgrade from './pages/Trainer/Upgrade'
 
+import HomeMaster from './pages/Master/Home'
+import AddDepartment from './pages/Master/Department/AddDepartment'
+import ListDepartment from './pages/Master/Department/ListDepartment'
+
 import Login from './pages/NoAuth/Login'
 import About from './pages/NoAuth/About'
 import Pricing from './pages/NoAuth/Pricing'
@@ -39,6 +43,10 @@ export default function Routes() {
 
                 <Route path="/trainer/profile" component={ProfessionalProfile} />
                 <Route path="/trainer/upgrade" component={Upgrade} />
+
+                <Route path="/master" component={HomeMaster}/>
+                <Route path="/department/add" component={AddDepartment}/>
+                <Route path="/department/list" component={ListDepartment}/>
 
                 <Route path="/signup" component={SignUp} />
                 <Route path="/about" component={About} />

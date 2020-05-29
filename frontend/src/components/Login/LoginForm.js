@@ -28,6 +28,17 @@ export default function LoginForm({ history, setShow }) {
                 localStorage.setItem('coidse', 'false')
             }
 
+            try {
+                await api.get('/mestre', {
+                    headers: {
+                        Authorization: 'Bearer ' + response.data.cpf
+                    }
+                })
+                localStorage.setItem('mhaighstir', 'true')
+            } catch (e) {
+                localStorage.setItem('mhaighstir', 'false')
+            }
+
             localStorage.setItem('phones', JSON.stringify(responsePhone.data))
             localStorage.setItem('cpf', response.data.cpf)  
             localStorage.setItem('user', JSON.stringify(response.data))

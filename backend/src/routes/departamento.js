@@ -45,6 +45,19 @@ router.get('/departamento', auth, async (req, res) => {
     }
 })
 
+router.get('/departamento/all', auth, async (req, res) => {
+    try {
+        const departamento = await pool.query('SELECT * FROM Departamento AS d INNER JOIN Usuario AS u ON u.cpf = d.gerente')
+
+        if (!departamento.rowCount)
+            return res.status(404).send()
+
+        res.send(departamento.rows)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
 router.patch('/departamento', auth, async (req, res) => {
     const codigo = req.body.searchTerm.codigo_dept
     const nome = req.body.searchTerm.nome
