@@ -1,0 +1,302 @@
+import React, { useState, useEffect } from 'react'
+
+import Spinner from 'react-loading'
+
+import Table from 'react-bootstrap/Table'
+import Form from 'react-bootstrap/Form'
+import { Pagination } from 'react-bootstrap'
+
+import editImg from '~/assets/icons/edit-black-24dp.svg'
+import deleteImg from '~/assets/icons/delete-black-24dp.svg'
+
+import { api } from '~/services/api'
+import AlertMessage from '~/components/PopUp/Alert'
+
+import UserTemplate from '~/templates/UserTemplate'
+
+export default function Upgrade({ history }) {
+    const [trainers, setTrainers] = useState()
+
+    const [active, setActive] = useState(1)
+    const [past, setPast] = useState(1)
+    const [future, setFuture] = useState(1)
+    const [count, setCount] = useState()
+    const [numTrainer, setNumTrainer] = useState('??')
+
+    const [show, setShow] = useState(false)
+    const [show2, setShow2] = useState(false)
+
+    const [sort, setSort] = useState({ sortBy: ['nome', 'asc'], limit: 1, table: 'u' })
+
+    async function loadCount() {
+        const userCpf = localStorage.getItem('cpf')
+        try {
+            const response = await api.get('treinador/all', {
+                headers: {
+                    Authorization: 'Bearer ' + userCpf
+                }
+            })
+
+            if (response.data.count === '0') {
+                setNumTrainer(0)
+                return setCount(0)
+            }
+            setNumTrainer(response.data.count)
+
+            const number = parseInt(response.data.count)
+
+            if (number % 10 === 0)
+                return setCount(Math.trunc(number / 10))
+
+            setCount(Math.trunc(number / 10 + 1))
+        } catch (e) {
+            alert(e)
+        }
+    }
+
+    async function loadTrainers() {
+        const userCpf = localStorage.getItem('cpf')
+        try {
+            const response = await api.get(`/treinador/all?sortBy=${sort.sortBy[0]}:${sort.sortBy[1]}&limit=${sort.limit}&table=${sort.table}`, {
+                headers: {
+                    Authorization: 'Bearer ' + userCpf
+                }
+            })
+            setTrainers(response.data)
+        } catch (e) {
+            alert(e)
+        }
+    }
+
+    async function handleDelete() {
+
+    }
+
+    let items = []
+    for (let number = past; number <= future; number++) {
+        items.push(
+            <Pagination.Item key={number} active={number === active} onClick={(e) => handleClick(e, number)}>
+                {number}
+            </Pagination.Item>
+        )
+    }
+
+    function handleClick(e, number) {
+        setSort({ ...sort, limit: number })
+        setActive(number)
+        if (number === 1) {
+            setPast(1)
+            if (count === 1)
+                return setFuture(1)
+            setFuture(number + 1)
+            return
+        }
+
+        if (number === count) {
+            setPast(count - 1)
+            setFuture(count)
+            return
+        }
+
+        if (active < number) {
+            setPast(past)
+            setFuture(future + 1)
+        } else {
+            setPast(past - 1)
+            setFuture(future - 1)
+        }
+    }
+
+    useEffect(() => {
+        loadCount()
+        loadTrainers()
+        // eslint-disable-next-line
+    }, [active, sort])
+
+    return (
+        <div>
+            {
+                !localStorage.getItem('cpf') || !localStorage.getItem('mhaighstir') ? (
+                    history.push('/')
+                ) : trainers && trainers.length > 0 ? (
+                    <UserTemplate history={history}>
+                        <div className="w-100 d-flex flex-column mb-5">
+                            <h2 className="text-center">Seus treinadores Pokémons</h2>
+                            <p className="text-center mt-0 mb-5">Atualmente, você possui {numTrainer} treinadores</p>
+                        </div>
+                        <AlertMessage show={show} setShow={setShow}
+                            title="Sucesso"
+                            msg="O treinador foi deletado com sucesso, recarregue a página :)"
+                            button="Recarregar"
+                            func={() => {
+                                setShow(false)
+                                return window.location.reload(true)
+                            }}
+                            colorAlert="success"
+                            colorButton="outline-success"
+                        />
+                        <AlertMessage show={show2} setShow={setShow2}
+                            title="Erro"
+                            msg="O treinador não foi deletado com sucesso :)"
+                            button="Fechar"
+                            func={() => setShow(false)}
+                            colorAlert="danger"
+                            colorButton="outline-danger"
+                        />
+                        <div className="d-flex flex-row flex-wrap justify-content-center">
+                            <Form className="d-flex flex-column flex-lg-row">
+                                <Form.Group controlId="formGridState" className="d-flex flex-row">
+                                    <Form.Label className="w-100 w-lg-75 align-self-center">Ordenar por:</Form.Label>
+                                    <Form.Control as="select" value={sort.sortSearch} onChange={e => {
+                                        if (e.target.value === 'nome' || e.target.value === 'cpf' || e.target.value === 'data_cadastro')
+                                            return setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'u' })
+                                        setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 't' })
+                                    }}>
+                                        <option value="nome">Nome</option>
+                                        <option value="cpf">CPF</option>
+                                        <option value="cpts">CPTS</option>
+                                        <option value="salario_base">Salário</option>
+                                        <option value="instituto">Instituto</option>
+                                        <option value="data_cadastro">Data de cadastro</option>
+                                    </Form.Control>
+                                </Form.Group>
+                                <Form.Group className="d-flex flex-row justify-content-center align-content-center">
+                                    <Form.Label as="legend" column>
+                                        De forma:
+                                    </Form.Label>
+                                    <Form.Check
+                                        className="align-self-center mr-2"
+                                        type="radio"
+                                        label="Crescente"
+                                        name="formOrganizacao"
+                                        id="formOrganizacao1"
+                                        onChange={e => setSort({ ...sort, sortBy: [sort.sortBy[0], 'asc'] })}
+                                    />
+                                    <Form.Check
+                                        className="align-self-center"
+                                        type="radio"
+                                        label="Decrescente"
+                                        name="formOrganizacao"
+                                        id="formHorizontalRadios2"
+                                        onChange={e => setSort({ ...sort, sortBy: [sort.sortBy[0], 'desc'] })}
+                                    />
+                                </Form.Group>
+                            </Form>
+                            <Table className="m-0 p-0" striped bordered hover responsive>
+                                <thead>
+                                    <tr>
+                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                            nome
+                                        </th>
+                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                            cpf
+                                        </th>
+                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                            cpts
+                                        </th>
+                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                            salário
+                                        </th>
+                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                            instituto
+                                        </th>
+                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                            promovido em (data)
+                                        </th>
+                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                            #
+                                        </th>
+                                    </tr>
+                                </thead>
+                                {
+                                    trainers.map(trainer => {
+                                        return (
+                                            <tbody key={trainer.cpf}>
+                                                <tr>
+                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                                        {trainer.nome}
+                                                    </td>
+                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                                        {trainer.cpf}
+                                                    </td>
+                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                                        {trainer.cpts}
+                                                    </td>
+                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                                        {trainer.salario_base}
+                                                    </td>
+                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                                        {trainer.instituto}
+                                                    </td>
+                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                                        {trainer.data_cadastro.slice(0, 19).split('T').join(' ')}
+                                                    </td>
+                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                                        <a className="m-0 mr-3 p-0" href="/user/pokemon/edit" onClick={(e) =>
+                                                            localStorage.setItem('trainerCPF', trainer.cpf)
+                                                        }>
+                                                            <img src={editImg} alt="edit"></img>
+                                                        </a>
+                                                        <a className="m-0 p-0" href="/user/pokemon/mine" onClick={(e) => handleDelete(e, trainer.cpf)}>
+                                                            <img src={deleteImg} alt="delete" ></img>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        )
+                                    })
+                                }
+                            </Table>
+                            <Pagination className="justify-content-center mt-3">
+                                <Pagination.First onClick={(e) => handleClick(e, 1)} />
+                                <Pagination.Prev
+                                    onClick={(e) => {
+                                        if (active === 1)
+                                            return handleClick(e, 1)
+                                        let number = active
+                                        return handleClick(e, --number)
+                                    }}
+                                />
+                                {
+                                    (active !== 1) ? (
+                                        <Pagination.Ellipsis />
+                                    ) : (
+                                            <></>
+                                        )
+                                }
+                                {items}
+                                {
+                                    (active !== count) ? (
+                                        <Pagination.Ellipsis />
+                                    ) : (
+                                            <></>
+                                        )
+                                }
+                                <Pagination.Next
+                                    onClick={(e) => {
+                                        if (active === count)
+                                            return handleClick(e, active)
+                                        let number = active
+                                        return handleClick(e, ++number)
+                                    }}
+                                />
+                                <Pagination.Last onClick={(e) => handleClick(e, count)} />
+                            </Pagination>
+                        </div>
+                    </UserTemplate>
+
+                ) : (count === 0) ? (
+                    <UserTemplate history={history}>
+                        <h6>Você não tem nenhum treinador!</h6>
+                    </UserTemplate>
+                ) : (
+                        <UserTemplate history={history}>
+                            <div className="d-flex justify-content-center my-5 py-5" >
+                                <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
+                            </div>
+                        </UserTemplate>
+                    )
+            }
+        </div>
+    )
+}

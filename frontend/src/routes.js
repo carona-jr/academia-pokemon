@@ -17,6 +17,8 @@ import Upgrade from './pages/Trainer/Upgrade'
 import HomeMaster from './pages/Master/Home'
 import AddDepartment from './pages/Master/Department/AddDepartment'
 import ListDepartment from './pages/Master/Department/ListDepartment'
+import AddTrainer from './pages/Master/Trainer/AddNewTrainer'
+import ListTrainer from './pages/Master/Trainer/ListTrainer'
 
 import Login from './pages/NoAuth/Login'
 import About from './pages/NoAuth/About'
@@ -47,6 +49,8 @@ export default function Routes() {
                 <Route path="/master" component={HomeMaster}/>
                 <Route path="/department/add" component={AddDepartment}/>
                 <Route path="/department/list" component={ListDepartment}/>
+                <Route path="/trainer/add" component={AddTrainer}/>
+                <Route path="/trainer/list" component={ListTrainer}/>
 
                 <Route path="/signup" component={SignUp} />
                 <Route path="/about" component={About} />

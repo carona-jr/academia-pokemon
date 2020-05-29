@@ -9,6 +9,7 @@ import upgradeBlack from '~/assets/icons/fitness_center-black-24dp.svg'
 import buildBlack from '~/assets/icons/build-black-24dp.svg'
 import faceBlack from '~/assets/icons/face-black-24dp.svg'
 import eyeBlack from '~/assets/icons/remove_red_eye-black-24dp.svg'
+import editBlack from '~/assets/icons/edit-black-24dp.svg'
 
 export default function Upgrade({ history }) {
     return (
@@ -51,8 +52,8 @@ export default function Upgrade({ history }) {
                                         description="Gerencie os seus treinadores"
                                         create="Novo treinador"
                                         look="Todos os treinadores"
-                                        routeCreate=""
-                                        routeLook=""
+                                        routeCreate="/trainer/add"
+                                        routeLook="/trainer/list"
                                     />
                                     <CardManager
                                         history={history}
@@ -82,6 +83,16 @@ export default function Upgrade({ history }) {
                                         create="Treinador"
                                         look="Mestre"
                                         routeCreate="/trainer/profile"
+                                        routeLook=""
+                                    />
+                                    <CardManager
+                                        history={history}
+                                        title="Admin"
+                                        img={editBlack}
+                                        description="Faça consultas personalizadas"
+                                        create="PostgreSQL"
+                                        look="PostgreSQL"
+                                        routeCreate=""
                                         routeLook=""
                                     />
                                 </div>

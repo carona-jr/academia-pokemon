@@ -32,8 +32,46 @@ export default function ProfessionalProfile({ history }) {
                 trabalha: department.data
             })
         } catch (e) {
-            alert(e)
+            try {
+                const profile = await api.get('/treinador/me', {
+                    headers: {
+                        Authorization: 'Bearer ' + user.cpf
+                    }
+                })
+                const especialidade = await api.get('/especialidade', {
+                    headers: {
+                        Authorization: 'Bearer ' + user.cpf
+                    }
+                })
+                setUser({
+                    ...user,
+                    cpts: profile.data.cpts,
+                    instituto: profile.data.instituto,
+                    salario_base: profile.data.salario_base,
+                    especialidades: especialidade.data,
+                    trabalha: [{ nome_dept: '...', codigo_dept: '...', gerente: '...', classificacao: '...' }]
+                })
+            } catch (e) {
+                try {
+                    const profile = await api.get('/treinador/me', {
+                        headers: {
+                            Authorization: 'Bearer ' + user.cpf
+                        }
+                    })
+                    setUser({
+                        ...user,
+                        cpts: profile.data.cpts,
+                        instituto: profile.data.instituto,
+                        salario_base: profile.data.salario_base,
+                        especialidades: [{ especialidade: 'nenhuma ainda :(' }],
+                        trabalha: [{ nome_dept: '...', codigo_dept: '...', gerente: '...', classificacao: '...' }]
+                    })
+                } catch (e) {
+                    console.log(e)
+                }
+            }
         }
+
     }
 
     useEffect(() => {
@@ -82,9 +120,9 @@ export default function ProfessionalProfile({ history }) {
                                                 {
                                                     user.especialidades.map(item => {
                                                         return (
-                                                            <li className="my-2" key={item.especialidade} style={{ textTransform: 'capitalize'}}>
+                                                            <li className="my-2" key={item.especialidade} style={{ textTransform: 'capitalize' }}>
                                                                 {item.especialidade || 'Carregando...'}
-                                                            </li> 
+                                                            </li>
                                                         )
                                                     })
                                                 }
@@ -102,33 +140,33 @@ export default function ProfessionalProfile({ history }) {
                                             </div>
                                         </div>
                                     ) : (
-                                        <div className="ml-5 my-4">
-                                            {
-                                                user.trabalha.map(item => {
-                                                    return (
-                                                        <div key={item.codigo_dept}>
-                                                            <div className="d-flex flex-row">
-                                                                <p style={{ width: '150px', fontWeight: 'bold' }}>Departamento:</p>
-                                                                <p style={{ textTransform: 'capitalize' }}>{item.nome || 'Carregando...'}</p>
+                                            <div className="ml-5 my-4">
+                                                {
+                                                    user.trabalha.map(item => {
+                                                        return (
+                                                            <div key={item.codigo_dept}>
+                                                                <div className="d-flex flex-row">
+                                                                    <p style={{ width: '150px', fontWeight: 'bold' }}>Departamento:</p>
+                                                                    <p style={{ textTransform: 'capitalize' }}>{item.nome_dept || 'Carregando...'}</p>
+                                                                </div>
+                                                                <div className="d-flex flex-row">
+                                                                    <p style={{ width: '150px', fontWeight: 'bold' }}>Código:</p>
+                                                                    <p style={{ textTransform: 'capitalize' }}>{item.codigo_dept || 'Carregando...'}</p>
+                                                                </div>
+                                                                <div className="d-flex flex-row">
+                                                                    <p style={{ width: '150px', fontWeight: 'bold' }}>Gerente:</p>
+                                                                    <p style={{ textTransform: 'capitalize' }}>{item.gerente || 'Carregando...'}</p>
+                                                                </div>
+                                                                <div className="d-flex flex-row">
+                                                                    <p style={{ width: '150px', fontWeight: 'bold' }}>Classificação:</p>
+                                                                    <p style={{ textTransform: 'capitalize' }}>{item.classificacao || 'Carregando...'}</p>
+                                                                </div>
                                                             </div>
-                                                            <div className="d-flex flex-row">
-                                                                <p style={{ width: '150px', fontWeight: 'bold' }}>Código:</p>
-                                                                <p style={{ textTransform: 'capitalize' }}>{item.codigo_dept || 'Carregando...'}</p>
-                                                            </div>
-                                                            <div className="d-flex flex-row">
-                                                                <p style={{ width: '150px', fontWeight: 'bold' }}>Gerente:</p>
-                                                                <p style={{ textTransform: 'capitalize' }}>{item.gerente || 'Carregando...'}</p>
-                                                            </div>
-                                                            <div className="d-flex flex-row">
-                                                                <p style={{ width: '150px', fontWeight: 'bold' }}>Classificação:</p>
-                                                                <p style={{ textTransform: 'capitalize' }}>{item.classificacao || 'Carregando...'}</p>
-                                                            </div>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                        </div>
-                                    )
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        )
                                 }
                             </div>
                         </div>
