@@ -1,5 +1,5 @@
 const express = require('express')
-const pool = requirae('../db/elephant-sql')
+const pool = require('../db/elephant-sql')
 const router = new express.Router()
 
 const { queryInsertTreinador, queryFindByCpf, queryDeleteByCpf } = require('../models/treinador')
@@ -66,7 +66,7 @@ router.get('/treinador/all', auth, async  (req, res) => {
 
 router.patch('/treinador', auth, async (req, res) => {
     try {
-        const treinador = await searchByKeyAndUpdate(req.body, 'Treinador', ['cpf'], [req.user.cpf],
+        const treinador = await searchByKeyAndUpdate(req.body, 'Treinador', ['cpf'], [req.body.searchTerm],
             queryFindByCpf, ['cpts', 'salario_base', 'instituto'])
 
         res.send(treinador)
