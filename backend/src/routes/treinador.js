@@ -1,5 +1,5 @@
 const express = require('express')
-const pool = require('../db/elephant-sql')
+const pool = requirae('../db/elephant-sql')
 const router = new express.Router()
 
 const { queryInsertTreinador, queryFindByCpf, queryDeleteByCpf } = require('../models/treinador')
@@ -76,7 +76,7 @@ router.patch('/treinador', auth, async (req, res) => {
 })
 
 router.delete('/treinador', auth, async (req, res) => {
-    queryDeleteByCpf.values = [req.user.cpf]
+    queryDeleteByCpf.values = [req.header('cpf')]
     try {
         const treinador = await pool.query(queryDeleteByCpf)
 
