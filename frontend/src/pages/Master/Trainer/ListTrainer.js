@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import Spinner from 'react-loading'
 
+import List from '~/components/Lists/List'
+
 import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
 import { Pagination } from 'react-bootstrap'
@@ -114,12 +116,12 @@ export default function Upgrade({ history }) {
     }, [active, sort])
 
     return (
-        <div>
+        <UserTemplate history={history}>
             {
                 !localStorage.getItem('cpf') || !localStorage.getItem('mhaighstir') ? (
                     history.push('/')
                 ) : trainers && trainers.length > 0 ? (
-                    <UserTemplate history={history}>
+                    <>
                         <div className="w-100 d-flex flex-column mb-5">
                             <h2 className="text-center">Seus treinadores Pokémons</h2>
                             <p className="text-center mt-0 mb-5">Atualmente, você possui {numTrainer} treinadores</p>
@@ -143,7 +145,7 @@ export default function Upgrade({ history }) {
                             colorAlert="danger"
                             colorButton="outline-danger"
                         />
-                        <div className="d-flex flex-row flex-wrap justify-content-center">
+                        <div className="d-flex flex-column flex-wrap justify-content-center">
                             <Form className="d-flex flex-column flex-lg-row">
                                 <Form.Group controlId="formGridState" className="d-flex flex-row">
                                     <Form.Label className="w-100 w-lg-75 align-self-center">Ordenar por:</Form.Label>
@@ -182,71 +184,14 @@ export default function Upgrade({ history }) {
                                     />
                                 </Form.Group>
                             </Form>
-                            <Table className="m-0 p-0" striped bordered hover responsive>
-                                <thead>
-                                    <tr>
-                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                            nome
-                                        </th>
-                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                            cpf
-                                        </th>
-                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                            cpts
-                                        </th>
-                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                            salário
-                                        </th>
-                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                            instituto
-                                        </th>
-                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                            promovido em (data)
-                                        </th>
-                                        <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                            #
-                                        </th>
-                                    </tr>
-                                </thead>
-                                {
-                                    trainers.map(trainer => {
-                                        return (
-                                            <tbody key={trainer.cpf}>
-                                                <tr>
-                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                        {trainer.nome}
-                                                    </td>
-                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                        {trainer.cpf}
-                                                    </td>
-                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                        {trainer.cpts}
-                                                    </td>
-                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                        {trainer.salario_base}
-                                                    </td>
-                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                        {trainer.instituto}
-                                                    </td>
-                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                        {trainer.data_cadastro.slice(0, 19).split('T').join(' ')}
-                                                    </td>
-                                                    <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                        <a className="m-0 mr-3 p-0" href="/user/pokemon/edit" onClick={(e) =>
-                                                            localStorage.setItem('trainerCPF', trainer.cpf)
-                                                        }>
-                                                            <img src={editImg} alt="edit"></img>
-                                                        </a>
-                                                        <a className="m-0 p-0" href="/user/pokemon/mine" onClick={(e) => handleDelete(e, trainer.cpf)}>
-                                                            <img src={deleteImg} alt="delete" ></img>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        )
-                                    })
-                                }
-                            </Table>
+                            <List     
+                             names={['nome', 'cpf', 'cpts', 'salario_base', 'instituto', 'data_cadastro']}
+                             titles={['Nome', 'CPF', 'CPTS', 'Salário', 'Instituto', 'Promovido em', '#']}
+                             routeGet="/treinador/all"
+                             routeDelete="/treinador" 
+                             sort={sort} 
+                             date="data_cadastro"
+                             />
                             <Pagination className="justify-content-center mt-3">
                                 <Pagination.First onClick={(e) => handleClick(e, 1)} />
                                 <Pagination.Prev
@@ -283,20 +228,19 @@ export default function Upgrade({ history }) {
                                 <Pagination.Last onClick={(e) => handleClick(e, count)} />
                             </Pagination>
                         </div>
-                    </UserTemplate>
-
+                    </>
                 ) : (count === 0) ? (
-                    <UserTemplate history={history}>
+                    <>
                         <h6>Você não tem nenhum treinador!</h6>
-                    </UserTemplate>
+                    </>
                 ) : (
-                        <UserTemplate history={history}>
+                        <>
                             <div className="d-flex justify-content-center my-5 py-5" >
                                 <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
                             </div>
-                        </UserTemplate>
+                        </>
                     )
             }
-        </div>
+        </UserTemplate>
     )
 }
