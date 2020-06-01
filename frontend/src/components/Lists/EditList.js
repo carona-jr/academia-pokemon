@@ -15,7 +15,13 @@ export default function FormList({ history, updates, path, name, routePatch, rou
     const [showError, setShowError] = useState(false)
 
     async function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault() 
+        
+        for (let [key, value] of Object.entries(edit)) {
+            if (!allowedUpdates.includes(key))
+                delete edit[key]
+        }
+
         delete edit.cpf
         delete edit.data_cadastro
         try {
