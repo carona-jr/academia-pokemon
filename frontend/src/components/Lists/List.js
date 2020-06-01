@@ -52,7 +52,7 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date 
                         {
                             titles.map(item => {
                                 return (
-                                    <th style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                    <th key={item} style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                                         {item}
                                     </th>
                                 )
@@ -64,12 +64,11 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date 
                     user.map(item => {
                         return (
                             <tbody key={item.cpf}>
-
                                 <tr>
                                     {
                                         names.map(component => {
                                             return (
-                                                <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                                                <td key={component} style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                                                 {
                                                     component !== date ? (
                                                         <>
@@ -87,7 +86,7 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date 
                                     }
 
                                     <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                        <a className="m-0 mr-3 p-0" href="/user/edit" onClick={(e) =>
+                                        <a className="m-0 mr-3 p-0" href="/master/trainer/edit" onClick={(e) =>
                                             localStorage.setItem('trainerCPF', item.cpf)
                                         }>
                                             <img src={editImg} alt="edit"></img>

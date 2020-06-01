@@ -116,12 +116,12 @@ export default function Upgrade({ history }) {
     }, [active, sort])
 
     return (
-        <UserTemplate history={history}>
+        <div>
             {
                 !localStorage.getItem('cpf') || !localStorage.getItem('mhaighstir') ? (
                     history.push('/')
                 ) : trainers && trainers.length > 0 ? (
-                    <>
+                    <UserTemplate history={history}>
                         <div className="w-100 d-flex flex-column mb-5">
                             <h2 className="text-center">Seus treinadores Pokémons</h2>
                             <p className="text-center mt-0 mb-5">Atualmente, você possui {numTrainer} treinadores</p>
@@ -228,19 +228,19 @@ export default function Upgrade({ history }) {
                                 <Pagination.Last onClick={(e) => handleClick(e, count)} />
                             </Pagination>
                         </div>
-                    </>
+                    </UserTemplate>
                 ) : (count === 0) ? (
-                    <>
+                    <UserTemplate history={history}>
                         <h6>Você não tem nenhum treinador!</h6>
-                    </>
+                    </UserTemplate>
                 ) : (
-                        <>
+                    <UserTemplate history={history}>
                             <div className="d-flex justify-content-center my-5 py-5" >
                                 <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
                             </div>
-                        </>
+                    </UserTemplate>
                     )
             }
-        </UserTemplate>
+        </div>
     )
 }
