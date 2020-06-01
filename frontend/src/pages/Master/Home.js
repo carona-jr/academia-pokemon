@@ -32,8 +32,8 @@ export default function Upgrade({ history }) {
                                         description="Gerencie os departamentos"
                                         create="Novo departamento"
                                         look="Todos os departamentos"
-                                        routeCreate="/department/add"
-                                        routeLook="/department/list"
+                                        routeCreate="/master/department/add"
+                                        routeLook="/master/department/list"
                                     />
                                     <CardManager
                                         history={history}
@@ -52,8 +52,8 @@ export default function Upgrade({ history }) {
                                         description="Gerencie os seus treinadores"
                                         create="Novo treinador"
                                         look="Todos os treinadores"
-                                        routeCreate="/trainer/add"
-                                        routeLook="/trainer/list"
+                                        routeCreate="/master/trainer/add"
+                                        routeLook="/master/trainer/list"
                                     />
                                     <CardManager
                                         history={history}
@@ -82,7 +82,7 @@ export default function Upgrade({ history }) {
                                         description="Veja os seus dados"
                                         create="Treinador"
                                         look="Mestre"
-                                        routeCreate="/trainer/profile"
+                                        routeCreate="/master/trainer/profile"
                                         routeLook=""
                                     />
                                     <CardManager
