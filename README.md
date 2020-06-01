@@ -2,9 +2,6 @@
 
 O projeto é um trabalho da disciplina de banco de dados I a fim de explorar os conceitos aprendidos em sala de aula com a linguagem SQL. Este trabalho tem como objetivo o desenvolvimento do banco de dados e uma interface gráfica para visualização dos dados contidos neste banco.
 
-#### Diagrama Entidade Relacionamento
-![alt text](https://raw.githubusercontent.com/carona-jr/academia-pokemon/master/img/bd.png?token=AJNMEVBP7VK5WBZF4T7J7YK62GTU4) "Diagrama Entidade Relacionamento"
-
 ## Iniciando
 
 Para iniciar um servidor, basta seguir os passos descritos abaixo.
