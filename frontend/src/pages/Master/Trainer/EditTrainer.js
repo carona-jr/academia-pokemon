@@ -1,17 +1,10 @@
-import React, { useState } from 'react'
-
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
+import React from 'react'
 
 import UserTemplate from '~/templates/UserTemplate'
 
 import EditList from '~/components/Lists/EditList'
 
 export default function EditTrainer({ history }) {
-    console.log(localStorage.getItem('trainerCPF'))
-
     return (
         <>
             {

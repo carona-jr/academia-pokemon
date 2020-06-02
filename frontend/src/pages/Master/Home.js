@@ -82,7 +82,7 @@ export default function Upgrade({ history }) {
                                         description="Veja os seus dados"
                                         create="Treinador"
                                         look="Mestre"
-                                        routeCreate="/master/trainer/profile"
+                                        routeCreate="/trainer/profile"
                                         routeLook=""
                                     />
                                     <CardManager
