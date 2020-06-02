@@ -7,12 +7,11 @@ import Col from 'react-bootstrap/Col'
 import AlertMessage from '~/components/PopUp/Alert'
 import { api } from '~/services/api'
 
-export default function CreateList({ history, newRow, route, registerDate, title}) {
+export default function CreateList({ history, newRow, route, registerDate, title }) {
     const [data, setData] = useState({})
     const [showSuccess, setShowSuccess] = useState(false)
     const [showError, setShowError] = useState(false)
     const today = new Date()
-    
     async function handleSubmit(e) {
         e.preventDefault()
         const userCpf = localStorage.getItem('cpf')
