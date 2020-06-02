@@ -11,7 +11,7 @@ const queryFindByNameAndCod = {
 }
 
 const queryDeleteByName = {
-    text: 'DELETE FROM Departamento WHERE nome_dept = $1'
+    text: 'DELETE FROM Departamento WHERE codigo_dept = $1'
 }
 
 module.exports = {

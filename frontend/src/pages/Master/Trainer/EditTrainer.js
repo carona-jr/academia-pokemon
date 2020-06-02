@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
+import EditAttribute from '~/components/Lists/EditAttribute'
 import UserTemplate from '~/templates/UserTemplate'
 
 import EditList from '~/components/Lists/EditList'
+import { api } from '~/services/api'
 
 export default function EditTrainer({ history }) {
+    const [userName, setUserName] = useState('')
+
+    async function loadTrainer() {
+        try {
+            const response = await api.get('/user/me', {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('trainerCPF')
+                }
+            })
+            setUserName(response.data.nome)
+        } catch (e) {
+        }
+    }
+
+    useEffect(() => {
+        loadTrainer()
+        // eslint-disable-next-line
+    }, [])
+
     return (
         <>
             {
@@ -12,6 +33,9 @@ export default function EditTrainer({ history }) {
                     history.push('/')
                 ) : (
                         <UserTemplate history={history}>
+                            <div className="w-100 d-flex flex-column mb-5">
+                                <h2 className="text-center">Editar dados do treinador <span style={{ textTransform: 'capitalize' }}>{userName}</span></h2>
+                            </div>
                             <EditList
                                 history={history}
                                 path="/master/trainer/list"
@@ -40,8 +64,11 @@ export default function EditTrainer({ history }) {
                                         placeholder: 'Unesp'
                                     }
                                 ]}
-
                             />
+
+                            <div className="w-100 mt-5">
+                                <EditAttribute routeGet="/especialidade" routeDelete="/especialidade" attribute="especialidade" cpf="trainerCPF"/>
+                            </div>
                         </UserTemplate>
                     )
             }

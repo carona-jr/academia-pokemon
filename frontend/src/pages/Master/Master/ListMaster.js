@@ -10,7 +10,7 @@ import AlertMessage from '~/components/PopUp/Alert'
 
 import UserTemplate from '~/templates/UserTemplate'
 
-export default function ListTrainer({ history }) {
+export default function ListMaster({ history }) {
     const [active, setActive] = useState(1)
     const [past, setPast] = useState(1)
     const [future, setFuture] = useState(1)
@@ -96,8 +96,8 @@ export default function ListTrainer({ history }) {
                 ) : count !== 0 ? (
                     <UserTemplate history={history}>
                         <div className="w-100 d-flex flex-column mb-5">
-                            <h2 className="text-center">Seus treinadores Pokémons</h2>
-                            <p className="text-center mt-0 mb-5">Atualmente, você possui {numTrainer} treinadores</p>
+                            <h2 className="text-center">Mestres da Academia</h2>
+                            <p className="text-center mt-0 mb-5">A academina possui {numTrainer} mestres</p>
                         </div>
                         <AlertMessage show={show} setShow={setShow}
                             title="Sucesso"
@@ -129,9 +129,6 @@ export default function ListTrainer({ history }) {
                                     }}>
                                         <option value="nome">Nome</option>
                                         <option value="cpf">CPF</option>
-                                        <option value="cpts">CPTS</option>
-                                        <option value="salario_base">Salário</option>
-                                        <option value="instituto">Instituto</option>
                                         <option value="data_cadastro">Data de cadastro</option>
                                     </Form.Control>
                                 </Form.Group>
@@ -158,10 +155,10 @@ export default function ListTrainer({ history }) {
                                 </Form.Group>
                             </Form>
                             <List
-                                names={['nome', 'cpf', 'cpts', 'salario_base', 'instituto', 'data_cadastro']}
-                                titles={['Nome', 'CPF', 'CPTS', 'Salário', 'Instituto', 'Promovido em', '#']}
-                                routeGet="/treinador/all"
-                                routeDelete="/treinador"
+                                names={['nome', 'cpf', 'data_cadastro']}
+                                titles={['Nome', 'CPF', 'Promovido em', '#']}
+                                routeGet="/mestre/all"
+                                routeDelete="/mestre"
                                 sort={sort}
                                 date="data_cadastro"
                             />

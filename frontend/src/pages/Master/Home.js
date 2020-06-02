@@ -72,8 +72,8 @@ export default function Upgrade({ history }) {
                                         description="Gerencie os seus mestres"
                                         create="Novo mestre"
                                         look="Todos os mestres"
-                                        routeCreate=""
-                                        routeLook=""
+                                        routeCreate="/master/add"
+                                        routeLook="/master/list"
                                     />
                                     <CardManager
                                         history={history}

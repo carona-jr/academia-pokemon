@@ -77,7 +77,7 @@ router.patch('/departamento', auth, async (req, res) => {
 
 router.delete('/departamento', auth, async (req, res) => {
     try {
-        queryDeleteByName.values = [req.header('nome_dept')]
+        queryDeleteByName.values = [req.header('codigo_dept')]
         const departamento = await pool.query(queryDeleteByName)
 
         if (!departamento.rowCount)
