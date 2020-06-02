@@ -16,13 +16,15 @@ const toArr = require('../utils/toArr')
 router.post('/departamento', auth, async (req, res) => {
     queryInsert.values = await toArr(req.body)
 
+    console.log(req.body)
+
     try {
         const newDepartment = await pool.query(queryInsert)
 
         if (!newDepartment.rowCount)
             return res.status(400).send()
 
-        queryFindByName.values = [req.body.nome]
+        queryFindByName.values = [req.body.nome_dept]
         const departamento = await pool.query(queryFindByName)
 
         res.status(201).send(departamento.rows)
@@ -60,7 +62,7 @@ router.get('/departamento/all', auth, async (req, res) => {
 
 router.patch('/departamento', auth, async (req, res) => {
     const codigo = req.body.searchTerm.codigo_dept
-    const nome = req.body.searchTerm.nome
+    const nome = req.body.searchTerm.nome_dept
 
     try {
         const departamento = await serachByKeyAndUpdate(req.body, 'Departamento', ['codigo_dept', 'nome'],
@@ -75,7 +77,7 @@ router.patch('/departamento', auth, async (req, res) => {
 
 router.delete('/departamento', auth, async (req, res) => {
     try {
-        queryDeleteByName.values = [req.body.nome]
+        queryDeleteByName.values = [req.header('nome_dept')]
         const departamento = await pool.query(queryDeleteByName)
 
         if (!departamento.rowCount)
