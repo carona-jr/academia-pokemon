@@ -15,8 +15,8 @@ export default function FormList({ history, updates, path, name, routePatch, rou
     const [showError, setShowError] = useState(false)
 
     async function handleSubmit(e) {
-        e.preventDefault() 
-        
+        e.preventDefault()
+
         for (let [key] of Object.entries(edit)) {
             if (!allowedUpdates.includes(key))
                 delete edit[key]
@@ -52,7 +52,10 @@ export default function FormList({ history, updates, path, name, routePatch, rou
         }
     }
 
-    useEffect(loadData(), [])
+    useEffect(() => {
+        loadData()
+        // eslint-disable-next-line
+    }, [])
 
     return (
         <>
