@@ -176,14 +176,14 @@ export default function Upgrade({ history }) {
                                     />
                                 </Form.Group>
                             </Form>
-                            <List     
-                             names={['nome', 'cpf', 'cpts', 'salario_base', 'instituto', 'data_cadastro']}
-                             titles={['Nome', 'CPF', 'CPTS', 'Salário', 'Instituto', 'Promovido em', '#']}
-                             routeGet="/treinador/all"
-                             routeDelete="/treinador" 
-                             sort={sort} 
-                             date="data_cadastro"
-                             />
+                            <List
+                                names={['nome', 'cpf', 'cpts', 'salario_base', 'instituto', 'data_cadastro']}
+                                titles={['Nome', 'CPF', 'CPTS', 'Salário', 'Instituto', 'Promovido em', '#']}
+                                routeGet="/treinador/all"
+                                routeDelete="/treinador"
+                                sort={sort}
+                                date="data_cadastro"
+                            />
                             <Pagination className="justify-content-center mt-3">
                                 <Pagination.First onClick={(e) => handleClick(e, 1)} />
                                 <Pagination.Prev
@@ -226,12 +226,12 @@ export default function Upgrade({ history }) {
                         <h6>Você não tem nenhum treinador!</h6>
                     </UserTemplate>
                 ) : (
-                    <UserTemplate history={history}>
-                            <div className="d-flex justify-content-center my-5 py-5" >
-                                <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
-                            </div>
-                    </UserTemplate>
-                    )
+                                <UserTemplate history={history}>
+                                    <div className="d-flex justify-content-center my-5 py-5" >
+                                        <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
+                                    </div>
+                                </UserTemplate>
+                            )
             }
         </div>
     )

@@ -67,7 +67,7 @@ export default function SideNav({ divMain }) {
             divMain.current.style.marginLeft = '100px'
             nav.current.style.width = '50px'
         }
-        
+
         menuOpen.current.style.width = 0
 
         link1.current.style.position = 'static'

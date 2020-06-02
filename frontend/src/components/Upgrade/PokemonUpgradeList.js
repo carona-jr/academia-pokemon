@@ -16,8 +16,6 @@ import AlertMessage from '~/components/PopUp/Alert'
 import imagemPokemon from '~/assets/images/ditto.png'
 import editImg from '~/assets/icons/edit-black-24dp.svg'
 
-// import AlertMessage from '../PopUp/Alert'
-
 import { searchImg } from '~/services/img'
 import { api } from '~/services/api'
 

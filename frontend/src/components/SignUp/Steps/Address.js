@@ -19,7 +19,7 @@ export default function Address({ user, setUser, next, back }) {
                     <Form.Label>Número</Form.Label>
                     <Form.Control
                         md="4" onChange={e => setUser({ ...user, num_casa: e.target.value })}
-                        placeholder="123" value={user.num_casa || ''} type="number"/>
+                        placeholder="123" value={user.num_casa || ''} type="number" />
                 </Form.Group>
             </Form.Row>
 
@@ -53,7 +53,7 @@ export default function Address({ user, setUser, next, back }) {
                     <Form.Label>CEP</Form.Label>
                     <Form.Control
                         onChange={e => setUser({ ...user, cep: e.target.value })}
-                        placeholder="12345678" value={user.cep || ''} type="number"/>
+                        placeholder="12345678" value={user.cep || ''} type="number" />
                 </Form.Group>
             </Form.Row>
 

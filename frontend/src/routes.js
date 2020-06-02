@@ -47,12 +47,12 @@ export default function Routes() {
                 <Route path="/trainer/profile" component={ProfessionalProfile} />
                 <Route path="/trainer/upgrade" component={Upgrade} />
 
-                <Route path="/master" exact component={HomeMaster}/>
-                <Route path="/master/department/add" component={AddDepartment}/>
-                <Route path="/master/department/list" component={ListDepartment}/>
-                <Route path="/master/trainer/add" component={AddTrainer}/>
-                <Route path="/master/trainer/list" component={ListTrainer}/>
-                <Route path="/master/trainer/edit" component={EditTrainer}/>
+                <Route path="/master" exact component={HomeMaster} />
+                <Route path="/master/department/add" component={AddDepartment} />
+                <Route path="/master/department/list" component={ListDepartment} />
+                <Route path="/master/trainer/add" component={AddTrainer} />
+                <Route path="/master/trainer/list" component={ListTrainer} />
+                <Route path="/master/trainer/edit" component={EditTrainer} />
 
                 <Route path="/signup" component={SignUp} />
                 <Route path="/about" component={About} />
