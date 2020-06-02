@@ -17,7 +17,7 @@ export default function FormList({ history, updates, path, name, routePatch, rou
     async function handleSubmit(e) {
         e.preventDefault() 
         
-        for (let [key, value] of Object.entries(edit)) {
+        for (let [key] of Object.entries(edit)) {
             if (!allowedUpdates.includes(key))
                 delete edit[key]
         }
@@ -52,9 +52,7 @@ export default function FormList({ history, updates, path, name, routePatch, rou
         }
     }
 
-    useEffect(() => {
-        loadData()
-    }, [])
+    useEffect(loadData(), [])
 
     return (
         <>

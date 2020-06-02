@@ -5,7 +5,7 @@ import Spinner from 'react-loading'
 import editImg from '~/assets/icons/edit-black-24dp.svg'
 import deleteImg from '~/assets/icons/delete-black-24dp.svg'
 
-import {api} from '~/services/api'
+import { api } from '~/services/api'
 
 export default function List({ names, routeGet, routeDelete, sort, titles, date }) {
     const [user, setUser] = useState()
@@ -24,16 +24,16 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date 
         }
     }
 
-    async function handleDelete(e, cpf) { 
+    async function handleDelete(e, cpf) {
         e.preventDefault()
         try {
-            const response = await api.delete(`${routeDelete}`,
-             {
-                headers: {
-                    Authorization: 'Bearer ' + userCpf,
-                    cpf
-                }
-            })
+            await api.delete(`${routeDelete}`,
+                {
+                    headers: {
+                        Authorization: 'Bearer ' + userCpf,
+                        cpf
+                    }
+                })
             window.location.reload(true)
         } catch (e) {
             alert(e)
@@ -42,6 +42,7 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date 
 
     useEffect(() => {
         loadTrainers()
+        // eslint-disable-next-line
     }, [sort])
 
     return (
@@ -69,17 +70,17 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date 
                                         names.map(component => {
                                             return (
                                                 <td key={component} style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                                {
-                                                    component !== date ? (
-                                                        <>
-                                                            {item[component]}
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            {item[component].slice(0, 19).split('T').join(' ')}
-                                                        </>
-                                                    )  
-                                                }
+                                                    {
+                                                        component !== date ? (
+                                                            <>
+                                                                {item[component]}
+                                                            </>
+                                                        ) : (
+                                                                <>
+                                                                    {item[component].slice(0, 19).split('T').join(' ')}
+                                                                </>
+                                                            )
+                                                    }
                                                 </td>
                                             )
                                         })
@@ -103,9 +104,9 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date 
                 }
             </Table>
         ) : (
-            <div className="d-flex justify-content-center my-5 py-5" >
-                <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
-            </div>
-        )
+                <div className="d-flex justify-content-center my-5 py-5" >
+                    <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
+                </div>
+            )
     )
 }

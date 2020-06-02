@@ -4,12 +4,8 @@ import Spinner from 'react-loading'
 
 import List from '~/components/Lists/List'
 
-import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
 import { Pagination } from 'react-bootstrap'
-
-import editImg from '~/assets/icons/edit-black-24dp.svg'
-import deleteImg from '~/assets/icons/delete-black-24dp.svg'
 
 import { api } from '~/services/api'
 import AlertMessage from '~/components/PopUp/Alert'
@@ -68,10 +64,6 @@ export default function Upgrade({ history }) {
         } catch (e) {
             alert(e)
         }
-    }
-
-    async function handleDelete() {
-
     }
 
     let items = []
