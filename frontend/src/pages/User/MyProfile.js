@@ -56,15 +56,15 @@ export default function MyProfile({ history }) {
                                 <div className="d-flex flex-row">
                                     <p style={{ width: '150px', fontWeight: 'bold' }}>RG:</p>
                                     <p style={{ textTransform: 'capitalize' }}>{user.rg || 'user'}</p>
-                                </div> 
+                                </div>
                                 <div className="d-flex flex-row">
                                     <p style={{ width: '150px', fontWeight: 'bold' }}>Nascimento:</p>
                                     <p style={{ textTransform: 'capitalize' }}>{user.data_nascimento.slice(0, 10) || 'user'}</p>
-                                </div> 
+                                </div>
                                 <div className="d-flex flex-row">
                                     <p style={{ width: '150px', fontWeight: 'bold' }}>Rua:</p>
                                     <p style={{ textTransform: 'capitalize' }}>{user.rua || 'user'}</p>
-                                </div> 
+                                </div>
                                 <div className="d-flex flex-row">
                                     <p style={{ width: '150px', fontWeight: 'bold' }}>Número:</p>
                                     <p style={{ textTransform: 'capitalize' }}>{user.num_casa || 'user'}</p>

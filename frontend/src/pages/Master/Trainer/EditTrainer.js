@@ -21,29 +21,29 @@ export default function EditTrainer({ history }) {
                                 routeGet="/treinador/me"
                                 allowedUpdates={['cpts', 'salario_base', 'instituto']}
                                 updates={[
-                                        {
-                                            name: 'cpts',
-                                            displayName: 'CPTS',
-                                            type: 'text',
-                                            placeholder: '001002003'
-                                        },
-                                        {
-                                            name: 'salario_base',
-                                            displayName: 'Salário',
-                                            type: 'text',
-                                            placeholder: 'R$ 1,00'
-                                        },
-                                        {
-                                            name: 'instituto',
-                                            displayName: 'Instituto',
-                                            type: 'text',
-                                            placeholder: 'Unesp'
-                                        }
+                                    {
+                                        name: 'cpts',
+                                        displayName: 'CPTS',
+                                        type: 'text',
+                                        placeholder: '001002003'
+                                    },
+                                    {
+                                        name: 'salario_base',
+                                        displayName: 'Salário',
+                                        type: 'text',
+                                        placeholder: 'R$ 1,00'
+                                    },
+                                    {
+                                        name: 'instituto',
+                                        displayName: 'Instituto',
+                                        type: 'text',
+                                        placeholder: 'Unesp'
+                                    }
                                 ]}
 
                             />
                         </UserTemplate>
-                    )                    
+                    )
             }
         </>
     )

@@ -42,7 +42,7 @@ export default function EditProfile({ history }) {
                 data_nascimento: user.data_nascimento,
                 cpf: user.cpf,
                 rg: user.rg,
-                e_mail: user.e_mail.toLowerCase(),  
+                e_mail: user.e_mail.toLowerCase(),
                 password: user.password,
                 rua: user.rua.toLowerCase(),
                 num_casa: user.num_casa,
@@ -105,18 +105,18 @@ export default function EditProfile({ history }) {
                                     <Form.Label>Nome</Form.Label>
                                     <Form.Control
                                         onChange={e => setUser({ ...user, nome: e.target.value })}
-                                        type="text"  value={user.nome || ''} />
+                                        type="text" value={user.nome || ''} />
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="data_nascimento" sm="2">
                                     <Form.Label>Data de Nascimento</Form.Label>
                                     <Form.Control
                                         onChange={e => setUser({ ...user, data_nascimento: e.target.value })}
-                                        type="date" value={user.data_nascimento.slice(0,10)} />
+                                        type="date" value={user.data_nascimento.slice(0, 10)} />
                                 </Form.Group>
                             </Form.Row>
 
-                            <Form.Row> 
+                            <Form.Row>
                                 <Form.Group as={Col} controlId="cpf">
                                     <Form.Label>CPF</Form.Label>
                                     <Form.Control
@@ -130,7 +130,7 @@ export default function EditProfile({ history }) {
                                         type="text" value={user.rg || ''} />
                                 </Form.Group>
                             </Form.Row>
-                            
+
                             <Form.Row>
                                 <Form.Group as={Col} controlId="e_mail">
                                     <Form.Label>E-mail</Form.Label>
@@ -143,10 +143,10 @@ export default function EditProfile({ history }) {
                                     <Form.Label>Senha</Form.Label>
                                     <Form.Control
                                         onChange={e => setUser({ ...user, password: e.target.value })}
-                                        type="password"  value={user.password || ''} />
+                                        type="password" value={user.password || ''} />
                                 </Form.Group>
                             </Form.Row>
-                            
+
 
                             <Form.Row>
                                 <Form.Group as={Col} controlId="rua" sm="6">

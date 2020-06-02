@@ -112,13 +112,13 @@ export default function EditPokemon({ history }) {
                                     <Form.Label>Data de entrada</Form.Label>
                                     <Form.Control
                                         onChange={e => setPokemon({ ...pokemon, data_de_entrada: e.target.value })}
-                                        type="date" value={pokemon.data_de_entrada.slice(0,10)} required />
+                                        type="date" value={pokemon.data_de_entrada.slice(0, 10)} required />
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="dataSaida">
                                     <Form.Label>Data de Saída</Form.Label>
                                     <Form.Control
                                         onChange={e => setPokemon({ ...pokemon, data_de_saida: e.target.value })}
-                                        type="date" value={pokemon.data_de_saida.slice(0,10)} required />
+                                        type="date" value={pokemon.data_de_saida.slice(0, 10)} required />
                                 </Form.Group>
                             </Form.Row>
 
