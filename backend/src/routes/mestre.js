@@ -24,6 +24,29 @@ router.post('/mestre', auth, async (req, res) => {
     }
 })
 
+router.get('/mestre/all', auth, async  (req, res) => {
+    try {
+        if (req.query.sortBy && req.query.limit) {
+            const parts = req.query.sortBy.split(':')
+            const select = `SELECT * FROM Mestre AS t INNER JOIN Usuario AS u ON u.cpf = t.cpf ORDER BY ${req.query.table}.${parts[0]} ${parts[1]} LIMIT ${req.query.limit}0`
+            const limitSup = parseInt(req.query.limit) * 10
+            const limitInf = limitSup - 10
+            
+            const mestre = await pool.query(select)
+            const arr = mestre.rows.slice(limitInf, limitSup)
+            return res.send(arr)
+        }   
+        const mestre = await pool.query(`SELECT count(cpf) FROM Mestre`)
+
+        if (!mestre.rowCount)
+            return res.status(404).send()
+        
+        res.send(mestre.rows[0])
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
 router.get('/mestre', auth, async (req, res) => {
     try {
         queryFindByCpf.values = [req.user.cpf]
@@ -40,7 +63,7 @@ router.get('/mestre', auth, async (req, res) => {
 
 router.delete('/mestre', auth, async (req, res) => {
     try {
-        queryDeleteByCpf.values = [req.user.cpf]
+        queryDeleteByCpf.values = [req.header('cpf')]
         const mestre = await pool.query(queryDeleteByCpf)
 
         if (!mestre.rowCount)

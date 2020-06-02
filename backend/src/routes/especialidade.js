@@ -23,8 +23,6 @@ router.post('/especialidade', auth, async (req, res) => {
     let data = { cpf: req.user.cpf, ...req.body }
     queryInsert.values = await toArr(data)
 
-    console.log(queryInsert)
-
     try {
 
         await pool.query(queryInsert)
@@ -78,7 +76,7 @@ router.delete('/especialidade/all', auth, async (req, res) => {
 })
 
 router.delete('/especialidade', auth, async (req, res) => {
-    queryDeleteOne.values = [req.user.cpf, req.body.especialidade]
+    queryDeleteOne.values = [req.user.cpf, req.header('especialidade')]
 
     try {
         const especialidade = await pool.query(queryDeleteOne)
