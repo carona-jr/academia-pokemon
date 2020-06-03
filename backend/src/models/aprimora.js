@@ -14,6 +14,10 @@ const queryFindByCodigoDeptAndHour = {
     text: 'SELECT * FROM Aprimora WHERE codigo_pokemon = $1 AND cpf = $2 AND hora_de_entrada = $3'
 }
 
+const queryFindByCodPokemonAndCpfAndHour = {
+    text: 'SELECT * FROM Aprimora WHERE codigo_pokemon = $1 AND cpf = $2 AND hora_de_entrada = $3'
+}
+
 const queryDeleteByCodigo_pokemon = {
     text: 'DELETE FROM Aprimora WHERE codigo_pokemon = $1'
 }
@@ -27,6 +31,7 @@ module.exports = {
     queryFindByCodigo_pokemon,
     queryFindByCpf,
     queryFindByCodigoDeptAndHour,
+    queryFindByCodPokemonAndCpfAndHour,
     queryDeleteByCodigo_pokemon,
     queryDeleteByCodPokemonAndCpfAndHour
 }

@@ -15,9 +15,6 @@ const toArr = require('../utils/toArr')
 
 router.post('/departamento', auth, async (req, res) => {
     queryInsert.values = await toArr(req.body)
-
-    console.log(req.body)
-
     try {
         const newDepartment = await pool.query(queryInsert)
 
@@ -49,7 +46,7 @@ router.get('/departamento', auth, async (req, res) => {
 
 router.get('/departamento/all', auth, async (req, res) => {
     try {
-        const departamento = await pool.query('SELECT * FROM Departamento AS d INNER JOIN Usuario AS u ON u.cpf = d.gerente')
+        const departamento = await pool.query('SELECT * FROM Departamento AS d LEFT JOIN Usuario AS u ON u.cpf = d.gerente')
 
         if (!departamento.rowCount)
             return res.status(404).send()
@@ -65,8 +62,8 @@ router.patch('/departamento', auth, async (req, res) => {
     const nome = req.body.searchTerm.nome_dept
 
     try {
-        const departamento = await serachByKeyAndUpdate(req.body, 'Departamento', ['codigo_dept', 'nome'],
-            [codigo, nome], queryFindByNameAndCod, ['codigo_dept', 'nome', 'classificacao', 'gerente'],
+        const departamento = await serachByKeyAndUpdate(req.body, 'Departamento', ['codigo_dept', 'nome_dept'],
+            [codigo, nome], queryFindByNameAndCod, ['codigo_dept', 'nome_dept', 'classificacao', 'gerente'],
             ['codigo_dept'])
 
         res.send(departamento)

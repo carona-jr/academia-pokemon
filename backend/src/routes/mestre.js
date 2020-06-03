@@ -7,7 +7,7 @@ const { queryInsertMestre, queryFindByCpf, queryDeleteByCpf } = require('../mode
 const auth = require('../middlewares/auth')
 
 router.post('/mestre', auth, async (req, res) => {
-    queryInsertMestre.values = [req.user.cpf]
+    queryInsertMestre.values = [req.body.cpf, req.body.data_cadastro]
 
     try {
         const mestre = await pool.query(queryInsertMestre)
@@ -15,7 +15,7 @@ router.post('/mestre', auth, async (req, res) => {
         if (!mestre.rowCount)
             return res.status(400).send()
 
-        queryFindByCpf.values = [req.user.cpf]
+        queryFindByCpf.values = [req.body.cpf]
         const dataMestre = await pool.query(queryFindByCpf)
 
         res.status(201).send(dataMestre.rows[0])
