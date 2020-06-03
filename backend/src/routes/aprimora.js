@@ -109,20 +109,6 @@ router.get('/aprimora/mestre', auth, async (req, res) => {
     }
 })
 
-router.get('/aprimora/pokemon', auth, async (req, res) => {
-    try {
-        queryFindByCodigo_pokemon.values = [req.body.codigo_pokemon]
-        const aprimora = await pool.query(queryFindByCodigo_pokemon)
-
-        if (!aprimora.rowCount)
-            return res.status(404).send()
-
-        res.send(aprimora.rows)
-    } catch (e) {
-        res.status(500).send(e)
-    }
-})
-
 router.get('/aprimora', auth, async (req, res) => {
     try {
         queryFindByCodPokemonAndCpfAndHour.values = [req.header('codigo_pokemon'), req.header('cpf'), req.header('hora_de_entrada')]
@@ -131,7 +117,7 @@ router.get('/aprimora', auth, async (req, res) => {
         if (!aprimora.rowCount)
             return res.status(404).send()
 
-        res.send(aprimora.rows)
+        res.send(aprimora.rows[0])
     } catch (e) {
         res.status(500).send(e)
     }
