@@ -40,7 +40,7 @@ export default function EditTrainer({ history }) {
                                 history={history}
                                 path="/master/trainer/list"
                                 name="Treinador"
-                                searchTerm={localStorage.getItem('trainerCPF')}
+                                searchTerm={localStorage.getItem('trainer')}
                                 routePatch="/treinador"
                                 routeGet="/treinador/me"
                                 allowedUpdates={['cpts', 'salario_base', 'instituto']}

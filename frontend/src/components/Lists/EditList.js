@@ -9,21 +9,23 @@ import Spinner from 'react-loading'
 import { api } from '~/services/api'
 import AlertMessage from '~/components/PopUp/Alert'
 
-export default function FormList({ history, updates, path, name, routePatch, routeGet, searchTerm, searchObj, allowedUpdates }) {
+export default function EditList({ history, updates, path, name, routePatch, routeGet, searchTerm, searchObj, allowedUpdates, hasDate }) {
     const [edit, setEdit] = useState()
     const [showSuccess, setShowSuccess] = useState(false)
     const [showError, setShowError] = useState(false)
 
     async function handleSubmit(e) {
         e.preventDefault()
-
         for (let [key] of Object.entries(edit)) {
             if (!allowedUpdates.includes(key))
                 delete edit[key]
         }
 
-        delete edit.cpf
-        delete edit.data_cadastro
+        console.log({
+            searchTerm: searchTerm || searchObj,
+            ...edit
+        })
+
         try {
             await api.patch(routePatch, {
                 searchTerm: searchTerm || searchObj,
@@ -33,22 +35,33 @@ export default function FormList({ history, updates, path, name, routePatch, rou
                     Authorization: 'Bearer ' + localStorage.getItem('cpf')
                 }
             })
+
             setShowSuccess(true)
         } catch (e) {
+            console.log(e.response.data)
             setShowError(true)
         }
     }
 
     async function loadData() {
         try {
-            const response = await api.get(routeGet, {
-                headers: {
-                    Authorization: 'Bearer ' + searchTerm
-                }
-            })
+            let response
+            if (searchObj) {
+                response = await api.get(routeGet, {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('cpf'),
+                        ...searchObj
+                    }
+                })
+            } else {
+                response = await api.get(routeGet, {
+                    headers: {
+                        Authorization: 'Bearer ' + searchTerm
+                    }
+                })
+            }
             setEdit(response.data)
         } catch (e) {
-            alert(e.response.data)
         }
     }
 
@@ -65,10 +78,10 @@ export default function FormList({ history, updates, path, name, routePatch, rou
                         <AlertMessage show={showSuccess} setShow={setShowSuccess}
                             title="Sucesso"
                             msg={`${name} foi alterado com sucesso! :)`}
-                            button="Recarregar"
+                            button="Voltar"
                             func={() => {
                                 setShowSuccess(false)
-                                return window.location.reload(true)
+                                return history.push('/master/upgrade/list')
                             }}
                             colorAlert="success"
                             colorButton="outline-success"
@@ -88,9 +101,19 @@ export default function FormList({ history, updates, path, name, routePatch, rou
                                     <Form.Row key={item.name}>
                                         <Form.Group as={Col} controlId={item.name}>
                                             <Form.Label>{item.displayName}</Form.Label>
-                                            <Form.Control
-                                                onChange={e => setEdit({ ...edit, [item.name]: e.target.value })}
-                                                type={item.type} placeholder={item.placeholder} value={edit[item.name] || ''} required />
+                                            {
+                                                (hasDate && (item.name === 'hora_de_entrada' || item.name === 'hora_de_saida')) ? (
+                                                    <Form.Control
+                                                        onChange={e => setEdit({ ...edit, [item.name]: e.target.value })}
+                                                        type={item.type} placeholder={item.placeholder} value={edit[item.name].slice(0, 10)} required
+                                                    />
+                                                ) : (
+                                                        <Form.Control
+                                                            onChange={e => setEdit({ ...edit, [item.name]: e.target.value })}
+                                                            type={item.type} placeholder={item.placeholder} value={edit[item.name] || ''} required
+                                                        />
+                                                    )
+                                            }
                                         </Form.Group>
                                     </Form.Row>
                                 )

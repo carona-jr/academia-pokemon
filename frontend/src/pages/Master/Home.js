@@ -49,7 +49,7 @@ export default function Upgrade({ history }) {
                                         history={history}
                                         title="Treinadores"
                                         img={workBlack}
-                                        description="Gerencie os seus treinadores"
+                                        description="Gerencie os treinadores"
                                         create="Novo treinador"
                                         look="Todos os treinadores"
                                         routeCreate="/master/trainer/add"
@@ -59,17 +59,17 @@ export default function Upgrade({ history }) {
                                         history={history}
                                         title="Aprimoramento"
                                         img={upgradeBlack}
-                                        description="Gerencie os seus trabalhos"
+                                        description="Gerencie os trabalhos"
                                         create="Novo serviço"
                                         look="Todos os serviços"
-                                        routeCreate=""
-                                        routeLook=""
+                                        routeCreate="/master/upgrade/add"
+                                        routeLook="/master/upgrade/list"
                                     />
                                     <CardManager
                                         history={history}
                                         title="Mestre"
                                         img={buildBlack}
-                                        description="Gerencie os seus mestres"
+                                        description="Gerencie os mestres"
                                         create="Novo mestre"
                                         look="Todos os mestres"
                                         routeCreate="/master/add"

@@ -75,6 +75,7 @@ export default function PokemonUpgradeList() {
             await api.delete('/aprimora', {
                 headers: {
                     Authorization: 'Bearer ' + userCpf,
+                    cpf: userCpf,
                     codigo_pokemon: codigo,
                     hora_de_entrada: hora
                 }

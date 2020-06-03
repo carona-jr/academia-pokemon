@@ -96,8 +96,8 @@ export default function ListTrainer({ history }) {
                 ) : count !== 0 ? (
                     <UserTemplate history={history}>
                         <div className="w-100 d-flex flex-column mb-5">
-                            <h2 className="text-center">Seus treinadores Pokémons</h2>
-                            <p className="text-center mt-0 mb-5">Atualmente, você possui {numTrainer} treinadores</p>
+                            <h2 className="text-center">Os treinadores Pokémons da academia</h2>
+                            <p className="text-center mt-0 mb-5">Atualmente, a academia possui {numTrainer} treinadores</p>
                         </div>
                         <AlertMessage show={show} setShow={setShow}
                             title="Sucesso"
@@ -163,7 +163,10 @@ export default function ListTrainer({ history }) {
                                 routeGet="/treinador/all"
                                 routeDelete="/treinador"
                                 sort={sort}
-                                date="data_cadastro"
+                                date={['data_cadastro']}
+                                canEdit={true}
+                                editRoute={'trainer'}
+                                pkey={['cpf']}
                             />
                             <Pagination className="justify-content-center mt-3">
                                 <Pagination.First onClick={(e) => handleClick(e, 1)} />

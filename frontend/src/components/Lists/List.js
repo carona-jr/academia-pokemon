@@ -7,41 +7,46 @@ import deleteImg from '~/assets/icons/delete-black-24dp.svg'
 
 import { api } from '~/services/api'
 
-export default function List({ names, routeGet, routeDelete, sort, titles, date }) {
+export default function List({ names, routeGet, routeDelete, sort, titles, date, canEdit, editRoute, pkey }) {
     const [user, setUser] = useState()
     const userCpf = localStorage.getItem('cpf')
 
-    async function loadTrainers() {
-        try {
+    async function loadData() {
+        try {   
             const response = await api.get(`${routeGet}?sortBy=${sort.sortBy[0]}:${sort.sortBy[1]}&limit=${sort.limit}&table=${sort.table}`, {
                 headers: {
                     Authorization: 'Bearer ' + userCpf
                 }
             })
+            console.log(response.data)
             setUser(response.data)
-        } catch (e) {
-            alert(e)
+        } catch (e) {   
         }
     }
 
-    async function handleDelete(e, cpf) {
+    async function handleDelete(e, item) {
         e.preventDefault()
+        let data = {}
+        for (let key in pkey) {
+            data[pkey[key]] = item[pkey[key]]
+        }
         try {
             await api.delete(`${routeDelete}`,
                 {
                     headers: {
                         Authorization: 'Bearer ' + userCpf,
-                        cpf
+                        ...data
                     }
                 })
+            if (localStorage.getItem('cpf') === item.cpf && routeDelete === '/mestre')
+                localStorage.setItem('mhaighstir', false)
             window.location.reload(true)
         } catch (e) {
-            alert(e)
         }
     }
 
     useEffect(() => {
-        loadTrainers()
+        loadData()
         // eslint-disable-next-line
     }, [sort])
 
@@ -64,14 +69,14 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date 
                 {
                     user.map(item => {
                         return (
-                            <tbody key={item.cpf}>
+                            <tbody key={pkey.map(value => item[value])}>
                                 <tr>
                                     {
                                         names.map(component => {
                                             return (
                                                 <td key={component} style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                                                     {
-                                                        component !== date ? (
+                                                        !date.includes(component) ? (
                                                             <>
                                                                 {item[component]}
                                                             </>
@@ -87,13 +92,20 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date 
                                     }
 
                                     <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                        <a className="m-0 mr-3 p-0" href="/master/trainer/edit" onClick={(e) =>
-                                            localStorage.setItem('trainerCPF', item.cpf)
-                                        }>
-                                            <img src={editImg} alt="edit"></img>
-                                        </a>
-                                        <a className="m-0 p-0" href="/trainer/list" onClick={(e) => handleDelete(e, item.cpf)}>
-                                            <img src={deleteImg} alt="delete" ></img>
+                                    {
+                                        canEdit ? (
+                                            <a className="m-0 mr-3 p-0" href={`/master/${editRoute}/edit`} onClick={() =>
+                                                localStorage.setItem(editRoute, pkey.map(value => item[value]).join())
+                                            }>
+                                                <img src={editImg} alt="edit"></img>
+                                            </a>
+
+                                        ) : (
+                                            <></>
+                                        )  
+                                    }
+                                        <a className="m-0 p-0" href={`/master/${editRoute}/list`} onClick={(e) => handleDelete(e, item)}>
+                                            <img src={deleteImg} alt="apagar"></img>
                                         </a>
                                     </td>
                                 </tr>

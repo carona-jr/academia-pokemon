@@ -19,8 +19,6 @@ export default function CreateList({ history, newRow, route, registerDate, title
         if (registerDate) {
             data.data_cadastro = today
         }
-
-        console.log(data)
         
         try {
             await api.post(route, data, {

@@ -13,7 +13,7 @@ export default function CardManager({ history, title, img, description, create, 
                 <CardImage top="true" style={{ width: '100px' }} src={img} />
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>
-                    <span style={{ textTransform: 'capitalize' }}>{description}</span>
+                    <span>{description}</span>
                 </Card.Text>
                 <ListGroup className="list-group-flush" variant="dark" text="light">
                     <ListGroupItem className="d-flex flex-column" variant="light" text="dark">

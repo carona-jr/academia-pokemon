@@ -17,9 +17,14 @@ import Upgrade from './pages/Trainer/Upgrade'
 import HomeMaster from './pages/Master/Home'
 import AddDepartment from './pages/Master/Department/AddDepartment'
 import ListDepartment from './pages/Master/Department/ListDepartment'
+
 import AddTrainer from './pages/Master/Trainer/AddNewTrainer'
 import ListTrainer from './pages/Master/Trainer/ListTrainer'
 import EditTrainer from './pages/Master/Trainer/EditTrainer'
+
+import AddUpgrade from './pages/Master/Upgrade/AddUpgrade'
+import ListUpgrade from './pages/Master/Upgrade/ListUpgrade'
+import EditUpgrade from './pages/Master/Upgrade/EditUpgrade'
 
 import AddMaster from './pages/Master/Master/AddMaster'
 import ListMaster from './pages/Master/Master/ListMaster'
@@ -58,6 +63,10 @@ export default function Routes() {
                 <Route path="/master/trainer/add" component={AddTrainer} />
                 <Route path="/master/trainer/list" component={ListTrainer} />
                 <Route path="/master/trainer/edit" component={EditTrainer} />
+
+                <Route path="/master/upgrade/add" component={AddUpgrade} />
+                <Route path="/master/upgrade/list" component={ListUpgrade} />
+                <Route path="/master/upgrade/edit" component={EditUpgrade} />
 
                 <Route path="/master/add" component={AddMaster} />
                 <Route path="/master/list" component={ListMaster} />

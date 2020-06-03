@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect }  from 'react'
 
 import List from '~/components/Lists/List'
 
@@ -10,7 +10,7 @@ import AlertMessage from '~/components/PopUp/Alert'
 
 import UserTemplate from '~/templates/UserTemplate'
 
-export default function ListMaster({ history }) {
+export default function ListUpgrade({history}) {
     const [active, setActive] = useState(1)
     const [past, setPast] = useState(1)
     const [future, setFuture] = useState(1)
@@ -25,7 +25,7 @@ export default function ListMaster({ history }) {
     async function loadCount() {
         const userCpf = localStorage.getItem('cpf')
         try {
-            const response = await api.get('mestre/all', {
+            const response = await api.get('/aprimora/treinador', {
                 headers: {
                     Authorization: 'Bearer ' + userCpf
                 }
@@ -96,8 +96,8 @@ export default function ListMaster({ history }) {
                 ) : count !== 0 ? (
                     <UserTemplate history={history}>
                         <div className="w-100 d-flex flex-column mb-5">
-                            <h2 className="text-center">Mestres da Academia</h2>
-                            <p className="text-center mt-0 mb-5">A academina possui {numTrainer} mestres</p>
+                            <h2 className="text-center">Todos os aprimoramentos da academia</h2>
+                            <p className="text-center mt-0 mb-5">Atualmente, a academia possui {numTrainer} aprimoramentos a serem feitos.</p>
                         </div>
                         <AlertMessage show={show} setShow={setShow}
                             title="Sucesso"
@@ -129,6 +129,9 @@ export default function ListMaster({ history }) {
                                     }}>
                                         <option value="nome">Nome</option>
                                         <option value="cpf">CPF</option>
+                                        <option value="cpts">CPTS</option>
+                                        <option value="salario_base">Salário</option>
+                                        <option value="instituto">Instituto</option>
                                         <option value="data_cadastro">Data de cadastro</option>
                                     </Form.Control>
                                 </Form.Group>
@@ -155,14 +158,15 @@ export default function ListMaster({ history }) {
                                 </Form.Group>
                             </Form>
                             <List
-                                names={['nome', 'cpf', 'data_cadastro']}
-                                titles={['Nome', 'CPF', 'Promovido em', '#']}
-                                routeGet="/mestre/all"
-                                routeDelete="/mestre"
+                                names={['codigo_pokemon', 'nome_pokemon', 'cpf', 'nome', 'hora_de_entrada', 'hora_de_saida']}
+                                titles={['ID Pokémon', 'Nome', 'CPF', 'Treinador', 'Entrada', 'Saída', '#']}
+                                routeGet="/aprimora/mestre"
+                                routeDelete="/aprimora"
                                 sort={sort}
-                                date={['data_cadastro']}
-                                canEdit={false}
-                                pkey={['cpf']}
+                                date={['hora_de_entrada', 'hora_de_saida']}
+                                canEdit={true}
+                                editRoute={'upgrade'}
+                                pkey={['codigo_pokemon', 'cpf', 'hora_de_entrada']}
                             />
                             <Pagination className="justify-content-center mt-3">
                                 <Pagination.First onClick={(e) => handleClick(e, 1)} />
@@ -177,7 +181,7 @@ export default function ListMaster({ history }) {
                                 {
                                     (active !== 1) ? (
                                         <Pagination.Ellipsis />
-                                    ) : (
+                                    ) : (   
                                             <></>
                                         )
                                 }
@@ -203,10 +207,11 @@ export default function ListMaster({ history }) {
                     </UserTemplate>
                 ) : (
                     <UserTemplate history={history}>
-                        <h6>Não existem mestres cadastrados!</h6>
+                        <h6>Você não tem nenhum treinador!</h6>
                     </UserTemplate>
                 )
             }
         </div>
     )
 }
+ //    text: 'INSERT INTO Aprimora (codigo_pokemon, cpf, hora_de_entrada, hora_de_saida) VALUES ($1, $2, $3, $4)'
