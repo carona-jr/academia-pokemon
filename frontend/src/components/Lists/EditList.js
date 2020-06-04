@@ -26,7 +26,7 @@ export default function EditList({ history, updates, path, name, routePatch, rou
             ...edit
         })
 
-        try {
+        try {   
             await api.patch(routePatch, {
                 searchTerm: searchTerm || searchObj,
                 ...edit
@@ -35,10 +35,9 @@ export default function EditList({ history, updates, path, name, routePatch, rou
                     Authorization: 'Bearer ' + localStorage.getItem('cpf')
                 }
             })
-
+            history.push(path)
             setShowSuccess(true)
         } catch (e) {
-            console.log(e.response.data)
             setShowError(true)
         }
     }
@@ -74,7 +73,7 @@ export default function EditList({ history, updates, path, name, routePatch, rou
         <>
             {
                 edit ? (
-                    <Form className="w-100 w-lg-50" onSubmit={handleSubmit} >
+                    <Form className="w-100 w-lg-50" onSubmit={handleSubmit}>
                         <AlertMessage show={showSuccess} setShow={setShowSuccess}
                             title="Sucesso"
                             msg={`${name} foi alterado com sucesso! :)`}

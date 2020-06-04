@@ -26,8 +26,15 @@ import AddUpgrade from './pages/Master/Upgrade/AddUpgrade'
 import ListUpgrade from './pages/Master/Upgrade/ListUpgrade'
 import EditUpgrade from './pages/Master/Upgrade/EditUpgrade'
 
+import AddEmployee from './pages/Master/Employee/AddEmployee'
+import ListEmployee from './pages/Master/Employee/ListEmployee'
+import EditEmployee from './pages/Master/Employee/EditEmployee'
+
 import AddMaster from './pages/Master/Master/AddMaster'
 import ListMaster from './pages/Master/Master/ListMaster'
+import MasterProfile from './pages/Master/Master/ViewMyInfo'
+
+import Admin from './pages/Master/Admin/Admin'
 
 import Login from './pages/NoAuth/Login'
 import About from './pages/NoAuth/About'
@@ -68,8 +75,15 @@ export default function Routes() {
                 <Route path="/master/upgrade/list" component={ListUpgrade} />
                 <Route path="/master/upgrade/edit" component={EditUpgrade} />
 
+                <Route path="/master/employee/add" component={AddEmployee} />
+                <Route path="/master/employee/list" component={ListEmployee} />
+                <Route path="/master/employee/edit" component={EditEmployee} />
+
                 <Route path="/master/add" component={AddMaster} />
                 <Route path="/master/list" component={ListMaster} />
+                <Route path="/master/profile" component={MasterProfile} />
+                
+                <Route path="/admin" component={Admin} />
 
                 <Route path="/signup" component={SignUp} />
                 <Route path="/about" component={About} />

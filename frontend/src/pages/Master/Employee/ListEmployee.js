@@ -10,7 +10,7 @@ import AlertMessage from '~/components/PopUp/Alert'
 
 import UserTemplate from '~/templates/UserTemplate'
 
-export default function ListUpgrade({history}) {
+export default function ListEmployee({ history }) {
     const [active, setActive] = useState(1)
     const [past, setPast] = useState(1)
     const [future, setFuture] = useState(1)
@@ -20,12 +20,12 @@ export default function ListUpgrade({history}) {
     const [show, setShow] = useState(false)
     const [show2, setShow2] = useState(false)
 
-    const [sort, setSort] = useState({ sortBy: ['codigo_pokemon', 'asc'], limit: 1, table: 'a' })
+    const [sort, setSort] = useState({ sortBy: ['codigo_dept', 'asc'], limit: 1, table: 'd' })
 
     async function loadCount() {
         const userCpf = localStorage.getItem('cpf')
         try {
-            const response = await api.get('/aprimora/treinador', {
+            const response = await api.get('/trabalha/all', {
                 headers: {
                     Authorization: 'Bearer ' + userCpf
                 }
@@ -96,12 +96,12 @@ export default function ListUpgrade({history}) {
                 ) : count !== 0 ? (
                     <UserTemplate history={history}>
                         <div className="w-100 d-flex flex-column mb-5">
-                            <h2 className="text-center">Todos os aprimoramentos da academia</h2>
-                            <p className="text-center mt-0 mb-5">Atualmente, a academia possui {numTrainer} aprimoramentos a serem feitos.</p>
+                            <h2 className="text-center">Funcionários ativos</h2>
+                            <p className="text-center mt-0">Atualmente, a academia possui {numTrainer} funcionários ativos e alocados.</p>
                         </div>
                         <AlertMessage show={show} setShow={setShow}
                             title="Sucesso"
-                            msg="O treinador foi deletado com sucesso, recarregue a página :)"
+                            msg="O funcionário foi deletado com sucesso, recarregue a página :)"
                             button="Recarregar"
                             func={() => {
                                 setShow(false)
@@ -112,7 +112,7 @@ export default function ListUpgrade({history}) {
                         />
                         <AlertMessage show={show2} setShow={setShow2}
                             title="Erro"
-                            msg="O treinador não foi deletado com sucesso :)"
+                            msg="O funcionário não foi deletado com sucesso :)"
                             button="Fechar"
                             func={() => setShow(false)}
                             colorAlert="danger"
@@ -123,15 +123,15 @@ export default function ListUpgrade({history}) {
                                 <Form.Group controlId="formGridState" className="d-flex flex-row">
                                     <Form.Label className="w-100 w-lg-75 align-self-center">Ordenar por:</Form.Label>
                                     <Form.Control as="select" value={sort.sortSearch} onChange={e => {
-                                        if (e.target.value === 'codigo_pokemon' || e.target.value === 'hora_de_entrada' || e.target.value === 'hora_de_saida')
-                                            return setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'a' })     
-                                        setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'u' })          
+                                        if (e.target.value === 'cpf' || e.target.value === 'nome')
+                                            return setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'u' })     
+                                        setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'd' })          
                                     }}>
-                                        <option value="codigo_pokemon">ID Pokémon</option>
+                                        <option value="codigo_dept">Código</option>
+                                        <option value="nome_dept">Departamento</option>
+                                        <option value="classificacao">Classificação</option>
                                         <option value="cpf">CPF</option>
-                                        <option value="nome">Treinador</option>
-                                        <option value="hora_de_entrada">Entrada</option>
-                                        <option value="hora_de_saida">Saída</option>
+                                        <option value="nome">Funcionário</option>
                                     </Form.Control>
                                 </Form.Group>
                                 <Form.Group className="d-flex flex-row justify-content-center align-content-center">
@@ -157,15 +157,15 @@ export default function ListUpgrade({history}) {
                                 </Form.Group>
                             </Form>
                             <List
-                                names={['codigo_pokemon', 'nome_pokemon', 'cpf', 'nome', 'hora_de_entrada', 'hora_de_saida']}
-                                titles={['ID Pokémon', 'Nome', 'CPF', 'Treinador', 'Entrada', 'Saída', '#']}
-                                routeGet="/aprimora/mestre"
-                                routeDelete="/aprimora"
+                                names={['codigo_dept', 'nome_dept', 'classificacao', 'cpf', 'nome']}
+                                titles={['Código', 'Departamento', 'Classificação', 'CPF', 'Funcionário', '#']}
+                                routeGet="/trabalha/all"
+                                routeDelete="/trabalha"
                                 sort={sort}
-                                date={['hora_de_entrada', 'hora_de_saida']}
                                 canEdit={true}
-                                editRoute={'upgrade'}
-                                pkey={['codigo_pokemon', 'cpf', 'hora_de_entrada']}
+                                editRoute={'employee'}
+                                date={[]}
+                                pkey={['codigo_dept', 'cpf']}
                             />
                             <Pagination className="justify-content-center mt-3">
                                 <Pagination.First onClick={(e) => handleClick(e, 1)} />
@@ -206,7 +206,7 @@ export default function ListUpgrade({history}) {
                     </UserTemplate>
                 ) : (
                     <UserTemplate history={history}>
-                        <h6>Você não tem nenhum treinador!</h6>
+                        <h6>A academia não possui funcionários cadastrados!</h6>
                     </UserTemplate>
                 )
             }

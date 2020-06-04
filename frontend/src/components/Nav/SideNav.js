@@ -17,6 +17,8 @@ import upgrade from '~/assets/icons/fitness_center-white-24dp.svg'
 import upgradeBlack from '~/assets/icons/fitness_center-black-24dp.svg'
 import build from '~/assets/icons/build-white-24dp.svg'
 import buildBlack from '~/assets/icons/build-black-24dp.svg'
+import edit from '~/assets/icons/edit-white-24dp.svg'
+import editBlack from '~/assets/icons/edit-black-24dp.svg'
 
 export default function SideNav({ divMain }) {
     const nav = useRef()
@@ -28,6 +30,7 @@ export default function SideNav({ divMain }) {
     const link4 = useRef()
     const link5 = useRef()
     const link6 = useRef()
+    const link7 = useRef()
     function handleClose() {
         if (window.innerWidth > 992) {
             divMain.current.style.marginLeft = '100px'
@@ -53,6 +56,8 @@ export default function SideNav({ divMain }) {
         link5.current.style.left = '-100px'
         link6.current.style.position = 'relative'
         link6.current.style.left = '-100px'
+        link7.current.style.position = 'relative'
+        link7.current.style.left = '-100px'
 
         menuIcon.current.style.width = '52px'
     }
@@ -76,6 +81,7 @@ export default function SideNav({ divMain }) {
         link4.current.style.position = 'static'
         link5.current.style.position = 'static'
         link6.current.style.position = 'static'
+        link7.current.style.position = 'static'
 
         menuIcon.current.style.width = 0
     }
@@ -131,6 +137,17 @@ export default function SideNav({ divMain }) {
                                 <img className="icon-1" src={build} alt="x" />
                                 <img className="icon-2" src={buildBlack} alt="x" />
                                 <p className="m-0">Mestre</p>
+                            </Nav.Link>
+                        ) : (
+                                <></>
+                            )
+                    }
+                    {
+                        (localStorage.getItem('mhaighstir') === 'true') ? (
+                            <Nav.Link ref={link7} className="nav-link-sidebar d-flex justify-content-center align-items-center" href="/admin">
+                                <img className="icon-1" src={edit} alt="x" />
+                                <img className="icon-2" src={editBlack} alt="x" />
+                                <p className="m-0">Admin</p>
                             </Nav.Link>
                         ) : (
                                 <></>

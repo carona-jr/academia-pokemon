@@ -75,7 +75,7 @@ export default function EditTrainer({ routeGet, routeDelete, attribute, cpf }) {
     useEffect(() => {
         loadData()
         // eslint-disable-next-line
-    }, [data, textShow])
+    }, [data, textShow, showSuccess])
 
     return (
         <div className="w-100 mt-5">
@@ -93,7 +93,7 @@ export default function EditTrainer({ routeGet, routeDelete, attribute, cpf }) {
                                         <Form.Group className="m-0" controlId={attribute}>
                                             <Form.Control
                                                 onChange={e => setNewData({ ...newData, [attribute]: e.target.value })}
-                                                type="text" placeholder="Especialidade" value={newData[attribute] || ''} required />
+                                                type="text" placeholder={attribute} value={newData[attribute] || ''} required />
                                         </Form.Group>
                                     </Form>
                                 </div>

@@ -18,7 +18,6 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date,
                     Authorization: 'Bearer ' + userCpf
                 }
             })
-            console.log(response.data)
             setUser(response.data)
         } catch (e) {   
         }

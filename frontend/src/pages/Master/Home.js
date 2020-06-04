@@ -2,14 +2,12 @@ import React from 'react'
 
 import UserTemplate from '~/templates/UserTemplate'
 import CardManager from '~/components/Master/CardManager'
-
 import locationBlack from '~/assets/icons/location_city-black-24dp.svg'
 import workBlack from '~/assets/icons/work-black-24dp.svg'
 import upgradeBlack from '~/assets/icons/fitness_center-black-24dp.svg'
 import buildBlack from '~/assets/icons/build-black-24dp.svg'
-import faceBlack from '~/assets/icons/face-black-24dp.svg'
+import faceBlack from '~/assets/icons/people_alt-black-24dp.svg'
 import eyeBlack from '~/assets/icons/remove_red_eye-black-24dp.svg'
-import editBlack from '~/assets/icons/edit-black-24dp.svg'
 
 export default function Upgrade({ history }) {
     return (
@@ -37,13 +35,13 @@ export default function Upgrade({ history }) {
                                     />
                                     <CardManager
                                         history={history}
-                                        title="Funcionários"
+                                        title="RH"
                                         img={faceBlack}
-                                        description="Gerencie os funcionários ativos"
+                                        description="Gerencie as relações de trabalho"
                                         create="Novo funcionário"
                                         look="Ver funcionários ativos"
-                                        routeCreate=""
-                                        routeLook=""
+                                        routeCreate="/master/employee/add"
+                                        routeLook="/master/employee/list"
                                     />
                                     <CardManager
                                         history={history}
@@ -83,17 +81,7 @@ export default function Upgrade({ history }) {
                                         create="Treinador"
                                         look="Mestre"
                                         routeCreate="/trainer/profile"
-                                        routeLook=""
-                                    />
-                                    <CardManager
-                                        history={history}
-                                        title="Admin"
-                                        img={editBlack}
-                                        description="Faça consultas personalizadas"
-                                        create="PostgreSQL"
-                                        look="PostgreSQL"
-                                        routeCreate=""
-                                        routeLook=""
+                                        routeLook="/master/profile"
                                     />
                                 </div>
                             </div>

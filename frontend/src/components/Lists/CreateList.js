@@ -9,9 +9,11 @@ import { api } from '~/services/api'
 
 export default function CreateList({ history, newRow, route, registerDate, title }) {
     const [data, setData] = useState({})
+    const [errorMessage, setErrorMessage] = useState('')
     const [showSuccess, setShowSuccess] = useState(false)
     const [showError, setShowError] = useState(false)
     const today = new Date()
+
     async function handleSubmit(e) {
         e.preventDefault()
         const userCpf = localStorage.getItem('cpf')
@@ -21,6 +23,7 @@ export default function CreateList({ history, newRow, route, registerDate, title
         }
         
         try {
+            console.log(route, data)
             await api.post(route, data, {
                 headers: {
                     Authorization: 'Bearer ' + userCpf
@@ -30,13 +33,14 @@ export default function CreateList({ history, newRow, route, registerDate, title
             setShowSuccess(true)
         } catch (e) {
             console.log(e.response.data)
+            setErrorMessage(e.response.data.detail || '')
             setShowError(true)
         }   
     }
 
     return (
         <div className="w-100 d-flex flex-column">
-            <h2 className="text-center mb-5">Adicione um novo {title}</h2>
+            <h2 className="text-center mb-5">Crie um novo {title}</h2>
 
             <AlertMessage show={showSuccess} setShow={setShowSuccess}
                 title="Sucesso"
@@ -51,7 +55,7 @@ export default function CreateList({ history, newRow, route, registerDate, title
             />
             <AlertMessage show={showError} setShow={setShowError}
                 title="Erro"
-                msg={`Seu ${title} não foi criado com sucesso :(`}
+                msg={`Seu ${title} não foi criado com sucesso :( ${errorMessage}`}
                 button="Fechar"
                 func={() => setShowError(false)}
                 colorAlert="danger"
