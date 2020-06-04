@@ -81,7 +81,7 @@ router.patch('/trabalha', auth, async (req, res) => {
 })
 
 router.delete('/trabalha', auth, async (req, res) => {
-    queryDeleteByCodigoDept.values = [req.body.codigo_dept, req.body.cpf]
+    queryDeleteByCodigoDept.values = [req.header('codigo_dept'), req.header('cpf')]
 
     try {
         const trabalha = await pool.query(queryDeleteByCodigoDept)

@@ -10,6 +10,7 @@ const trabalhaRouter = require('./routes/trabalha')
 const departamentoRouter = require('./routes/departamento')
 const planoRouter = require('./routes/plano')
 const aprimoraRouter = require('./routes/aprimora')
+const admin = require('./routes/admin')
 const cors = require('cors')
 
 const app = express()
@@ -29,6 +30,7 @@ app.use(planoRouter)
 app.use(trabalhaRouter)
 app.use(departamentoRouter)
 app.use(aprimoraRouter)
+app.use(admin)
 
 app.get('/*', (req, res) => {
     res.status('400').send({ msg: 'Rota não encontrada' })

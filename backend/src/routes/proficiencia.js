@@ -12,16 +12,14 @@ const {
 
 const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
-const toArr = require('../utils/toArr')
 
 router.post('/proficiencia', auth, async (req, res) => {
-    const especialidade = req.body.especialidade
+    const proficiencia = req.body.proficiencia
 
-    if (!especialidade)
-            return res.status(400).send()
+    if (!proficiencia)
+        return res.status(400).send()
 
-    let data = { cpf: req.user.cpf, proficiencia: req.body.proficiencia }
-    queryInsert.values = await toArr(data)
+    queryInsert.values = [req.user.cpf, req.body.proficiencia]
 
     try {
         await pool.query(queryInsert)
@@ -76,7 +74,7 @@ router.delete('/proficiencia/all', auth, async (req, res) => {
 })
 
 router.delete('/proficiencia', auth, async (req, res) => {
-    queryDeleteByCpfAndProf.values = [req.user.cpf, req.body.proficiencia]
+    queryDeleteByCpfAndProf.values = [req.user.cpf, req.header('proficiencia')]
     try {
         const proficiencia = await pool.query(queryDeleteByCpfAndProf)
 
