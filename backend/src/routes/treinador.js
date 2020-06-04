@@ -9,8 +9,7 @@ const auth = require('../middlewares/auth')
 const toArr = require('../utils/toArr')
 
 router.post('/treinador', auth, async (req, res) => {
-    const values = await toArr(req.body)
-    queryInsertTreinador.values = [...values]
+    queryInsertTreinador.values = [req.body.cpf, req.body.cpts, req.body.salario_base, req.body.instituto, req.body.data_cadastro]
 
     try {
         const newTreinador = await pool.query(queryInsertTreinador)

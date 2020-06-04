@@ -20,7 +20,7 @@ const toArr = require('../utils/toArr')
 
 router.post('/aprimora', auth, async (req, res) => {
     try {
-        queryInsert.values = await toArr(req.body)
+        queryInsert.values = [req.body.codigo_pokemon, req.body.cpf, req.body.hora_de_entrada, req.body.hora_de_saida]
         const newAprimora = await pool.query(queryInsert)
 
         if (!newAprimora.rowCount)
@@ -77,7 +77,7 @@ router.get('/aprimora/mestre', auth, async (req, res) => {
     try {
         if (req.query.sortBy && req.query.limit) {
             const parts = req.query.sortBy.split(':')
-            const select = `SELECT a.codigo_pokemon, a.cpf, a.hora_de_entrada, a.hora_de_saida, p.nome as nome_pokemon, p.nivel, p.nivel_objetivo, p.data_de_entrada, p.data_de_saida, p.data_cadastro, u.nome FROM Aprimora as a LEFT JOIN Pokemon as p ON p.codigo_pokemon = a.codigo_pokemon INNER JOIN Usuario as u ON u.cpf = a.cpf ORDER BY p.${parts[0]} ${parts[1]} LIMIT ${req.query.limit}0`
+            const select = `SELECT a.codigo_pokemon, a.cpf, a.hora_de_entrada, a.hora_de_saida, p.nome as nome_pokemon, p.nivel, p.nivel_objetivo, p.data_de_entrada, p.data_de_saida, p.data_cadastro, u.nome FROM Aprimora as a LEFT JOIN Pokemon as p ON p.codigo_pokemon = a.codigo_pokemon INNER JOIN Usuario as u ON u.cpf = a.cpf ORDER BY ${req.query.table}.${parts[0]} ${parts[1]} LIMIT ${req.query.limit}0`
             const limitSup = parseInt(req.query.limit) * 10 
             const limitInf = limitSup - 10
             

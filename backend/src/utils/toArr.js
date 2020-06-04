@@ -12,6 +12,7 @@ const toArr = (body) => {
                     newValue = body[value]
                 return values.push(newValue)
             })
+            console.log(values)
             resolve(values)
         } catch (e) {
             reject()

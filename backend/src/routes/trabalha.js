@@ -15,8 +15,7 @@ const auth = require('../middlewares/auth')
 const toArr = require('../utils/toArr')
 
 router.post('/trabalha', auth, async (req, res) => {
-    queryInsert.values = await toArr(req.body)
-
+    queryInsert.values = [req.body.codigo_dept, req.body.cpf]
     try {
         await pool.query(queryInsert)
 
@@ -29,15 +28,39 @@ router.post('/trabalha', auth, async (req, res) => {
     }
 })
 
+router.get('/trabalha/all', auth, async  (req, res) => {
+    try {
+        if (req.query.sortBy && req.query.limit) {
+            const parts = req.query.sortBy.split(':')
+            const select = `SELECT * FROM Trabalha as t INNER JOIN Usuario as u ON u.cpf = t.cpf INNER JOIN Departamento as d ON d.codigo_dept = t.codigo_dept ORDER BY ${req.query.table}.${parts[0]} ${parts[1]} LIMIT ${req.query.limit}0`
+            const limitSup = parseInt(req.query.limit) * 10
+            const limitInf = limitSup - 10
+            
+            const trabalha = await pool.query(select)
+            const arr = trabalha.rows.slice(limitInf, limitSup)
+            return res.send(arr)
+        }   
+        
+        const trabalha = await pool.query(`SELECT count(cpf) FROM Trabalha`)
+
+        if (!trabalha.rowCount)
+            return res.status(404).send()
+        
+        res.send(trabalha.rows[0])
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
 router.get('/trabalha', auth, async (req, res) => {
     try {
-        queryFindByCpf.values = [req.user.cpf]
-        const trabalha = await pool.query(queryFindByCpf)
+        queryFindByCodigoDeptAndCpf.values = [req.header('codigo_dept'), req.header('cpf')]
+        const trabalha = await pool.query(queryFindByCodigoDeptAndCpf)
 
         if (!trabalha.rowCount)
             return res.status(404).send()
 
-        res.send(trabalha.rows)
+        res.send(trabalha.rows[0])
     } catch (e) {
         res.status(500).send(e)
     }
