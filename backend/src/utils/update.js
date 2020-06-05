@@ -52,8 +52,8 @@ const searchByKeyAndUpdate = (data, tableName, key, keyword, objValues, allowedU
             // Cria um objeto com os valores diferentes daqueles armazenados no banco, verificando, assim, se o dado foi alterado ou não
             let objForUpdates = {}
             const userKeys = Object.keys(user.rows[0])
-            userKeys.map(value => data[value] !== user[value] ? objForUpdates[value] = data[value].toLowerCase() : false)
-
+            userKeys.map(value => data[value] !== user[value] ? objForUpdates[value] = data[value] : false)
+            
             // Concatena o comando UPDATE com os valores alterados na requisição, o restante é ignorado
             const updateKeys = Object.keys(objForUpdates)
             let createNewQuery = `UPDATE ${tableName} SET `
