@@ -66,6 +66,20 @@ router.get('/trabalha', auth, async (req, res) => {
     }
 })
 
+router.get('/trabalha/me', auth, async (req, res) => {
+    try {
+        queryFindByCpf.values = [req.header('cpf')]
+        const trabalha = await pool.query(queryFindByCpf)
+
+        if (!trabalha.rowCount)
+            return res.status(404).send()
+
+        res.send(trabalha.rows[0])
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
 router.patch('/trabalha', auth, async (req, res) => {
     const codigo = req.body.searchTerm.codigo_dept
     const cpf = req.body.searchTerm.cpf

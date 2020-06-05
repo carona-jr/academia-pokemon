@@ -6,19 +6,12 @@ import UserTemplate from '~/templates/UserTemplate'
 
 export default function ProfessionalProfile({ history }) {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
-    async function loadProfile() {
+    const [specialty, setSpecialty] = useState()
+    const [department, setDepartment] = useState()
+
+    async function loadData() {
         try {
             const profile = await api.get('/treinador/me', {
-                headers: {
-                    Authorization: 'Bearer ' + user.cpf
-                }
-            })
-            const especialidade = await api.get('/especialidade', {
-                headers: {
-                    Authorization: 'Bearer ' + user.cpf
-                }
-            })
-            const department = await api.get('/trabalha', {
                 headers: {
                     Authorization: 'Bearer ' + user.cpf
                 }
@@ -27,55 +20,48 @@ export default function ProfessionalProfile({ history }) {
                 ...user,
                 cpts: profile.data.cpts,
                 instituto: profile.data.instituto,
-                salario_base: profile.data.salario_base,
-                especialidades: especialidade.data,
-                trabalha: department.data
+                salario_base: profile.data.salario_base
             })
         } catch (e) {
-            try {
-                const profile = await api.get('/treinador/me', {
-                    headers: {
-                        Authorization: 'Bearer ' + user.cpf
-                    }
-                })
-                const especialidade = await api.get('/especialidade', {
-                    headers: {
-                        Authorization: 'Bearer ' + user.cpf
-                    }
-                })
-                setUser({
-                    ...user,
-                    cpts: profile.data.cpts,
-                    instituto: profile.data.instituto,
-                    salario_base: profile.data.salario_base,
-                    especialidades: especialidade.data,
-                    trabalha: [{ nome_dept: '...', codigo_dept: '...', gerente: '...', classificacao: '...' }]
-                })
-            } catch (e) {
-                try {
-                    const profile = await api.get('/treinador/me', {
-                        headers: {
-                            Authorization: 'Bearer ' + user.cpf
-                        }
-                    })
-                    setUser({
-                        ...user,
-                        cpts: profile.data.cpts,
-                        instituto: profile.data.instituto,
-                        salario_base: profile.data.salario_base,
-                        especialidades: [{ especialidade: 'nenhuma ainda :(' }],
-                        trabalha: [{ nome_dept: '...', codigo_dept: '...', gerente: '...', classificacao: '...' }]
-                    })
-                } catch (e) {
-                    console.log(e)
-                }
-            }
+            setUser({
+                ...user,
+                cpts: '...',
+                instituto: '...',
+                salario_base: '...'
+            })
         }
+    }
 
+    async function loadSpecialty() {
+        try {
+            const especialidades = await api.get('/especialidade', {
+                headers: {
+                    Authorization: 'Bearer ' + user.cpf
+                }
+            })
+            setSpecialty(especialidades.data)
+        } catch (e) {
+            setSpecialty([{ especialidade: 'nenhuma ainda :(' }])
+        }
+    }
+
+    async function loadDepartment() {
+        try {
+            const department = await api.get('/trabalha/me', {
+                headers: {
+                    Authorization: 'Bearer ' + user.cpf
+                }
+            })
+            setDepartment(department.data)
+        } catch (e) {
+            setDepartment([{ nome_dept: '...', codigo_dept: '...', gerente: '...', classificacao: '...' }])
+        }
     }
 
     useEffect(() => {
-        loadProfile()
+        loadData()
+        loadSpecialty()
+        loadDepartment()
         // eslint-disable-next-line
     }, [])
 
@@ -87,7 +73,7 @@ export default function ProfessionalProfile({ history }) {
                 ) : (
                         <div className="w-100 flex-column d-flex align-items-center mb-5">
                             <div className="mb-5">
-                                <h2>Suas infromações profissionais</h2>
+                                <h2>Suas informações profissionais</h2>
                             </div>
                             <div className="align-self-start mb-4" style={{ borderBottom: '1px solid #d9d9d9', width: '50%' }}>
                                 <h3>Seus dados pessoais</h3>
@@ -109,7 +95,7 @@ export default function ProfessionalProfile({ history }) {
                             <div className="align-self-start mb-4" style={{ borderBottom: '1px solid #d9d9d9', width: '50%' }}>
                                 <h3>Suas especialidades</h3>
                                 {
-                                    !user.especialidades ? (
+                                    !specialty ? (
                                         <div className="ml-5 my-4">
                                             <div className="d-flex flex-row">
                                                 <p>Carregando...</p>
@@ -118,7 +104,7 @@ export default function ProfessionalProfile({ history }) {
                                     ) : (
                                             <ul className="ml-5 my-4" style={{ listStyleType: 'circle' }}>
                                                 {
-                                                    user.especialidades.map(item => {
+                                                    specialty.map(item => {
                                                         return (
                                                             <li className="my-2" key={item.especialidade} style={{ textTransform: 'capitalize' }}>
                                                                 {item.especialidade || 'Carregando...'}
@@ -133,7 +119,7 @@ export default function ProfessionalProfile({ history }) {
                             <div className="align-self-start mb-4" style={{ borderBottom: '1px solid #d9d9d9', width: '50%' }}>
                                 <h3>Seu departamento</h3>
                                 {
-                                    !user.trabalha ? (
+                                    !department ? (
                                         <div className="ml-5 my-4">
                                             <div className="d-flex flex-row">
                                                 <p>Carregando...</p>
@@ -142,7 +128,7 @@ export default function ProfessionalProfile({ history }) {
                                     ) : (
                                             <div className="ml-5 my-4">
                                                 {
-                                                    user.trabalha.map(item => {
+                                                    department.map(item => {
                                                         return (
                                                             <div key={item.codigo_dept}>
                                                                 <div className="d-flex flex-row">
