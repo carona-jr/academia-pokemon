@@ -46,6 +46,7 @@ export default function ProfessionalProfile({ history }) {
     }
 
     async function loadDepartment() {
+        console.log(user.cpf)
         try {
             const department = await api.get('/trabalha/me', {
                 headers: {
@@ -54,6 +55,7 @@ export default function ProfessionalProfile({ history }) {
             })
             setDepartment(department.data)
         } catch (e) {
+            console.log(e)
             setDepartment([{ nome_dept: '...', codigo_dept: '...', gerente: '...', classificacao: '...' }])
         }
     }
@@ -107,7 +109,7 @@ export default function ProfessionalProfile({ history }) {
                                                     specialty.map(item => {
                                                         return (
                                                             <li className="my-2" key={item.especialidade} style={{ textTransform: 'capitalize' }}>
-                                                                {item.especialidade || 'Carregando...'}
+                                                                  {item.especialidade || 'Carregando...'}
                                                             </li>
                                                         )
                                                     })
@@ -130,7 +132,7 @@ export default function ProfessionalProfile({ history }) {
                                                 {
                                                     department.map(item => {
                                                         return (
-                                                            <div key={item.codigo_dept}>
+                                                            <div key={item.codigo_dept} className="m-2" style={{ borderBottom: '1px solid #d9d9d9', width: '100%' }}>
                                                                 <div className="d-flex flex-row">
                                                                     <p style={{ width: '150px', fontWeight: 'bold' }}>Departamento:</p>
                                                                     <p style={{ textTransform: 'capitalize' }}>{item.nome_dept || 'Carregando...'}</p>
