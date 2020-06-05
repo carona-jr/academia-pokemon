@@ -48,7 +48,6 @@ const searchByKeyAndUpdate = (data, tableName, key, keyword, objValues, allowedU
         try {
             objValues.values = keyword
             const user = await pool.query(objValues)
-
             // Cria um objeto com os valores diferentes daqueles armazenados no banco, verificando, assim, se o dado foi alterado ou não
             let objForUpdates = {}
             const userKeys = Object.keys(user.rows[0])

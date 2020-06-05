@@ -13,7 +13,8 @@ const {
     queryFindPokemonByCpfTopByData,
     queryFindPokemonByCpfCountByType,
     queryFindPokemonByCountByDate,
-    queryFindPokemonByCpfAndId
+    queryFindPokemonByCpfAndId,
+    queryFindPokemonByCod
 } = require('../models/pokemon')
 
 const searchByKeyAndUpdate = require('../utils/update')
@@ -168,8 +169,8 @@ router.get('/pokemon/byId', auth, async (req, res) => {
 
 router.patch('/pokemon', auth, async (req, res) => {
     try {
-        const pokemon = await searchByKeyAndUpdate(req.body, 'Pokemon', ['cpf', 'codigo_pokemon'],
-            [req.user.cpf, req.body.searchTerm], queryFindPokemonByCpfAndId, ['nome', 'raca', 'classificacao', 'nivel', 'nivel_objetivo', 'data_de_entrada', 'data_de_saida'], ['nivel', 'nivel_objetivo'])
+        const pokemon = await searchByKeyAndUpdate(req.body, 'Pokemon', ['codigo_pokemon'],
+            [req.body.searchTerm], queryFindPokemonByCod, ['nome', 'raca', 'classificacao', 'nivel', 'nivel_objetivo', 'data_de_entrada', 'data_de_saida'], ['nivel', 'nivel_objetivo'])
 
         res.send(pokemon)
     } catch (e) {

@@ -34,13 +34,11 @@ router.post('/aprimora', auth, async (req, res) => {
     }
 })
 
-// SELECT * FROM Aprimora as a INNER JOIN Pokemon as p ON p.codigo_pokemon = a.codigo_pokemon WHERE cpf = $1
-
 router.get('/aprimora/treinador', auth, async (req, res) => {
     try {
         if (req.query.sortBy && req.query.limit) {
             const parts = req.query.sortBy.split(':')
-            const select = `SELECT * FROM Aprimora as a INNER JOIN Pokemon as p ON p.codigo_pokemon = a.codigo_pokemon WHERE p.cpf = '${req.user.cpf}' ORDER BY p.${parts[0]} ${parts[1]} LIMIT ${req.query.limit}0`
+            const select = `SELECT a.cpf, a.codigo_pokemon, a.hora_de_entrada, a.hora_de_saida, p.nome, p.raca, p.classificacao, p.data_de_saida FROM Aprimora as a INNER JOIN Pokemon as p ON p.codigo_pokemon = a.codigo_pokemon WHERE a.cpf = '${req.user.cpf}' ORDER BY p.${parts[0]} ${parts[1]} LIMIT ${req.query.limit}0`
             const limitSup = parseInt(req.query.limit) * 10 
             const limitInf = limitSup - 10
             
@@ -96,7 +94,7 @@ router.get('/aprimora/mestre', auth, async (req, res) => {
             // })
             return res.send(arr)
         }   
-        const aprimora = await pool.query(`SELECT count(codigo_pokemon) FROM Aprimora WHERE cpf = '${req.user.cpf}'`)
+        const aprimora = await pool.query(`SELECT count(codigo_pokemon) FROM Aprimora`)
 
         if (!aprimora.rowCount)
             return res.status(404).send()
