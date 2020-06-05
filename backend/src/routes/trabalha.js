@@ -68,13 +68,13 @@ router.get('/trabalha', auth, async (req, res) => {
 
 router.get('/trabalha/me', auth, async (req, res) => {
     try {
-        queryFindByCpf.values = [req.header('cpf')]
+        queryFindByCpf.values = [req.user.cpf]
         const trabalha = await pool.query(queryFindByCpf)
 
         if (!trabalha.rowCount)
             return res.status(404).send()
 
-        res.send(trabalha.rows[0])
+        res.send(trabalha.rows)
     } catch (e) {
         res.status(500).send(e)
     }
