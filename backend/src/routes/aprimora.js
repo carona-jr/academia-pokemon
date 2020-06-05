@@ -14,9 +14,8 @@ const {
     queryFindByCodPokemonAndCpfAndHour
 } = require('../models/aprimora')
 
-const serachByKeyAndUpdate = require('../utils/update')
+const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
-const toArr = require('../utils/toArr')
 
 router.post('/aprimora', auth, async (req, res) => {
     try {
@@ -134,7 +133,7 @@ router.patch('/aprimora', auth, async (req, res) => {
         req.body.hora_de_saida = moment(req.body.hora_de_saida).format('YYYY-MM-DD HH:mm:ss')
 
     try {
-        const aprimora = await serachByKeyAndUpdate(req.body, 'Aprimora', ['codigo_pokemon', 'cpf', 'hora_de_entrada'],
+        const aprimora = await searchByKeyAndUpdate(req.body, 'Aprimora', ['codigo_pokemon', 'cpf', 'hora_de_entrada'],
             [codigo, cpf, hora_de_entrada], queryFindByCodigoDeptAndHour,
             ['codigo_pokemon', 'cpf', 'hora_de_entrada', 'hora_de_saida'], ['codigo_pokemon'])
 

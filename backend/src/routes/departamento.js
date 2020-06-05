@@ -10,11 +10,11 @@ const {
 } = require('../models/departamento')
 
 const auth = require('../middlewares/auth')
-const serachByKeyAndUpdate = require('../utils/update')
-const toArr = require('../utils/toArr')
+const searchByKeyAndUpdate = require('../utils/update')
 
+// (codigo_dept, nome_dept, classificacao, gerente) 
 router.post('/departamento', auth, async (req, res) => {
-    queryInsert.values = await toArr(req.body)
+    queryInsert.values = [req.body.codigo_dept, req.body.nome_dept.toLowerCase(), req.body.classificacao.toLowerCase(), req.body.gerente]
     try {
         const newDepartment = await pool.query(queryInsert)
 
@@ -62,7 +62,7 @@ router.patch('/departamento', auth, async (req, res) => {
     const nome = req.body.searchTerm.nome_dept
 
     try {
-        const departamento = await serachByKeyAndUpdate(req.body, 'Departamento', ['codigo_dept', 'nome_dept'],
+        const departamento = await searchByKeyAndUpdate(req.body, 'Departamento', ['codigo_dept', 'nome_dept'],
             [codigo, nome], queryFindByNameAndCod, ['codigo_dept', 'nome_dept', 'classificacao', 'gerente'],
             ['codigo_dept'])
 

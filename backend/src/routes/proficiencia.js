@@ -14,12 +14,12 @@ const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
 
 router.post('/proficiencia', auth, async (req, res) => {
-    const proficiencia = req.body.proficiencia
+    const proficiencia = req.body.proficiencia.toLowerCase()
 
     if (!proficiencia)
         return res.status(400).send()
 
-    queryInsert.values = [req.user.cpf, req.body.proficiencia]
+    queryInsert.values = [req.user.cpf, proficiencia]
 
     try {
         await pool.query(queryInsert)

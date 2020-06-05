@@ -12,16 +12,14 @@ const {
 
 const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
-const toArr = require('../utils/toArr')
 
 router.post('/especialidade', auth, async (req, res) => {
-    const especialidade = req.body.especialidade
+    const especialidade = req.body.especialidade.toLowerCase()
 
     if (!especialidade)
             return res.status(400).send()
 
-    let data = { cpf: req.user.cpf, ...req.body }
-    queryInsert.values = await toArr(data)
+    queryInsert.values = [req.user.cpf, especialidade]
 
     try {
 

@@ -16,7 +16,7 @@ const {
     queryFindPokemonByCpfAndId
 } = require('../models/pokemon')
 
-const serachByKeyAndUpdate = require('../utils/update')
+const searchByKeyAndUpdate = require('../utils/update')
 const auth = require('../middlewares/auth')
 const toArr = require('../utils/toArr')
 
@@ -168,7 +168,7 @@ router.get('/pokemon/byId', auth, async (req, res) => {
 
 router.patch('/pokemon', auth, async (req, res) => {
     try {
-        const pokemon = await serachByKeyAndUpdate(req.body, 'Pokemon', ['cpf', 'codigo_pokemon'],
+        const pokemon = await searchByKeyAndUpdate(req.body, 'Pokemon', ['cpf', 'codigo_pokemon'],
             [req.user.cpf, req.body.searchTerm], queryFindPokemonByCpfAndId, ['nome', 'raca', 'classificacao', 'nivel', 'nivel_objetivo', 'data_de_entrada', 'data_de_saida'], ['nivel', 'nivel_objetivo'])
 
         res.send(pokemon)
