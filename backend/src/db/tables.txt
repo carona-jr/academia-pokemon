@@ -10,7 +10,7 @@ CREATE TABLE Usuario (
     estado varchar(2) check(estado in ('sp', 'rj', 'mg')),
     cep integer,
     e_mail varchar(64) NOT NULL UNIQUE,
-    password varchar(64) NOT NULL,
+    password varchar(256) NOT NULL,
     num_cartao varchar(64),
     data_vencimento varchar(64),
     nome_cartao varchar(64),
