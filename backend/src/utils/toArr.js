@@ -6,7 +6,7 @@ const toArr = (body) => {
             const obj = keys.map(value => {
                 let newValue
 
-                if (typeof body[value] === 'string')
+                if (typeof body[value] === 'string' && value !== 'password')
                     newValue = body[value].trim().toLowerCase()
                 else
                     newValue = body[value]

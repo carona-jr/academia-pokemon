@@ -14,6 +14,7 @@ const auth = require('../middlewares/auth')
 const cpfValidator = require('cpf')
 const validator = require('validator')
 const toArr = require('../utils/toArr')
+const bcrypt = require('bcrypt')
 
 // const { validateUser } = require('../services/validate')
 
@@ -28,9 +29,11 @@ router.post('/user', async (req, res) => {
     if (!validator.isEmail(req.body.e_mail))
         return res.status(400).send({ error: 'O e-mail é inválido' })
 
-    queryInsertUser.values = await toArr(req.body)
-
+        
     try {
+        req.body.password = await bcrypt.hash(req.body.password, 8)
+        
+        queryInsertUser.values = await toArr(req.body)
         const newUser = await pool.query(queryInsertUser)
 
         if (!newUser.rowCount)
@@ -54,17 +57,16 @@ router.get('/user/me', auth, async (req, res) => {
 router.post('/user/login', async (req, res) => {
     queryFindByEmail.values = [req.body.e_mail]
 
-
     try {
         const user = await pool.query(queryFindByEmail)
-
-        const password = req.body.password
-
-        if (password !== user.rows[0].password)
-            return res.status(400).send({ error: 'Please authenticate' })
-
+        
         if (!user.rowCount)
             return res.status(404).send()
+
+        const isMatch = await bcrypt.compare(req.body.password, user.rows[0].password)
+
+        if (!isMatch)
+            return res.status(400).send({ error: 'Please authenticate' })
 
         res.send(user.rows[0])
     } catch (e) {
