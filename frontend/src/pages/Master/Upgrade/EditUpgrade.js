@@ -6,15 +6,15 @@ import EditList from '~/components/Lists/EditList'
 import { api } from '~/services/api'
 
 
-export default function EditUpgrade({ history }){
+export default function EditUpgrade({ history }) {
     const [userName, setUserName] = useState('')
-    
+
     async function loadUpgrade() {
         try {
             const response = await api.get('/user/me', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('upgrade').split(',')[1],
-                    
+
                 }
             })
             setUserName(response.data.nome)
@@ -26,7 +26,7 @@ export default function EditUpgrade({ history }){
         loadUpgrade()
         // eslint-disable-next-line
     }, [])
-        
+
 
     return (
         <div>
@@ -60,7 +60,7 @@ export default function EditUpgrade({ history }){
                                     },
                                     {
                                         name: 'cpf',
-                                        displayName: 'CPF', 
+                                        displayName: 'CPF',
                                         type: 'text',
                                         placeholder: '225557575'
                                     },

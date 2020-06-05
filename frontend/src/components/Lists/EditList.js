@@ -26,7 +26,7 @@ export default function EditList({ history, updates, path, name, routePatch, rou
             ...edit
         })
 
-        try {   
+        try {
             await api.patch(routePatch, {
                 searchTerm: searchTerm || searchObj,
                 ...edit

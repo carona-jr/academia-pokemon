@@ -25,11 +25,11 @@ export default function EditEmployee({ history }) {
         loadData()
         // eslint-disable-next-line
     }, [])
-        
+
     return (
         <div>
-        {
-             (!localStorage.getItem('cpf') || !localStorage.getItem('mhaighstir')) ? (
+            {
+                (!localStorage.getItem('cpf') || !localStorage.getItem('mhaighstir')) ? (
                     history.push('/')
                 ) : (
                         <UserTemplate history={history}>

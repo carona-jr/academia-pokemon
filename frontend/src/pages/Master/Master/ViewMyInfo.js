@@ -27,7 +27,7 @@ export default function ProfessionalProfile({ history }) {
 
     }
 
-    useEffect(() => {   
+    useEffect(() => {
         loadProfile()
         // eslint-disable-next-line
     }, [])

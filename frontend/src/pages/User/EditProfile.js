@@ -90,12 +90,12 @@ export default function EditProfile({ history }) {
     }, [])
 
     return (
-        <UserTemplate history={history}>
+        <div>
             {
                 !localStorage.getItem('cpf') ? (
                     history.push('/')
                 ) : (user) ? (
-                    <div>
+                    <UserTemplate history={history}>
                         <h2 className="text-center m-0 p-0 my-5"><span style={{ textTransform: 'capitalize' }}>{user.nome}</span></h2>
                         <AlertMessage show={show} setShow={setShow}
                             title="Sucesso"
@@ -221,13 +221,15 @@ export default function EditProfile({ history }) {
                                 </Button>
                             </Container>
                         </Form>
-                    </div>
+                    </UserTemplate>
                 ) : (
-                            <div className="d-flex justify-content-center my-5 py-5" >
-                                <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
-                            </div>
+                            <UserTemplate history={history}>
+                                <div className="d-flex justify-content-center my-5 py-5" >
+                                    <Spinner type="bars" width={'32px'} height={'32px'} color={'green'} />
+                                </div>
+                            </UserTemplate>
                         )
             }
-        </UserTemplate>
+        </div>
     )
 }

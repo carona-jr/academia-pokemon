@@ -202,10 +202,10 @@ export default function ListMaster({ history }) {
                         </div>
                     </UserTemplate>
                 ) : (
-                    <UserTemplate history={history}>
-                        <h6>Não existem mestres cadastrados!</h6>
-                    </UserTemplate>
-                )
+                            <UserTemplate history={history}>
+                                <h6>Não existem mestres cadastrados!</h6>
+                            </UserTemplate>
+                        )
             }
         </div>
     )

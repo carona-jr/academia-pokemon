@@ -67,7 +67,7 @@ export default function EditTrainer({ history }) {
                             />
 
                             <div className="w-100 mt-5">
-                                <EditAttribute routeGet="/especialidade" routeDelete="/especialidade" attribute="especialidade" cpf="trainer"/>
+                                <EditAttribute routeGet="/especialidade" routeDelete="/especialidade" attribute="especialidade" cpf="trainer" />
                             </div>
                         </UserTemplate>
                     )

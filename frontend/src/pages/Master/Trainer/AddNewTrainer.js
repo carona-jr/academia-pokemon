@@ -12,7 +12,7 @@ export default function Upgrade({ history }) {
                     history.push('/')
                 ) : (
                         <UserTemplate history={history}>
-                            <CreateList 
+                            <CreateList
                                 newRow={
                                     [
                                         {

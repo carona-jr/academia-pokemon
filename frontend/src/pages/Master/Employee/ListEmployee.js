@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState, useEffect } from 'react'
 
 import List from '~/components/Lists/List'
 
@@ -124,8 +124,8 @@ export default function ListEmployee({ history }) {
                                     <Form.Label className="w-100 w-lg-75 align-self-center">Ordenar por:</Form.Label>
                                     <Form.Control as="select" value={sort.sortSearch} onChange={e => {
                                         if (e.target.value === 'cpf' || e.target.value === 'nome')
-                                            return setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'u' })     
-                                        setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'd' })          
+                                            return setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'u' })
+                                        setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'd' })
                                     }}>
                                         <option value="codigo_dept">Código</option>
                                         <option value="nome_dept">Departamento</option>
@@ -180,7 +180,7 @@ export default function ListEmployee({ history }) {
                                 {
                                     (active !== 1) ? (
                                         <Pagination.Ellipsis />
-                                    ) : (   
+                                    ) : (
                                             <></>
                                         )
                                 }
@@ -205,10 +205,10 @@ export default function ListEmployee({ history }) {
                         </div>
                     </UserTemplate>
                 ) : (
-                    <UserTemplate history={history}>
-                        <h6>A academia não possui funcionários cadastrados!</h6>
-                    </UserTemplate>
-                )
+                            <UserTemplate history={history}>
+                                <h6>A academia não possui funcionários cadastrados!</h6>
+                            </UserTemplate>
+                        )
             }
         </div>
     )

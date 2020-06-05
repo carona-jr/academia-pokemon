@@ -44,7 +44,7 @@ export default function EditTrainer({ routeGet, routeDelete, attribute, cpf }) {
                     [attribute]: item
                 }
             })
-            
+
             setTextShow('deletado')
             setShowSuccess(true)
         } catch (e) {
