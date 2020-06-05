@@ -28,13 +28,26 @@ export default function EditProfile({ history }) {
             })
             setUser(response.data)
         } catch (e) {
-            history.push('/user/pokemon/mine')
-            alert(e.response.data)
+            alert(e)
         }
     }
 
     async function handleSubmit(e) {
         e.preventDefault()
+        console.log({
+            nome: user.nome.toLowerCase(),
+            data_nascimento: user.data_nascimento,
+            cpf: user.cpf,
+            rg: user.rg,
+            e_mail: user.e_mail.toLowerCase(),
+            password: user.password,
+            rua: user.rua.toLowerCase(),
+            num_casa: user.num_casa,
+            bairro: user.bairro.toLowerCase(),
+            cidade: user.cidade.toLowerCase(),
+            estado: user.estado.toLowerCase(),
+            cep: user.cep
+        })
         try {
             const userCpf = localStorage.getItem('cpf')
             await api.patch('/user/me', {
@@ -66,6 +79,7 @@ export default function EditProfile({ history }) {
             localStorage.setItem('user', JSON.stringify(response.data))
             setShow(true)
         } catch (e) {
+            console.log(e)
             setShow2(true)
         }
     }
@@ -95,7 +109,7 @@ export default function EditProfile({ history }) {
                             title="Erro"
                             msg="Sua conta não foi alterada com sucesso :("
                             button="Fechar"
-                            func={() => setShow(false)}
+                            func={() => setShow2(false)}
                             colorAlert="danger"
                             colorButton="outline-danger"
                         />

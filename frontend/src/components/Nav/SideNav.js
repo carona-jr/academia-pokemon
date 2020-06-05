@@ -50,14 +50,20 @@ export default function SideNav({ divMain }) {
         link2.current.style.left = '-100px'
         link3.current.style.position = 'relative'
         link3.current.style.left = '-100px'
-        link4.current.style.position = 'relative'
-        link4.current.style.left = '-100px'
-        link5.current.style.position = 'relative'
-        link5.current.style.left = '-100px'
-        link6.current.style.position = 'relative'
-        link6.current.style.left = '-100px'
-        link7.current.style.position = 'relative'
-        link7.current.style.left = '-100px'
+
+        if (localStorage.getItem('coidse') === 'true') {
+            link4.current.style.position = 'relative'
+            link4.current.style.left = '-100px'
+            link5.current.style.position = 'relative'
+            link5.current.style.left = '-100px'
+        }
+
+        if (localStorage.getItem('mhaighstir') === 'true') {
+            link6.current.style.position = 'relative'
+            link6.current.style.left = '-100px'
+            link7.current.style.position = 'relative'
+            link7.current.style.left = '-100px'
+        }
 
         menuIcon.current.style.width = '52px'
     }
@@ -78,10 +84,16 @@ export default function SideNav({ divMain }) {
         link1.current.style.position = 'static'
         link2.current.style.position = 'static'
         link3.current.style.position = 'static'
-        link4.current.style.position = 'static'
-        link5.current.style.position = 'static'
-        link6.current.style.position = 'static'
-        link7.current.style.position = 'static'
+
+        if (localStorage.getItem('coidse') === 'true') {
+            link4.current.style.position = 'static'
+            link5.current.style.position = 'static'
+        }
+
+        if (localStorage.getItem('mhaighstir') === 'true') {
+            link6.current.style.position = 'static'
+            link7.current.style.position = 'static'
+        }
 
         menuIcon.current.style.width = 0
     }

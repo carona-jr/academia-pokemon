@@ -33,7 +33,7 @@ export default function AddEmployee({ history }) {
                                 route="/trabalha"
                                 registerDate={false}
                                 history={history}
-                                title="funcionario"
+                                title="trabalho"
                             />
                         </UserTemplate>
                     )

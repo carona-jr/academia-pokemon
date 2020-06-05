@@ -25,13 +25,13 @@ export default function ListUpgrade({history}) {
     async function loadCount() {
         const userCpf = localStorage.getItem('cpf')
         try {
-            const response = await api.get('/aprimora/treinador', {
+            const response = await api.get('/aprimora/mestre', {
                 headers: {
                     Authorization: 'Bearer ' + userCpf
                 }
             })
 
-            if (response.data.count === '0') {
+            if (response.data.count === 0) {
                 setNumTrainer(0)
                 return setCount(0)
             }

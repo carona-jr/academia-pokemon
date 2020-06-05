@@ -23,7 +23,6 @@ export default function CreateList({ history, newRow, route, registerDate, title
         }
         
         try {
-            console.log(route, data)
             await api.post(route, data, {
                 headers: {
                     Authorization: 'Bearer ' + userCpf
@@ -32,7 +31,6 @@ export default function CreateList({ history, newRow, route, registerDate, title
 
             setShowSuccess(true)
         } catch (e) {
-            console.log(e.response.data)
             setErrorMessage(e.response.data.detail || '')
             setShowError(true)
         }   

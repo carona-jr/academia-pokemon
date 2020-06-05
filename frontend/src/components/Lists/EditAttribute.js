@@ -55,7 +55,6 @@ export default function EditTrainer({ routeGet, routeDelete, attribute, cpf }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
-
         try {
             await api.post(routeGet, {
                 [attribute]: newData[attribute]

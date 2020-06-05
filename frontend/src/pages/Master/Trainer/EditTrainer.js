@@ -13,7 +13,7 @@ export default function EditTrainer({ history }) {
         try {
             const response = await api.get('/user/me', {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('trainerCPF')
+                    Authorization: 'Bearer ' + localStorage.getItem('trainer')
                 }
             })
             setUserName(response.data.nome)
@@ -67,7 +67,7 @@ export default function EditTrainer({ history }) {
                             />
 
                             <div className="w-100 mt-5">
-                                <EditAttribute routeGet="/especialidade" routeDelete="/especialidade" attribute="especialidade" cpf="trainerCPF"/>
+                                <EditAttribute routeGet="/especialidade" routeDelete="/especialidade" attribute="especialidade" cpf="trainer"/>
                             </div>
                         </UserTemplate>
                     )

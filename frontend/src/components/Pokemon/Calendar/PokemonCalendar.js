@@ -46,7 +46,7 @@ export default function PokemonCalendar() {
             </>
         ) : (responseData === 'empty') ? (
             <div>
-                <p>Vc não adicionou nenhum pokémon :(</p>
+                <p>Você não adicionou nenhum pokémon :(</p>
             </div>
         ) : (
             <div className="d-flex justify-content-center my-5 py-5" >

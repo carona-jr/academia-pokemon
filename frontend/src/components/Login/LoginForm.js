@@ -62,7 +62,7 @@ export default function LoginForm({ history, setShow }) {
                 <Form.Label>Senha</Form.Label>
                 <Form.Control onChange={e => setUser({ ...user, password: e.target.value })} className="p-4" type="password" placeholder="********" required />
             </Form.Group>
-            <Button className="my-4" variant="primary" type="submit" size="lg" block>
+            <Button className="my-4" variant="success" type="submit" size="lg" block>
                 Entrar
             </Button>
         </Form>

@@ -41,9 +41,9 @@ export default function EditPokemon({ history }) {
             const userCpf = localStorage.getItem('cpf')
             await api.patch('/pokemon', {
                 searchTerm: pokemonID,
-                nome: pokemon.nome,
-                raca: pokemon.raca,
-                classificacao: pokemon.classificacao,
+                nome: pokemon.nome.toLowerCase(),
+                raca: pokemon.raca.toLowerCase(),
+                classificacao: pokemon.classificacao.toLowerCase(),
                 nivel: pokemon.nivel,
                 nivel_objetivo: pokemon.nivel_objetivo,
                 data_de_entrada: pokemon.data_de_entrada,

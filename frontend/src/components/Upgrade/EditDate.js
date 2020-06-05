@@ -12,6 +12,7 @@ export default function EditDate({ handleClose, pokemon, inputNumber, time, setS
 
     async function handleSubmit() {
         const userCpf = localStorage.getItem('cpf')
+        console.log(time, date[time])
         if (time === 'data_de_saida') {
             try {
                 await api.patch('/pokemon', {
@@ -24,6 +25,7 @@ export default function EditDate({ handleClose, pokemon, inputNumber, time, setS
                 })
                 window.location.reload(true)
             } catch (e) {
+                console.log(e.response.data)
                 setShow(true)
             }
             return
