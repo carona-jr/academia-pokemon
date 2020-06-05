@@ -78,7 +78,8 @@ export default function SignUpForm({ history }) {
 
             history.push('/user')
         } catch (e) {
-            setError(e.response.data.error || e.response.data.detail)
+            console.log(e.response)
+            setError(e.response.data.error || e.response.data.detail || '')
             setShow(true)
         }
     }
