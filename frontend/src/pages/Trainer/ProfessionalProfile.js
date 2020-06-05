@@ -41,12 +41,11 @@ export default function ProfessionalProfile({ history }) {
             })
             setSpecialty(especialidades.data)
         } catch (e) {
-            setSpecialty([{ especialidade: 'nenhuma ainda :(' }])
+            setSpecialty([{ especialidade: 'Você ainda não possui nenhuma especialidade :(' }])
         }
     }
 
     async function loadDepartment() {
-        console.log(user.cpf)
         try {
             const department = await api.get('/trabalha/me', {
                 headers: {
@@ -55,7 +54,6 @@ export default function ProfessionalProfile({ history }) {
             })
             setDepartment(department.data)
         } catch (e) {
-            console.log(e)
             setDepartment([{ nome_dept: '...', codigo_dept: '...', gerente: '...', classificacao: '...' }])
         }
     }
