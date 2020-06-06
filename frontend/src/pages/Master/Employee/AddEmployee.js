@@ -12,7 +12,7 @@ export default function AddEmployee({ history }) {
                     history.push('/')
                 ) : (
                         <UserTemplate history={history}>
-                            <CreateList 
+                            <CreateList
                                 newRow={
                                     [
                                         {

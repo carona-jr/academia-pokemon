@@ -12,14 +12,14 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date,
     const userCpf = localStorage.getItem('cpf')
 
     async function loadData() {
-        try {   
+        try {
             const response = await api.get(`${routeGet}?sortBy=${sort.sortBy[0]}:${sort.sortBy[1]}&limit=${sort.limit}&table=${sort.table}`, {
                 headers: {
                     Authorization: 'Bearer ' + userCpf
                 }
             })
             setUser(response.data)
-        } catch (e) {   
+        } catch (e) {
         }
     }
 
@@ -91,18 +91,18 @@ export default function List({ names, routeGet, routeDelete, sort, titles, date,
                                     }
 
                                     <td style={{ verticalAlign: 'middle', textAlign: 'center' }}>
-                                    {
-                                        canEdit ? (
-                                            <a className="m-0 mr-3 p-0" href={`/master/${editRoute}/edit`} onClick={() =>
-                                                localStorage.setItem(editRoute, pkey.map(value => item[value]).join())
-                                            }>
-                                                <img src={editImg} alt="edit"></img>
-                                            </a>
+                                        {
+                                            canEdit ? (
+                                                <a className="m-0 mr-3 p-0" href={`/master/${editRoute}/edit`} onClick={() =>
+                                                    localStorage.setItem(editRoute, pkey.map(value => item[value]).join())
+                                                }>
+                                                    <img src={editImg} alt="edit"></img>
+                                                </a>
 
-                                        ) : (
-                                            <></>
-                                        )  
-                                    }
+                                            ) : (
+                                                    <></>
+                                                )
+                                        }
                                         <a className="m-0 p-0" href={`/master/${editRoute}/list`} onClick={(e) => handleDelete(e, item)}>
                                             <img src={deleteImg} alt="apagar"></img>
                                         </a>

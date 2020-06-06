@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState, useEffect } from 'react'
 
 import List from '~/components/Lists/List'
 
@@ -10,7 +10,7 @@ import AlertMessage from '~/components/PopUp/Alert'
 
 import UserTemplate from '~/templates/UserTemplate'
 
-export default function ListUpgrade({history}) {
+export default function ListUpgrade({ history }) {
     const [active, setActive] = useState(1)
     const [past, setPast] = useState(1)
     const [future, setFuture] = useState(1)
@@ -124,8 +124,8 @@ export default function ListUpgrade({history}) {
                                     <Form.Label className="w-100 w-lg-75 align-self-center">Ordenar por:</Form.Label>
                                     <Form.Control as="select" value={sort.sortSearch} onChange={e => {
                                         if (e.target.value === 'codigo_pokemon' || e.target.value === 'hora_de_entrada' || e.target.value === 'hora_de_saida')
-                                            return setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'a' })     
-                                        setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'u' })          
+                                            return setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'a' })
+                                        setSort({ ...sort, sortBy: [e.target.value, sort.sortBy[1]], table: 'u' })
                                     }}>
                                         <option value="codigo_pokemon">ID Pokémon</option>
                                         <option value="cpf">CPF</option>
@@ -180,7 +180,7 @@ export default function ListUpgrade({history}) {
                                 {
                                     (active !== 1) ? (
                                         <Pagination.Ellipsis />
-                                    ) : (   
+                                    ) : (
                                             <></>
                                         )
                                 }
@@ -205,10 +205,10 @@ export default function ListUpgrade({history}) {
                         </div>
                     </UserTemplate>
                 ) : (
-                    <UserTemplate history={history}>
-                        <h6>Você não tem nenhum treinador!</h6>
-                    </UserTemplate>
-                )
+                            <UserTemplate history={history}>
+                                <h6>Você não tem nenhum treinador!</h6>
+                            </UserTemplate>
+                        )
             }
         </div>
     )

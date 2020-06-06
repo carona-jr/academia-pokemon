@@ -151,6 +151,5 @@ export default function NewPokemon({ history }) {
                     )
             }
         </div>
-
     )
 }

@@ -206,10 +206,10 @@ export default function ListTrainer({ history }) {
                         </div>
                     </UserTemplate>
                 ) : (
-                    <UserTemplate history={history}>
-                        <h6>Você não tem nenhum treinador!</h6>
-                    </UserTemplate>
-                )
+                            <UserTemplate history={history}>
+                                <h6>Você não tem nenhum treinador!</h6>
+                            </UserTemplate>
+                        )
             }
         </div>
     )

@@ -47,12 +47,12 @@ export default function Admin({ history }) {
                                 msg={'Consulta realizada com sucesso'}
                                 button="Fechar"
                                 func={() => {
-                                    setShowSuccess(false) 
+                                    setShowSuccess(false)
                                 }}
                                 colorAlert="success"
                                 colorButton="outline-success"
                             />
-                            
+
                             <AlertMessage show={showError} setShow={setShowError}
                                 title="Erro"
                                 msg={'Erro na consulta'}
@@ -88,7 +88,7 @@ export default function Admin({ history }) {
                                     <div className="w-80 my-5">
                                         {
                                             result.map(arr => {
-                                                return (                                                
+                                                return (
                                                     <Table className="w-80 my-5" size="sm" responsive striped bordered hover key={Key++}>
                                                         <thead>
                                                             <tr>
@@ -128,7 +128,7 @@ export default function Admin({ history }) {
                                         }
 
                                     </div>
-                                ) : (result && result[0][0].length ===  0) ? (
+                                ) : (result && result[0][0].length === 0) ? (
                                     <p className="text-center mt-5">Nenhuma tabela foi retornada</p>
                                 ) : (
                                             <></>
@@ -138,7 +138,7 @@ export default function Admin({ history }) {
                         </UserTemplate>
                     )
             }
-        </div >
+        </div>
 
     )
 

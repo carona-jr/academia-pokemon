@@ -49,9 +49,9 @@ export default function PokemonCalendar() {
                 <p>Você não adicionou nenhum pokémon :(</p>
             </div>
         ) : (
-            <div className="d-flex justify-content-center my-5 py-5" >
-                <Spinner type="bars" width={'32px'} height={'32px'} color={'blue'} />
-            </div>
-        )
+                    <div className="d-flex justify-content-center my-5 py-5" >
+                        <Spinner type="bars" width={'32px'} height={'32px'} color={'blue'} />
+                    </div>
+                )
     )
 }

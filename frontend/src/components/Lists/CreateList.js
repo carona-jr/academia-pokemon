@@ -21,7 +21,7 @@ export default function CreateList({ history, newRow, route, registerDate, title
         if (registerDate) {
             data.data_cadastro = today
         }
-        
+
         try {
             await api.post(route, data, {
                 headers: {
@@ -33,7 +33,7 @@ export default function CreateList({ history, newRow, route, registerDate, title
         } catch (e) {
             setErrorMessage(e.response.data.detail || '')
             setShowError(true)
-        }   
+        }
     }
 
     return (
@@ -45,7 +45,7 @@ export default function CreateList({ history, newRow, route, registerDate, title
                 msg={`Seu ${title} foi criado com sucesso :)`}
                 button="Fechar"
                 func={() => {
-                    setShowSuccess(false) 
+                    setShowSuccess(false)
                     history.push('/master')
                 }}
                 colorAlert="success"
