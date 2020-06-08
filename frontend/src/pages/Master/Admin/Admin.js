@@ -79,39 +79,34 @@ export default function Admin({ history }) {
                                     className="d-flex justify-content-around align-items-center"
                                     onSubmit={handleSubmit}
                                 >
-                                    <Form.Group className="w-75 m-0" controlId="query">
-                                        <Form.Control
-                                            as="textarea" onChange={e => setQuery({ value: e.target.value })}
-                                            type="text" placeholder="Insira sua consulta" value={query.value || ''} required />
-                                    </Form.Group>
+                                    <div className="d-flex flex-column w-75 m-0">
+                                        <Form.Group controlId="query">
+                                            <Form.Control
+                                                as="textarea" onChange={e => setQuery({ value: e.target.value })}
+                                                type="text" placeholder="Insira sua consulta" value={query.value || ''} required />
+                                        </Form.Group>
+
+                                        <Form.Group className="w-75 m-0 align-self-end mt-3" controlId="select">
+                                            <Form.Control
+                                                as="select"
+                                                onChange={e => {
+                                                    setQuery({ value: e.target.value })
+                                                }}
+                                                defaultValue="As suas últimas consultas"
+                                            >
+                                                {
+                                                    queryHistory.map(item => {
+                                                        return (
+                                                            <option key={item} value={item}>{item}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </Form.Control>
+                                        </Form.Group>
+                                    </div>
+
                                     <div className="m-0">
                                         <Button className="p-3" variant="dark" type="submit">
-                                            Enviar
-                                    </Button>
-                                    </div>
-                                </Form>
-
-
-                                <Form className="d-flex justify-content-around align-items-center mt-5">
-                                    <Form.Group className="w-75 m-0" controlId="select">
-                                        <Form.Control
-                                            as="select"
-                                            onChange={e => {
-                                                setQuery({ value: e.target.value })
-                                            }}
-                                            defaultValue="As suas últimas consultas"
-                                        >
-                                            {
-                                                queryHistory.map(item => {
-                                                    return (
-                                                        <option key={item} value={item}>{item}</option>
-                                                    )
-                                                })
-                                            }
-                                        </Form.Control>
-                                    </Form.Group>
-                                    <div className="m-0">
-                                        <Button className="p-3 no-hover" style={{ backgroundColor: 'rgba(0, 0, 0, 0)', color: 'rgba(0, 0, 0, 0)', borderColor: 'rgba(0, 0, 0, 0)' }} disabled>
                                             Enviar
                                         </Button>
                                     </div>
