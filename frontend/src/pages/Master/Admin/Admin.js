@@ -9,8 +9,6 @@ import AlertMessage from '~/components/PopUp/Alert'
 
 import { api } from '~/services/api'
 
-import './Admin.css'
-
 export default function Admin({ history }) {
     const [query, setQuery] = useState({})
     const [queryHistory, setQueryHistory] = useState(JSON.parse(localStorage.getItem('queryHistory')) || ['As suas últimas consultas'])
