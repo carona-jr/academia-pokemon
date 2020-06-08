@@ -12,7 +12,6 @@ const {
 const auth = require('../middlewares/auth')
 const searchByKeyAndUpdate = require('../utils/update')
 
-// (codigo_dept, nome_dept, classificacao, gerente) 
 router.post('/departamento', auth, async (req, res) => {
     queryInsert.values = [req.body.codigo_dept, req.body.nome_dept.toLowerCase(), req.body.classificacao.toLowerCase(), req.body.gerente]
     try {
