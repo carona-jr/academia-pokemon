@@ -9,8 +9,11 @@ import AlertMessage from '~/components/PopUp/Alert'
 
 import { api } from '~/services/api'
 
+import './Admin.css'
+
 export default function Admin({ history }) {
-    const [query, setQuery] = useState('')
+    const [query, setQuery] = useState({})
+    const [queryHistory, setQueryHistory] = useState(JSON.parse(localStorage.getItem('queryHistory')) || ['As suas últimas consultas'])
     const [result, setResult] = useState('')
     const [showSuccess, setShowSuccess] = useState(false)
     const [showError, setShowError] = useState(false)
@@ -20,13 +23,16 @@ export default function Admin({ history }) {
         e.preventDefault()
         try {
             const response = await api.post('/admin', {
-                query: query.query
+                query: query.value
             }, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('cpf')
                 }
             })
-            console.log(response.data[0][0])
+            if (!queryHistory.includes(query.value)) {
+                setQueryHistory([...queryHistory, query.value])
+                localStorage.setItem('queryHistory', JSON.stringify(queryHistory))
+            }
             setResult(response.data)
             setShowSuccess(true)
         } catch (e) {
@@ -67,21 +73,51 @@ export default function Admin({ history }) {
                                 <p className="text-center mt-0 mb-5">Faça consultas diretamente no banco PostgreSQL</p>
                             </div>
 
-                            <Form
-                                className="w-100 d-flex justify-content-around align-items-center"
-                                onSubmit={handleSubmit}
-                            >
-                                <Form.Group className="w-75 m-0" controlId="query">
-                                    <Form.Control
-                                        as="textarea" onChange={e => setQuery({ ...query, query: e.target.value })}
-                                        type="text" placeholder="Insira sua consulta" value={query.query || ''} required />
-                                </Form.Group>
-                                <div className="m-0">
-                                    <Button className="p-3" variant="dark" type="submit">
-                                        Enviar
+
+                            <div className="w-100 d-flex flex-column justify-content-center">
+                                <Form
+                                    className="d-flex justify-content-around align-items-center"
+                                    onSubmit={handleSubmit}
+                                >
+                                    <Form.Group className="w-75 m-0" controlId="query">
+                                        <Form.Control
+                                            as="textarea" onChange={e => setQuery({ value: e.target.value })}
+                                            type="text" placeholder="Insira sua consulta" value={query.value || ''} required />
+                                    </Form.Group>
+                                    <div className="m-0">
+                                        <Button className="p-3" variant="dark" type="submit">
+                                            Enviar
                                     </Button>
-                                </div>
-                            </Form>
+                                    </div>
+                                </Form>
+
+
+                                <Form className="d-flex justify-content-around align-items-center mt-5">
+                                    <Form.Group className="w-75 m-0" controlId="select">
+                                        <Form.Control
+                                            as="select"
+                                            onChange={e => {
+                                                setQuery({ value: e.target.value })
+                                            }}
+                                            defaultValue="As suas últimas consultas"
+                                        >
+                                            {
+                                                queryHistory.map(item => {
+                                                    return (
+                                                        <option key={item} value={item}>{item}</option>
+                                                    )
+                                                })
+                                            }
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <div className="m-0">
+                                        <Button className="p-3 no-hover" style={{ backgroundColor: 'rgba(0, 0, 0, 0)', color: 'rgba(0, 0, 0, 0)', borderColor: 'rgba(0, 0, 0, 0)' }} disabled>
+                                            Enviar
+                                        </Button>
+                                    </div>
+                                </Form>
+                            </div>
+
 
                             {
                                 result && result.length > 0 ? (
@@ -126,7 +162,6 @@ export default function Admin({ history }) {
 
                                             })
                                         }
-
                                     </div>
                                 ) : (result && result[0][0].length === 0) ? (
                                     <p className="text-center mt-5">Nenhuma tabela foi retornada</p>
@@ -143,3 +178,35 @@ export default function Admin({ history }) {
     )
 
 }
+
+// class FlavorForm extends React.Component {
+//     constructor(props) {
+//       super(props);
+//       this.state = {value: 'coco'};
+//       this.handleChange = this.handleChange.bind(this);
+//       this.handleSubmit = this.handleSubmit.bind(this);
+//     }
+
+//     handleChange(event) {    this.setState({value: event.target.value});  }
+//     handleSubmit(event) {
+//       alert('Seu sabor favorito é: ' + this.state.value);
+//       event.preventDefault();
+//     }
+
+//     render() {
+//       return (
+//         <form onSubmit={this.handleSubmit}>
+//           <label>
+//             Escolha seu sabor favorito:
+//             <select value={this.state.value} onChange={this.handleChange}>            
+//               <option value="laranja">Laranja</option>
+//               <option value="limao">Limão</option>
+//               <option value="coco">Coco</option>
+//               <option value="manga">Manga</option>
+//             </select>
+//           </label>
+//           <input type="submit" value="Enviar" />
+//         </form>
+//       );
+//     }
+//   }

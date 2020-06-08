@@ -1,6 +1,7 @@
 const express = require('express')
 const pool = require('../db/elephant-sql')
 const router = new express.Router()
+const bcrypt = require('bcrypt')
 
 const {
     queryInsertUser,
@@ -14,7 +15,6 @@ const auth = require('../middlewares/auth')
 const cpfValidator = require('cpf')
 const validator = require('validator')
 const toArr = require('../utils/toArr')
-const bcrypt = require('bcrypt')
 
 // const { validateUser } = require('../services/validate')
 
@@ -76,6 +76,8 @@ router.post('/user/login', async (req, res) => {
 
 router.patch('/user/me', auth, async (req, res) => {
     try {
+        req.body.password = await bcrypt.hash(req.body.password, 8)
+
         const query = await searchByKeyAndUpdate(req.body, 'Usuario', ['cpf'], [req.user.cpf],
             queryFindByCpf, ['nome', 'data_nascimento', 'cpf', 'rg', 'e_mail', 'password', 'rua', 'num_casa', 'bairro', 'cidade', 'estado', 'cep'], ['cep', 'num_casa'])
 

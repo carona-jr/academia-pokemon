@@ -34,20 +34,6 @@ export default function EditProfile({ history }) {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        console.log({
-            nome: user.nome.toLowerCase(),
-            data_nascimento: user.data_nascimento,
-            cpf: user.cpf,
-            rg: user.rg,
-            e_mail: user.e_mail.toLowerCase(),
-            password: user.password,
-            rua: user.rua.toLowerCase(),
-            num_casa: user.num_casa,
-            bairro: user.bairro.toLowerCase(),
-            cidade: user.cidade.toLowerCase(),
-            estado: user.estado.toLowerCase(),
-            cep: user.cep
-        })
         try {
             const userCpf = localStorage.getItem('cpf')
             await api.patch('/user/me', {
@@ -56,7 +42,7 @@ export default function EditProfile({ history }) {
                 cpf: user.cpf,
                 rg: user.rg,
                 e_mail: user.e_mail.toLowerCase(),
-                password: user.password,
+                password: user.senha,
                 rua: user.rua.toLowerCase(),
                 num_casa: user.num_casa,
                 bairro: user.bairro.toLowerCase(),
@@ -156,8 +142,8 @@ export default function EditProfile({ history }) {
                                 <Form.Group as={Col} controlId="password">
                                     <Form.Label>Senha</Form.Label>
                                     <Form.Control
-                                        onChange={e => setUser({ ...user, password: e.target.value })}
-                                        type="password" value={user.password || ''} />
+                                        onChange={e => setUser({ ...user, senha: e.target.value })}
+                                        type="password" placeholder="******" value={user.senha || ''} />
                                 </Form.Group>
                             </Form.Row>
 
