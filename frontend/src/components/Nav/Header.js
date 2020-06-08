@@ -3,10 +3,6 @@ import React, { useState } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import FormControl from 'react-bootstrap/FormControl'
-
 import './Header.css'
 
 export default function Header({ history }) {
@@ -15,10 +11,6 @@ export default function Header({ history }) {
     const [search, setSearch] = useState()
     function handleClick() {
         localStorage.clear()
-    }
-
-    function handleSearch(e) {
-        history.push('/user/search')
     }
 
     return (

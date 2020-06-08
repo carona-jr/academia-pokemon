@@ -9,7 +9,6 @@ import MyPlan from './pages/User/MyPlan'
 import AddPlan from './pages/User/AddPlan'
 import EditProfile from './pages/User/EditProfile'
 import EditPokemon from './pages/User/EditPokemon'
-import SearchPage from './pages/User/SearchPage'
 
 import ProfessionalProfile from './pages/Trainer/ProfessionalProfile'
 import Upgrade from './pages/Trainer/Upgrade'
@@ -57,7 +56,6 @@ export default function Routes() {
                 <Route path="/user/pokemon/new" component={NewPokemon} />
                 <Route path="/user/pokemon/mine" component={MyPokemons} />
                 <Route path="/user/pokemon/edit" component={EditPokemon} />
-                <Route path="/user/search" component={SearchPage} />
 
                 <Route path="/trainer/profile" component={ProfessionalProfile} />
                 <Route path="/trainer/upgrade" component={Upgrade} />
