@@ -21,7 +21,7 @@ PostgreSQL
 ### Instalando API
 
 Crie uma pasta **config** dentro da pasta backend. 
-Dentro da pasta **config**, faça um arquivo **dev-env** e coloque dentro dele o seguinte código:
+Dentro da pasta **config**, faça um arquivo com o nome **dev-env** e coloque dentro dele o seguinte código:
 
 ```
 PORT=3000
@@ -43,7 +43,7 @@ npm run dev
 
 ### Rodando o React
 
-Instale os pacotes utilizando o comando abaixo:
+Dentro da pasta frontend, instale os pacotes utilizando o comando abaixo:
 
 ```
 yarn install
