@@ -1,6 +1,6 @@
 # Academia Pokémon
 
-O projeto é um trabalho da disciplina de banco de dados I a fim de explorar os conceitos aprendidos em sala de aula com a linguagem SQL. Este trabalho tem como objetivo o desenvolvimento do banco de dados e uma interface gráfica para visualização dos dados contidos neste banco.
+O projeto é um trabalho da disciplina de banco de dados I a fim de explorar os conceitos aprendidos em sala de aula com a linguagem SQL. Este trabalho tem como objetivo o desenvolvimento do banco de dados e uma interface gráfica para visualização dos dados contidos neste banco. Para saber mais, [veja o arquivo de documentação da elaboração do diagrama](https://github.com/carona-jr/academia-pokemon/blob/c165a54888afe92e4080963450917d632c17032c/academia.pdf)
 
 Para visualizar o projeto rodando [clique aqui](https://frontend-pokemon.now.sh/)
 
