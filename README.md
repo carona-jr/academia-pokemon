@@ -2,6 +2,8 @@
 
 O projeto é um trabalho da disciplina de banco de dados I a fim de explorar os conceitos aprendidos em sala de aula com a linguagem SQL. Este trabalho tem como objetivo o desenvolvimento do banco de dados e uma interface gráfica para visualização dos dados contidos neste banco.
 
+Para visualizar o projeto rodando [clique aqui](https://frontend-pokemon.now.sh/)
+
 ## Iniciando
 
 Para iniciar um servidor, basta seguir os passos descritos abaixo.
@@ -18,21 +20,21 @@ PostgreSQL
 
 ### Instalando API
 
-Crie uma pasta **config** dentro de backend. 
-Dentro dela, coloque as seguintes variáveis de ambiente no arquivo **dev-env**:
+Crie uma pasta **config** dentro da pasta backend. 
+Dentro da pasta **config**, faça um arquivo **dev-env** e coloque dentro dele o seguinte código:
 
 ```
 PORT=3000
 PG_KEY=ENDEREÇO-DO-BANCO-DE-DADOS-AQUI
 ```
 
-Após isto, instale os pacotes com o comando na pasta backend: 
+Feito a configuração inicial, instale os pacotes com o comando abaixo dentro da pasta backend: 
 
 ```
 npm i
 ```
 
-Rode o servidor com o script dev para rodar localmente:
+Execute o servidor com o script no modo devesenvolvimento para iniciar um servidor local:
 
 ```
 npm run dev
@@ -41,17 +43,20 @@ npm run dev
 
 ### Rodando o React
 
-Instale os pacotes utilizando o comando abaixo
+Instale os pacotes utilizando o comando abaixo:
 
 ```
 yarn install
 ```
 
-Rode o aplicativo em modo desenvolvimento. Abra o endereço http://localhost:3000 para visualizar.
+Rode o aplicativo em modo desenvolvimento.
 
 ```
 yarn start
 ```
+
+Abra o endereço http://localhost:3000 para visualizar o site Web.
+
 
 ## Feito com S2
 
