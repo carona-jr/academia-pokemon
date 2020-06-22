@@ -1,6 +1,6 @@
 # Academia Pokémon
 
-O projeto é um trabalho da disciplina de banco de dados I a fim de explorar os conceitos aprendidos em sala de aula com a linguagem SQL. Este trabalho tem como objetivo o desenvolvimento do banco de dados e uma interface gráfica para visualização dos dados contidos neste banco.
+O projeto é um trabalho da disciplina de banco de dados I a fim de explorar os conceitos aprendidos em sala de aula com a linguagem SQL. Este trabalho tem como objetivo o desenvolvimento do banco de dados e uma interface gráfica para visualização dos dados contidos neste banco. Para saber mais, [veja o arquivo de documentação da elaboração do diagrama](https://github.com/carona-jr/academia-pokemon/blob/c165a54888afe92e4080963450917d632c17032c/academia.pdf)
 
 Para visualizar o projeto rodando [clique aqui](https://frontend-pokemon.now.sh/)
 
@@ -21,7 +21,7 @@ PostgreSQL
 ### Instalando API
 
 Crie uma pasta **config** dentro da pasta backend. 
-Dentro da pasta **config**, faça um arquivo **dev-env** e coloque dentro dele o seguinte código:
+Dentro da pasta **config**, faça um arquivo com o nome **dev-env** e coloque dentro dele o seguinte código:
 
 ```
 PORT=3000
@@ -34,7 +34,7 @@ Feito a configuração inicial, instale os pacotes com o comando abaixo dentro d
 npm i
 ```
 
-Execute o servidor com o script no modo devesenvolvimento para iniciar um servidor local:
+Execute o servidor com o script no modo de desenvolvimento para iniciar um servidor local:
 
 ```
 npm run dev
@@ -43,7 +43,7 @@ npm run dev
 
 ### Rodando o React
 
-Instale os pacotes utilizando o comando abaixo:
+Dentro da pasta frontend, instale os pacotes utilizando o comando abaixo:
 
 ```
 yarn install
