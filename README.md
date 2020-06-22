@@ -34,7 +34,7 @@ Feito a configuração inicial, instale os pacotes com o comando abaixo dentro d
 npm i
 ```
 
-Execute o servidor com o script no modo devesenvolvimento para iniciar um servidor local:
+Execute o servidor com o script no modo de desenvolvimento para iniciar um servidor local:
 
 ```
 npm run dev
