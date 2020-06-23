@@ -1,3 +1,4 @@
+/* Com este Script do PostgreSQL não é possível utilizar o sistema Web, visto que desta forma, a senha não está criptografada. Quando o usuário realiza o login, o servidor do Backend verifica a senha criptografada e não em texto */
 /* populando tabela usuario */
 
 INSERT INTO Usuario (cpf, nome, rg, data_nascimento, rua, num_casa, bairro, cidade, estado, cep, e_mail, password, num_cartao, data_vencimento, nome_cartao, cod_cartao, data_cadastro) VALUES ('20729032035', 'ana clara', '232864871', '1997-05-29', 'rua dos alfeneiros', 126, 'vila dos peixes', 'futebolandia', 'sp', 17000000, 'anaclara@email.com', '123', '5300351747784679', '2025-09-06', 'ana clara pedroso', '125', '2020-05-29');
