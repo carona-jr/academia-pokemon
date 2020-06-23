@@ -6,7 +6,6 @@ const search = async (pokemon, obj, err) => {
             localStorage.setItem('pokemonsImgError', JSON.stringify(err))
             return undefined
         }
-        console.log(pokemon)
         try {
             let response = await apiPokemon.get(`/${pokemon.toLowerCase()}`)
             return response.data.sprites.front_default
