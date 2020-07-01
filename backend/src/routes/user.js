@@ -76,7 +76,8 @@ router.post('/user/login', async (req, res) => {
 
 router.patch('/user/me', auth, async (req, res) => {
     try {
-        req.body.password = await bcrypt.hash(req.body.password, 8)
+        if(req.body.password)
+            req.body.password = await bcrypt.hash(req.body.password, 8)
 
         const query = await searchByKeyAndUpdate(req.body, 'Usuario', ['cpf'], [req.user.cpf],
             queryFindByCpf, ['nome', 'data_nascimento', 'cpf', 'rg', 'e_mail', 'password', 'rua', 'num_casa', 'bairro', 'cidade', 'estado', 'cep'], ['cep', 'num_casa'])
